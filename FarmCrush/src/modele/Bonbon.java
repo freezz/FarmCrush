@@ -1,25 +1,27 @@
 package modele;
 
 
-
+/**
+ * Classe abstraite spécifiant les Bonbons
+ * @author Thibault
+ * @author Jean-Baptiste
+ * @author Grégoire
+ * @version 0.1
+ */
 
 public abstract class Bonbon {
 
     private int conditionNbLigne;
-
-
     private int conditionNbColonne;
-
     private Couleur couleur;
-
-
     public Historique historique;
 
 
-    public void getCouleur() {
+    public Couleur getCouleur() {
+    	return this.couleur;
     }
 
-    public abstract static int getValeur();
+    public abstract int getValeur();
 
 
     public abstract void destruction(final Grille g);
@@ -29,19 +31,15 @@ public abstract class Bonbon {
 
 
     private Couleur choisirCouleurRandom() {
-        // TODO Auto-generated return
         return null;
     }
 
-
     public int getConditionLigne() {
-        // TODO Auto-generated return
         return 0;
     }
 
 
     public int getConditionColonne() {
-        // TODO Auto-generated return
         return 0;
     }
 
