@@ -1,25 +1,32 @@
 package modele;
 
-import com.modeliosoft.modelio.javadesigner.annotations.objid;
+/**
+ * Coordonnées dans la grille de jeu
+ * @author Thibault
+ * @author Jean-Baptiste
+ * @author Grégoire
+ * @version 0.1
+ */
 
-@objid ("943a89cd-60aa-487c-a126-684f001d74c7")
 public class Coordonnee {
-    @objid ("5d14c942-b68e-4e6c-8272-b6ce9039106d")
-    private int x;
+    
+	private int x;	//Abscisse de la case
+    private int y;	//Ordonnée de la case
 
-    @objid ("387ff8f6-da0d-4618-8e56-f805961e96b3")
-    private int y;
-
-    @objid ("768ef8fb-1f49-45ce-b37a-3349a5df54e1")
+    /**
+     * Retourne l'abscisse de la case
+     * @return x
+     */
     public int getX() {
-        // TODO Auto-generated return
-        return 0;
+        return this.x;
     }
 
-    @objid ("5daebcf7-927c-4f00-bd67-347757973899")
+    /**
+     * Retourne l'ordonnée de la case
+     * @return y
+     */
     public int getY() {
-        // TODO Auto-generated return
-        return 0;
+        return this.y;
     }
 
 }
