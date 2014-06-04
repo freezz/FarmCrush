@@ -1,4 +1,8 @@
-package modele;
+package test;
+
+import modele.Bonbon;
+import modele.BonbonNormal;
+import modele.BonbonRaye;
 
 public class Test {
 
