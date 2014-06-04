@@ -1,9 +1,14 @@
 package modele;
 
-import com.modeliosoft.modelio.javadesigner.annotations.objid;
+/**
+ * Enumération des couleurs de bonbon du jeu
+ * @author Thibault
+ * @author Jean-Baptiste
+ * @author Grégoire
+ * @version 0.1
+ */
 
-@objid ("391e6103-00ca-49e0-902c-3efd263088a6")
-public enum Couleur<T> {
+public enum Couleur {
     ROUGE,
     VERT,
     JAUNE,
