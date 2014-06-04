@@ -1,3 +1,5 @@
+import modele.Couleur;
+
 public class TestGenLevel {
 
 	public static void main(String[] args) {
@@ -19,30 +21,30 @@ public class TestGenLevel {
 	
 	/** Genère un caractère codant une couleur de bonbon
 	 * @author Grégoire
-	 * @return char
+	 * @return Couleur
 	 */
-	public static char genColor() {
+	public static Couleur genColor() {
 		int code = (int) (Math.random() * 6);
-		char color = 'z';
+		Couleur color = Couleur.VERT;
 		
 		switch (code) {
 		case 0 :
-			color = 'v'; //Vert
+			color = Couleur.VERT; //Vert
 			break;
 		case 1 :
-			color = 'r'; //Rouge
+			color = Couleur.ROUGE; //Rouge
 			break;
 		case 2 :
-			color = 'b';
+			color = Couleur.BLEU;
 			break;
 		case 3 :
-			color = 'j';
+			color = Couleur.JAUNE;
 			break;
 		case 4 :
-			color = 'o';
+			color = Couleur.ORANGE;
 			break;
 		case 5	:
-			color = 'p';
+			color = Couleur.VIOLET;
 			break;
 		default:
 			//ideal raise une exception mais on ne devrait jamais arriver ici
