@@ -1,5 +1,10 @@
 package modele;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 //@
 
 
@@ -39,6 +44,33 @@ public class FarmCrush {
     public void initialisationNiveau(String chemin) {
     	
     	
+		String ligneLue;	/** Variable contenant 1 ligne du fichier */
+		String [] contenuLigne;	/** tableau de tous les mots de la ligne */
+		
+		
+		try {
+			BufferedReader f = new BufferedReader(new FileReader(chemin));
+			
+			try {
+				while((ligneLue = f.readLine()) != null){
+					
+					
+					contenuLigne = ligneLue.split(" ");
+					System.out.println(contenuLigne[0]); 
+					
+										
+					}
+					f.close();
+				
+			} catch (IOException e) {
+				// Impossible de lire la ligne du fichier
+				e.printStackTrace();
+			}
+			
+		} catch (FileNotFoundException e) {
+			// Impossible d'ouvrir le fichier
+			e.printStackTrace();
+		}
     	
     }
 
