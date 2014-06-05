@@ -9,15 +9,39 @@ package modele;
  */
 
 public class BonbonNormal extends Bonbon {
-    public boolean interagir(final Grille g) {
-        return false;
+	
+	public void destruction(Grille g) {
     }
 
-    public static int getValeur() {
-        return 0;
+	@Override
+    public boolean interagir(Bonbon b, Grille g) {
+		boolean res;
+		if(b instanceof BonbonNormal){
+			res = b.interagir((BonbonNormal) b, g);
+		}
+		else {
+			res = false;
+		}
+        return res;
+    }
+    
+    public boolean interagir(BonbonNormal b, Grille g) {
+        return true;
     }
 
-    public void destruction(final Grille g) {
-    }
+	@Override
+	public int getValeur() {
+		return 0;
+	}
+
+	@Override
+	public int getConditionLigne() {
+		return 0;
+	}
+
+	@Override
+	public int getConditionColonne() {
+		return 0;
+	}
 
 }

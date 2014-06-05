@@ -21,13 +21,27 @@ public abstract class Bonbon {
     	return this.couleur;
     }
 
+    /**
+     * Retourne la valeur du bonbon courant
+     * @return int
+     */
     public abstract int getValeur();
 
 
-    public abstract void destruction(final Grille g);
+    /**
+     * Desctruction du bonbon
+     * @param g Grille
+     */
+    public abstract void destruction(Grille g);
 
 
-    public abstract void interagir(final Grille g);
+    /**
+     * Interagit avec le bonbon passé en parametre pour determiner son comportement
+     * @param b Bonbon
+     * @param g Grille
+     * @return
+     */
+    public abstract boolean interagir(Bonbon b, Grille g);
 
 
     /** Genère aléatoirement une couleur de bonbon
@@ -66,13 +80,9 @@ public abstract class Bonbon {
 		return color;
     }
 
-    public int getConditionLigne() {
-        return 0;
-    }
+    public abstract int getConditionLigne();
 
 
-    public int getConditionColonne() {
-        return 0;
-    }
+    public abstract int getConditionColonne();
 
 }
