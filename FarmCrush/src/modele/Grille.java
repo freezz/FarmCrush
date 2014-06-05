@@ -1,9 +1,17 @@
 package modele;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Gestion de la grille
+ * @author Thibault
+ * @author Jean-Baptiste
+ * @author Grégoire
+ * @version 0.1
+ */
 
 public class Grille {
 

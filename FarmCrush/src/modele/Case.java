@@ -16,25 +16,52 @@ public class Case {
     public Coordonnee coordonnee;	
 
   //Constructeurs
-    public Case() {
+    /**
+     * Construit une case avec ses coordonnées, le niveau de gélatine et le bonbon
+     * @param x
+     * @param y
+     * @param g
+     * @param b
+     */
+    public Case(int x, int y, int g, Bonbon b) {
+    	this.coordonnee = new Coordonnee(x, y);
+    	this.gelatine = new Gelatine(g);
+    	this.bonbon = b;
     }
-  
     
-    //Methodes
-    public void retirerContenu() {
-    }
-
-    
+  //Accesseurs
+    /**
+     * Retourne le bonbon présent dans la poignée
+     * @return bonbon
+     */
     public Bonbon getBonbon() {
-    	return null;
+    	return bonbon;
     }
 
-    public int getCoordonee() {
-        return 0;
+    /**
+     * Retourne les coordonnées de la poignnée
+     * @return Coordonnee
+     */
+    public Coordonnee getCoordonee() {
+        return this.coordonnee;
     }
 
+    /**
+     * Retourne la gélatine de la poignée
+     * @return Gelatine
+     */
     public Gelatine getGelatine() {
-        return null;
+        return gelatine;
     }
 
+  //Methodes
+    /**
+     * Supprime le contenu d'une case, bonbon et gélatine
+     */
+    public void retirerContenu() {
+    	if (this.gelatine.getCoucheGelatine() !=0) {
+    		this.gelatine.retirerCouche();
+    	}
+    	bonbon.destruction(); //Problème y a pas la grille à passer en paramètre.
+    }
 }
