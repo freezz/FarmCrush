@@ -17,32 +17,51 @@ public abstract class Bonbon {
     public Historique historique;
 
 
+    /**
+     * Retourne la couleur du bonbon
+     * @return Couleur
+     */
     public Couleur getCouleur() {
     	return this.couleur;
     }
 
+    /**
+     * Retourne la valeur du bonbon courant
+     * @return int
+     */
     public abstract int getValeur();
 
 
-    public abstract void destruction(final Grille g);
+    /**
+     * Desctruction du bonbon
+     * @param g Grille
+     */
+    public abstract void destruction(Grille g);
 
 
-    public abstract void interagir(final Grille g);
+    /**
+     * Interagit avec le bonbon passé en parametre pour determiner son comportement
+     * @param b Bonbon
+     * @param g Grille
+     * @return
+     */
+    public abstract boolean interagir(Bonbon b, Grille g);
 
 
     /** Genère aléatoirement une couleur de bonbon
 	 * @return Couleur
+	 * @exception RuntimeException
 	 */
-    private Couleur choisirCouleurRandom() {
+    private Couleur choisirCouleurRandom() throws RuntimeException {
     	int code = (int) (Math.random() * 6);
 		Couleur color = Couleur.VERT;
 		
 		switch (code) {
 		case 0 :
-			color = Couleur.VERT; //Vert
+			color = Couleur.VERT;
 			break;
 		case 1 :
-			color = Couleur.ROUGE; //Rouge
+			color = Couleur.ROUGE;
 			break;
 		case 2 :
 			color = Couleur.BLEU;
@@ -57,22 +76,25 @@ public abstract class Bonbon {
 			color = Couleur.VIOLET;
 			break;
 		default:
-			//ideal raise une exception mais on ne devrait jamais arriver ici
-			System.out.println("La valeur ne correspond à aucune couleur");
-			System.out.println(code);
-			break;
+			throw new RuntimeException("Couleur Inexistante");
 		}
 		
 		return color;
     }
 
-    public int getConditionLigne() {
-        return 0;
-    }
+    /**
+     * Condition de creation d'un bonbon (superbonbon) en examinant 
+     * le nombre de bonbon de meme couleur sur la ligne
+     * @return nombre de bonbon necessaire a la creation du bonbon
+     */
+    public abstract int getConditionLigne();
 
 
-    public int getConditionColonne() {
-        return 0;
-    }
+    /**
+     * Condition de creation d'un bonbon (superbonbon) en examinant 
+     * le nombre de bonbon de meme couleur sur la colonne
+     * @return nombre de bonbon necessaire a la creation du bonbon
+     */
+    public abstract int getConditionColonne();
 
 }
