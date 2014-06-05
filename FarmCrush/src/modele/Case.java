@@ -5,7 +5,7 @@ package modele;
  * @author Thibault
  * @author Jean-Baptiste
  * @author Grégoire
- * @version 0.1
+ * @version 0.2
  */
 
 public class Case {
@@ -26,6 +26,17 @@ public class Case {
     	this.coordonnee = new Coordonnee(x, y);
     	this.gelatine = new Gelatine(0);
     	this.bonbon = b;
+    }
+    
+    /**
+     * Construit une case vide
+     * @param x
+     * @param y
+     */
+    public Case(int x, int y) {
+    	this.coordonnee = new Coordonnee(x, y);
+    	this.gelatine = new Gelatine(0);
+    	this.bonbon = null;
     }
     
   //Accesseurs
@@ -56,11 +67,10 @@ public class Case {
   //Methodes
     /**
      * Supprime le contenu d'une case, bonbon et gélatine
+     * @param g - Grille
      */
-    public void retirerContenu() {
-    	if (this.gelatine.getCoucheGelatine() !=0) {
-    		this.gelatine.retirerCouche();
-    	}
-    	bonbon.destruction(); //Problème y a pas la grille à passer en paramètre.
+    public void retirerContenu(Grille g) {
+    	this.gelatine.retirerCouche();
+    	this.bonbon.destruction(g);
     }
 }

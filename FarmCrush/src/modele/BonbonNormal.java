@@ -10,6 +10,16 @@ package modele;
 
 public class BonbonNormal extends Bonbon {
 	
+   //Constructeurs
+	/**
+	 * Construit un bonbon normal et son historique
+	 * @param c - Couleur
+	 */
+	public BonbonNormal(Couleur c) {
+		this.couleur = c;
+		this.historique = new Historique();
+	}
+	
 	/**
      * Desctruction du bonbon
      * @param g Grille
