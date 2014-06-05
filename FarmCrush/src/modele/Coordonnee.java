@@ -13,6 +13,17 @@ public class Coordonnee {
 	private int x;	//Abscisse de la case
     private int y;	//Ordonnée de la case
 
+  //Constructeurs
+    /**
+     * Contruit coordonnées de la case
+     * @param abs
+     * @param ord
+     */
+    public Coordonnee(int abs, int ord) {
+    	this.x = abs;
+    	this.y = ord;
+    }
+    
     /**
      * Retourne l'abscisse de la case
      * @return x
