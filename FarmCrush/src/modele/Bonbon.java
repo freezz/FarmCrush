@@ -13,7 +13,7 @@ public abstract class Bonbon {
 
     private int conditionNbLigne;
     private int conditionNbColonne;
-    private Couleur couleur;
+    protected Couleur couleur;
     public Historique historique;
 
 

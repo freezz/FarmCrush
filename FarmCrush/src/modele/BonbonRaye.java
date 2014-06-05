@@ -9,6 +9,16 @@ package modele;
  */
 
 public class BonbonRaye extends Bonbon {
+	
+   //Constructeurs
+	/**
+	 * Construit un bonbon rayé et son historique associé
+	 * @param c - Couleur
+	 */
+	public BonbonRaye(Couleur c) {
+		this.couleur = c;
+		this.historique = new Historique();
+	}
 
 	/**
      * Desctruction du bonbon

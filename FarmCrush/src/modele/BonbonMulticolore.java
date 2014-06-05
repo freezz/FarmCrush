@@ -10,6 +10,16 @@ package modele;
 
 public class BonbonMulticolore extends Bonbon {
 	
+   //Constructeurs
+	/**
+	 * Construit un bobon multicolore et son historique associé
+	 * @param c - Couleur
+	 */
+	public BonbonMulticolore(Couleur c) {
+		this.couleur = c;
+		this.historique = new Historique();
+	}
+	
 	/**
 	 * Desctruction du bonbon
 	 * @param g Grille
