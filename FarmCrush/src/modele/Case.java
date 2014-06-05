@@ -20,12 +20,11 @@ public class Case {
      * Construit une case avec ses coordonnées, le niveau de gélatine et le bonbon
      * @param x
      * @param y
-     * @param g
      * @param b
      */
-    public Case(int x, int y, int g, Bonbon b) {
+    public Case(int x, int y, Bonbon b) {
     	this.coordonnee = new Coordonnee(x, y);
-    	this.gelatine = new Gelatine(g);
+    	this.gelatine = new Gelatine(0);
     	this.bonbon = b;
     }
     
