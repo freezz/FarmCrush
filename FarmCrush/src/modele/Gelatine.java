@@ -30,11 +30,21 @@ public class Gelatine {
         return (this.coucheCase);
     }
     
+    /**
+     * Mets à jour le niveau de gélatine de la poignée
+     * @param g - int
+     */
+    public void setGelatine(int g) {
+		this.coucheCase = g;
+	}
+    
    //Méthodes
    /**
     * Retire une couche de gélatine
     */
     public void retirerCouche() {
-    	this.coucheCase -= 1;
+    	if (this.getCoucheGelatine() != 0){
+    		this.coucheCase -= 1;
+    	}
     }
 }

@@ -56,11 +56,10 @@ public class Case {
   //Methodes
     /**
      * Supprime le contenu d'une case, bonbon et gélatine
+     * @param g - Grille
      */
-    public void retirerContenu() {
-    	if (this.gelatine.getCoucheGelatine() !=0) {
-    		this.gelatine.retirerCouche();
-    	}
-    	bonbon.destruction(); //Problème y a pas la grille à passer en paramètre.
+    public void retirerContenu(Grille g) {
+    	this.gelatine.retirerCouche();
+    	this.bonbon.destruction(g);
     }
 }
