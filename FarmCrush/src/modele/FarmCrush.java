@@ -24,8 +24,12 @@ public class FarmCrush {
     	scoreActuel = 0;
     	nbCoupJouer = 0;
     	objectif = new Objectif();
+    	grille = new Grille();
     	
     }
+    //accesseurs
+    
+
     
     //Méthodes
 	/**
@@ -54,7 +58,7 @@ public class FarmCrush {
 	 */
     public void initialisationNiveau(String chemin) {
     	
-    	
+    	int param = 0;
 		String ligneLue;	/** Variable contenant 1 ligne du fichier */
 		String [] contenuLigne;	/** tableau de tous les mots de la ligne */
 		
@@ -72,10 +76,16 @@ public class FarmCrush {
 						
 						//Vérification si elle contient "ligne" ou "colonne"
 						if(contenuLigne[0].equals("ligne")){
-							
+							System.out.println(contenuLigne[0]);
+							System.out.println(contenuLigne[2]);
+							//param = Integer.parseInt(contenuLigne[1]);
+							//grille.setLigne(param);
 						}
 						else if(contenuLigne[0].equals("colonne")){
-							
+							System.out.println(contenuLigne[0]);
+							System.out.println(contenuLigne[2]);
+							//param = Integer.parseInt(contenuLigne[1]);
+							//grille.setColonne(param);
 						}
 						else{
 							
@@ -97,6 +107,7 @@ public class FarmCrush {
 			e.printStackTrace();
 		}
     	
+		grille.affiche();
     }
 
 	/**

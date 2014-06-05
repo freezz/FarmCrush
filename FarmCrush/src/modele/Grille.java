@@ -1,10 +1,6 @@
 package modele;
 
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Gestion de la grille
  * @author Thibault
@@ -15,14 +11,50 @@ import java.util.List;
 
 public class Grille {
 
-    public static int TAILLE_LIGNE_MAX = 9;
-    public static String TAILLE_COLONNE_MAX;
+	//attributs
 
     private int nbColonne;
     private int nbLigne;
 
-    public List<Case> cases = new ArrayList<Case> ();
+    public Case[][] tableauGrille;
 
+    //Constructeurs
+    
+    public Grille(){
+    	nbColonne = 0;
+    	nbLigne = 0;
+     }
+    
+    public void affiche(){
+    	System.out.println(nbColonne);
+    	System.out.println(nbLigne);
+    }
+    
+    //Accesseurs
+    
+    public int getColonne(){
+    	return nbColonne;
+    }
+    
+    public int getLigne(){
+    	return nbLigne;
+    }
+    
+    public Case[][] getTableau(){
+    	return tableauGrille;
+    }
+    
+    //setteurs
+    
+    public void setColonne(int x){
+    	nbColonne = x;
+    }
+    
+    public void setLigne(int y){
+    	nbLigne = y;
+    }
+    
+    //Méthodes
 	/**
 	 *   
 	 *   

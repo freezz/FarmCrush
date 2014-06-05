@@ -47,6 +47,9 @@ public class Objectif {
         nbMultiRestant = 0;
     }
     
+    // Accesseurs
+    
+
     //Méthodes
 	/**
 	 *   Verifi les differents attributs et retourne si les conditions
