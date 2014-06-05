@@ -46,17 +46,18 @@ public abstract class Bonbon {
 
     /** Genère aléatoirement une couleur de bonbon
 	 * @return Couleur
+	 * @exception RuntimeException
 	 */
-    private Couleur choisirCouleurRandom() {
+    private Couleur choisirCouleurRandom() throws RuntimeException {
     	int code = (int) (Math.random() * 6);
 		Couleur color = Couleur.VERT;
 		
 		switch (code) {
 		case 0 :
-			color = Couleur.VERT; //Vert
+			color = Couleur.VERT;
 			break;
 		case 1 :
-			color = Couleur.ROUGE; //Rouge
+			color = Couleur.ROUGE;
 			break;
 		case 2 :
 			color = Couleur.BLEU;
@@ -71,10 +72,7 @@ public abstract class Bonbon {
 			color = Couleur.VIOLET;
 			break;
 		default:
-			//ideal raise une exception mais on ne devrait jamais arriver ici
-			System.out.println("La valeur ne correspond à aucune couleur");
-			System.out.println(code);
-			break;
+			throw new RuntimeException("Couleur Inexistante");
 		}
 		
 		return color;
