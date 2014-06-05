@@ -10,25 +10,41 @@ package modele;
 
 public class BonbonMulticolore extends Bonbon {
 	
+	/**
+	 * Desctruction du bonbon
+	 * @param g Grille
+	 */
+	@Override
 	public void destruction(Grille g) {
     }
 
+	/**
+     * Interagit avec le bonbon passé en parametre pour determiner son comportement
+     * @param b Bonbon
+     * @param g Grille
+     * @return
+     */
 	@Override
     public boolean interagir(Bonbon b, Grille g) {
 		boolean res;
 		if(b instanceof BonbonNormal){
+			// b est un bonbon normal
 			res = b.interagir((BonbonNormal) b, g);
 		}
 		else if(b instanceof BonbonRaye){
+			// b est un bonbon rayé
 			res = b.interagir((BonbonRaye) b, g);
 		}
 		else if (b instanceof BonbonEmballe){
+			// b est un bonbon emballé
 			res = b.interagir((BonbonEmballe) b, g);
 		}
 		else if (b instanceof BonbonMulticolore){
+			// b est un bonbon multicolore
 			res = b.interagir((BonbonMulticolore) b, g);
 		}
 		else {
+			// b est un bonbon inconnu
 			res = false;
 		}
         return false;
@@ -55,11 +71,21 @@ public class BonbonMulticolore extends Bonbon {
 		return 0;
 	}
 
+	/**
+     * Condition de creation d'un bonbon (superbonbon) en examinant 
+     * le nombre de bonbon de meme couleur sur la ligne
+     * @return nombre de bonbon necessaire a la creation du bonbon
+     */
 	@Override
 	public int getConditionLigne() {
 		return 0;
 	}
 
+	/**
+     * Condition de creation d'un bonbon (superbonbon) en examinant 
+     * le nombre de bonbon de meme couleur sur la colonne
+     * @return nombre de bonbon necessaire a la creation du bonbon
+     */
 	@Override
 	public int getConditionColonne() {
 		return 0;

@@ -17,6 +17,10 @@ public abstract class Bonbon {
     public Historique historique;
 
 
+    /**
+     * Retourne la couleur du bonbon
+     * @return Couleur
+     */
     public Couleur getCouleur() {
     	return this.couleur;
     }
@@ -80,9 +84,19 @@ public abstract class Bonbon {
 		return color;
     }
 
+    /**
+     * Condition de creation d'un bonbon (superbonbon) en examinant 
+     * le nombre de bonbon de meme couleur sur la ligne
+     * @return nombre de bonbon necessaire a la creation du bonbon
+     */
     public abstract int getConditionLigne();
 
 
+    /**
+     * Condition de creation d'un bonbon (superbonbon) en examinant 
+     * le nombre de bonbon de meme couleur sur la colonne
+     * @return nombre de bonbon necessaire a la creation du bonbon
+     */
     public abstract int getConditionColonne();
 
 }
