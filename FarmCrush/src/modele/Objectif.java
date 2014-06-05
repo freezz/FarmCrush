@@ -5,7 +5,7 @@ package modele;
 
 public class Objectif {
 
-    private int scoreMax;
+    private int score;
     private int nbCoupMax;
     
     private int gelatineRestante;
@@ -22,17 +22,15 @@ public class Objectif {
     public int nbMultiRestant;
 
 	/**
+	 *   Verifi les differents attributs et retourne si les conditions
+	 *   pour gagner, sont remplis
 	 *   
+	 * @param scoreActuel
+	 * 				: score actuel de la partie
 	 *   
-	 * @param 
-	 *   
-	 * @required
-	 *  
-	 * @ensure
-	 *  
-	 * @throws 
 	 * 
-	 * @return 
+	 * @return boolean : retourne vrai si les conditions de victoires sont remplis
+	 * sinon retourne faux
 	 * 	 
 	 */
     public boolean estVerifier() {
