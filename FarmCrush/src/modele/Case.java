@@ -11,14 +11,16 @@ package modele;
 public class Case {
 	
   //Attributs
-    public Gelatine gelatine;		//Gelatine présente dans la case
-    public Bonbon bonbon;			//Bonbon présent dans la case
-    public Coordonnee coordonnee;	//Coordonnées de la case
+    public Gelatine gelatine;		
+    public Bonbon bonbon;			
+    public Coordonnee coordonnee;	
 
-  //Constructeur
+  //Constructeurs
     public Case() {
     }
   
+    
+    //Methodes
     public void retirerContenu() {
     }
 
