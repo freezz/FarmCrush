@@ -5,18 +5,29 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-//@
 
 
 public class FarmCrush {
 
-    private int scoreaActuel;
+	//attributs
+
+    private int scoreActuel;
     private int nbCoupJouer;
 
     public Objectif objectif;
     public Grille grille;
 
+    //Constructeurs
     
+    public FarmCrush(){
+    	
+    	scoreActuel = 0;
+    	nbCoupJouer = 0;
+    	objectif = new Objectif();
+    	
+    }
+    
+    //Méthodes
 	/**
 	 *   
 	 *   
@@ -39,7 +50,7 @@ public class FarmCrush {
 	 *  de FarmCrush, Objectif et de la grille 
 	 *   
 	 * @param chemin : Chemin du fichier d'import du niveau
-	 *   
+	 * @param obj : objectif associé au niveau
 	 */
     public void initialisationNiveau(String chemin) {
     	
@@ -51,12 +62,24 @@ public class FarmCrush {
 		try {
 			BufferedReader f = new BufferedReader(new FileReader(chemin));
 			
+
+			
 			try {
-				while((ligneLue = f.readLine()) != null){
+					while((ligneLue = f.readLine()) != null){
 					
-					
-					contenuLigne = ligneLue.split(" ");
-					System.out.println(contenuLigne[0]); 
+						//Récupération de la ligne
+						contenuLigne = ligneLue.split(" ");
+						
+						//Vérification si elle contient "ligne" ou "colonne"
+						if(contenuLigne[0].equals("ligne")){
+							
+						}
+						else if(contenuLigne[0].equals("colonne")){
+							
+						}
+						else{
+							
+						}
 					
 										
 					}
@@ -66,6 +89,8 @@ public class FarmCrush {
 				// Impossible de lire la ligne du fichier
 				e.printStackTrace();
 			}
+			
+
 			
 		} catch (FileNotFoundException e) {
 			// Impossible d'ouvrir le fichier
@@ -111,5 +136,8 @@ public class FarmCrush {
 
         return 0;
     }
+    
+    
+    //Méthodes nécessaires à l'initialisation du niveau
 
 }
