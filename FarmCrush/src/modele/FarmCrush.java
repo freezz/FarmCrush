@@ -30,20 +30,16 @@ public class FarmCrush {
     }
 
 	/**
+	 *  Effectue toutes les actions necessaires a l'initialisation
+	 *  de FarmCrush, Objectif et de la grille 
 	 *   
+	 * @param chemin : Chemin du fichier d'import du niveau
 	 *   
-	 * @param 
-	 *   
-	 * @required
-	 *  
-	 * @ensure
-	 *  
-	 * @throws 
-	 * 
-	 * @return 
-	 * 	 
 	 */
-    public void initialisationNiveau() {
+    public void initialisationNiveau(String chemin) {
+    	
+    	
+    	
     }
 
 	/**
