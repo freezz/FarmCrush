@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="/home/uiharu/Programmation/Java/Librairies/Log4j/log4j-api-2.0-rc1-javadoc.jar"/>
 	<classpathentry kind="lib" path="/home/uiharu/Programmation/Java/Librairies/Log4j/log4j-core-2.0-rc1.jar"/>
 	<classpathentry kind="lib" path="/home/uiharu/Programmation/Java/Librairies/Log4j/log4j-core-2.0-rc1-javadoc.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
