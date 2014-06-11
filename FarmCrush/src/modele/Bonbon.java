@@ -43,7 +43,7 @@ public abstract class Bonbon {
      * Interagit avec le bonbon passé en parametre pour determiner son comportement
      * @param b Bonbon
      * @param g Grille
-     * @return
+     * @return boolean
      */
     public abstract boolean interagir(Bonbon b, Grille g);
 
