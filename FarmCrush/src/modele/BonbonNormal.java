@@ -17,6 +17,7 @@ public class BonbonNormal extends Bonbon {
 	 */
 	public BonbonNormal(Couleur c) {
 		this.couleur = c;
+		//historique
 		this.historique = new Historique();
 	}
 	
