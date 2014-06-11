@@ -1,5 +1,8 @@
 package modele;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Gestion des objectifs à atteindre pour gagner la partie 
  * @author Thibault
@@ -9,6 +12,9 @@ package modele;
  */
 
 public class Objectif {
+	
+   //Looger
+	private static final Logger loggerObjective = LogManager.getLogger("modèle.objectif");
 
    //attributs
     private int targetScore;		//Score à atteindre
@@ -48,6 +54,8 @@ public class Objectif {
         nbRayeRestant = 0;
         nbEmballeRestant = 0;
         nbMultiRestant = 0;
+        
+        loggerObjective.debug("Initialisation des objectifs à 0");
     }
     
     // Accesseurs
@@ -66,6 +74,7 @@ public class Objectif {
 	 */
     public void setTargetScore(int s) {
         targetScore = s;
+        loggerObjective.debug("Mise à jour du targetScore, nouvelle valeur : {}", s);
     }
     
     /**
@@ -82,6 +91,7 @@ public class Objectif {
      */
     public void setNbCoupMax(int nbCoupMax) {
 		this.nbCoupMax = nbCoupMax;
+		loggerObjective.debug("Mise à jour du nombre de coup maximum jouable, nouvelle valeur : {}", nbCoupMax);
 	}
     
     /**
