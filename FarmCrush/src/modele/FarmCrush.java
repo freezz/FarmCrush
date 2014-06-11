@@ -29,103 +29,7 @@ public class FarmCrush {
     }
     //accesseurs
     
-
-    
-    //Méthodes
-	/**
-	 *   
-	 *   
-	 * @param 
-	 *   
-	 * @required
-	 *  
-	 * @ensure
-	 *  
-	 * @throws 
-	 * 
-	 * @return 
-	 * 	 
-	 */
-    public void jouer(final Coordonnee c1, final Coordonnee c2) {
-    }
-
-	/**
-	 *  Effectue toutes les actions necessaires a l'initialisation
-	 *  de FarmCrush, Objectif et de la grille 
-	 *   
-	 * @param chemin : Chemin du fichier d'import du niveau
-	 * @param obj : objectif associé au niveau
-	 */
-    public void initialisationNiveau(String chemin) {
-    	
-    	int param = 0;
-    	int i = 0;
-		String ligneLue;	/** Variable contenant 1 ligne du fichier */
-		String [] contenuLigne;	/** tableau de tous les mots de la ligne */
-		
-		
-		try {
-			BufferedReader f = new BufferedReader(new FileReader(chemin));
-			
-
-			
-			try {
-					while((ligneLue = f.readLine()) != null){
-					
-						//Récupération de la ligne
-						contenuLigne = ligneLue.split(" ");
-						
-						//Vérification si elle contient "ligne" ou "colonne"
-						if(contenuLigne[0].equals("ligne")){
-
-							//enleve les espaces entre ligne et le nombre associé
-							i = 1;
-							while(contenuLigne[i].equals(" ")||contenuLigne[i].equals("")){
-								i++;
-							}
-							
-							param = Integer.parseInt(contenuLigne[1]);
-							grille.setLigne(param);
-				
-						
-	
-							
-						}
-						else if(contenuLigne[0].equals("colonne")){
-							
-							i = 1;
-							while(contenuLigne[i].equals(" ")||contenuLigne[i].equals("")){
-								i++;
-								//param = Integer.parseInt(contenuLigne[1]);
-								//grille.setLigne(param);
-							}
-							System.out.println(contenuLigne[i]);
-						
-						}
-						else{
-							
-						}
-					
-										
-					}
-					f.close();
-				
-			} catch (IOException e) {
-				// Impossible de lire la ligne du fichier
-				e.printStackTrace();
-			}
-			
-
-			
-		} catch (FileNotFoundException e) {
-			// Impossible d'ouvrir le fichier
-			e.printStackTrace();
-		}
-    	
-		//grille.affiche();
-    }
-
-	/**
+    /**
 	 *   
 	 *   
 	 * @param 
@@ -163,7 +67,211 @@ public class FarmCrush {
         return 0;
     }
     
+    //Méthodes
+	/**
+	 *   
+	 *   
+	 * @param 
+	 *   
+	 * @required
+	 *  
+	 * @ensure
+	 *  
+	 * @throws 
+	 * 
+	 * @return 
+	 * 	 
+	 */
+    public void jouer(final Coordonnee c1, final Coordonnee c2) {
+    }
+
+	/**
+	 *  Effectue toutes les actions necessaires a l'initialisation
+	 *  de FarmCrush, Objectif et de la grille 
+	 *   
+	 * @param chemin : Chemin du fichier d'import du niveau
+	 * @param obj : objectif associé au niveau
+	 */
+    public void initialisationNiveau(String chemin) {
+    	
+		String ligneLue;	/** Variable contenant 1 ligne du fichier */
+		String [] contenuLigne;	/** tableau de tous les mots de la ligne */
+		
+		
+		try {
+			BufferedReader f = new BufferedReader(new FileReader(chemin));
+			
+			
+			// récupération de ligne et colonne dans le fichier niveau
+			recupereLigneColonne(grille,f);
+			
+			//on remet le curseur au debut du fichier
+			f.close();
+			f = new BufferedReader(new FileReader(chemin));
+					
+			//Initialisation de la grille	
+			grille.initialiser();
+					
+			// On recupere tous les parametres		
+			this.recupereParam(grille,f);
+
+			
+		} catch (FileNotFoundException e) {
+			// Impossible d'ouvrir le fichier
+			e.printStackTrace();
+		}
+    	
+    }
+
+	
+    
     
     //Méthodes nécessaires à l'initialisation du niveau
 
+    private void recupereLigneColonne(Grille grille,BufferedReader f){
+    	int param = 0;
+    	int i = 0;
+		String ligneLue;	/** Variable contenant 1 ligne du fichier */
+		String [] contenuLigne;	/** tableau de tous les mots de la ligne */
+    	
+		try {
+			while((ligneLue = f.readLine()) != null){
+			
+				//Récupération de la ligne
+				contenuLigne = ligneLue.split(" ");
+				
+				//Vérification si elle contient "ligne" ou "colonne"
+				if(contenuLigne[0].equals("ligne")){
+
+					//enleve les espaces entre ligne et le nombre associé
+					i = 1;
+					while(contenuLigne[i].equals(" ")||contenuLigne[i].equals("")){
+						i++;
+					}
+					
+					param = Integer.parseInt(contenuLigne[i]);
+					grille.setLigne(param);
+		
+				}
+				else if(contenuLigne[0].equals("colonne")){
+					
+					//enleve les espaces entre colonne et le nombre associé
+					i = 1;
+					while(contenuLigne[i].equals(" ")||contenuLigne[i].equals("")){
+						i++;
+					}
+					
+					param = Integer.parseInt(contenuLigne[i]);
+					grille.setColonne(param);
+			
+				}				
+			}
+			
+		} catch (IOException e) {
+			// Impossible de lire la ligne du fichier
+			e.printStackTrace();
+		}	
+			
+    }
+    
+    private void recupereParam(Grille grille,BufferedReader f){
+    	int param = 0; /** Variable contenant le nombre associé a un parametre */
+		String ligneLue;	/** Variable contenant 1 ligne du fichier */
+		String [] contenuLigne;	/** tableau de tous les mots de la ligne */
+    	
+		try {
+			while((ligneLue = f.readLine()) != null){
+			
+				//Récupération de la ligne
+				contenuLigne = ligneLue.split(" ");
+				
+				//Vérification des varables aux debuts de ligne
+				switch (contenuLigne[0]) {
+				case "score":
+					
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
+					grille.setLigne(param);
+					break;
+					
+				case "coups":
+					
+					break;
+					
+				case "vert":
+					
+					break;
+					
+				case "rouge":
+					
+					break;
+					
+				case "bleu":
+					
+					break;
+					
+				case "jaune":
+					
+					break;
+					
+				case "Orange":
+					
+					break;
+					
+				case "violet":
+					
+					break;
+					
+				case "raye":
+					
+					break;
+					
+				case "emballe":
+					
+					break;
+					
+				case "multi":
+					
+					break;
+
+				default:
+					break;
+				}
+				if(contenuLigne[0].equals("ligne")){
+
+					
+		
+				}
+				else if(contenuLigne[0].equals("colonne")){
+					
+					//enleve les espaces entre colonne et le nombre associé
+					i = 1;
+					while(contenuLigne[i].equals(" ")||contenuLigne[i].equals("")){
+						i++;
+					}
+					
+					param = Integer.parseInt(contenuLigne[i]);
+					grille.setColonne(param);
+			
+				}				
+			}
+			
+		} catch (IOException e) {
+			// Impossible de lire la ligne du fichier
+			e.printStackTrace();
+		}	
+			
+    }
+    
+    
+    private int indiceParam(String [] contenuLigne){
+    	int i = 1;
+		while(contenuLigne[i].equals(" ")||contenuLigne[i].equals("")){
+			i++;
+		}
+		return i;
+    	
+    }
+    
+    
+    
 }
