@@ -49,7 +49,21 @@ public class Objectif {
     
     // Accesseurs
     
+	/**
+	 *Retourne la valeur du score 
+	 */
+    public int getScore() {
 
+        return score;
+    }
+    
+	/**
+	 *Modifi la valeur du score 
+	 */
+    public void setScore(int s) {
+
+        score = s;
+    }
     //Méthodes
 	/**
 	 *   Verifi les differents attributs et retourne si les conditions
