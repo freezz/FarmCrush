@@ -1,36 +1,39 @@
 package modele;
 
-
-
+/**
+ * Gestion des objectifs à atteindre pour gagner la partie 
+ * @author Thibault
+ * @author Jean-Baptiste
+ * @author Grégoire
+ * @version 0.1
+ */
 
 public class Objectif {
 
-	//attributs
-	
-    private int score;
-    private int nbCoupMax;
+   //attributs
+    private int targetScore;		//Score à atteindre
+    private int nbCoupMax;			//Nombre de coup jouable maximum
     
-    private int gelatineRestante;
+    private int gelatineRestante;	//Nombre Gélatine restant à détruire
 
-    private int nbRougeRestant;
-    private int nbVioletRestant;
-    private int nbVertRestant;
-    private int nbJauneRestant;
-    private int nbOrangeRestant;
-    private int nbBleuRestant;
+    private int nbRougeRestant;		//Nombre de bonbon rouge restant à détruire
+    private int nbVioletRestant;	//Nombre de bonbon violet restant à détruire
+    private int nbVertRestant;		//Nombre de bonbon vert restant à détruire
+    private int nbJauneRestant;		//Nombre de bonbon jaune restant à détruire
+    private int nbOrangeRestant;	//Nombre de bonbon orange restant à détruire
+    private int nbBleuRestant;		//Nombre de bonbon bleu restant à détruire
     
-    public int nbRayeRestant;
-    public int nbEmballeRestant;
-    public int nbMultiRestant;
+    public int nbRayeRestant;		//Nombre de bonbon rayé restant à détruire
+    public int nbEmballeRestant;	//Nombre de bonbon emballé restant à détruire
+    public int nbMultiRestant;		//Nombre de bonbon multicolore restant à détruire
 
     
-    //Constructeur
+   //Constructeurs
 	/**
-	 * Construit un objectif en mettant tous ces attributs a 0
-	 * 	 
+	 * Construit un objectif en mettant tous ses attributs a 0
 	 */   
     public Objectif(){
-        score = 0;
+        targetScore = 0;
         nbCoupMax = 0;
         
         gelatineRestante = 0;
@@ -53,16 +56,16 @@ public class Objectif {
 	 * Retourne la valeur du score
 	 * @return int 
 	 */
-    public int getScore() {
-        return score;
+    public int getTargetScore() {
+        return targetScore;
     }
     
 	/**
 	 * Modifie la valeur du score
 	 * @param s - int 
 	 */
-    public void setScore(int s) {
-        score = s;
+    public void setTargetScore(int s) {
+        targetScore = s;
     }
     
     /**
@@ -209,7 +212,6 @@ public class Objectif {
 		this.nbRayeRestant = nbRayeRestant;
 	}
     
-    
     /**
      * Retourne le nombre de bonbon emballé restant
      * @return int
@@ -242,22 +244,28 @@ public class Objectif {
 		this.nbMultiRestant = nbMultiRestant;
 	}
     
-    //Méthodes
+    
+   //Méthodes
 	/**
-	 *   Verifie les differents attributs et retourne si les conditions
-	 *   pour gagner, sont remplis
-	 *   
-	 * @param scoreActuel
-	 * 				: score actuel de la partie
-	 *   
-	 * 
-	 * @return boolean : retourne vrai si les conditions de victoires sont remplis
-	 * sinon retourne faux
-	 * 	 
+	 * Verifie les conditions de victoire, retourne vrai si rempli, faux sinon
+	 * @param scoreCourant - int : score courant
+	 * @return boolean : estGagnee - boolean
 	 */
-    public boolean estVerifier() {
-
-        return false;
+    public boolean estVerifier(int scoreCourant) {
+        return (
+        		this.targetScore >= scoreCourant &&
+        		this.nbCoupMax == 0 &&
+        		this.gelatineRestante == 0 &&
+        		this.nbRougeRestant == 0 &&
+        		this.nbVioletRestant == 0 &&
+        		this.nbVertRestant == 0 &&
+        		this.nbJauneRestant == 0 &&
+        		this.nbOrangeRestant == 0 &&
+        		this.nbBleuRestant == 0 &&
+        		this.nbRayeRestant == 0 &&
+        		this.nbEmballeRestant == 0 &&
+        		this.nbMultiRestant == 0
+        		);
     }
 
 }
