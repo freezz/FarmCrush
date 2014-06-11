@@ -55,7 +55,7 @@ public class Objectif {
         nbEmballeRestant = 0;
         nbMultiRestant = 0;
         
-        loggerObjective.debug("Initialisation des objectifs à 0");
+        loggerObjective.trace("Initialisation des objectifs à 0");
     }
     
     // Accesseurs
@@ -74,7 +74,7 @@ public class Objectif {
 	 */
     public void setTargetScore(int s) {
         targetScore = s;
-        loggerObjective.debug("Mise à jour du targetScore, nouvelle valeur : {}", s);
+        loggerObjective.trace("Mise à jour du targetScore, nouvelle valeur : {}", s);
     }
     
     /**
@@ -91,7 +91,7 @@ public class Objectif {
      */
     public void setNbCoupMax(int nbCoupMax) {
 		this.nbCoupMax = nbCoupMax;
-		loggerObjective.debug("Mise à jour du nombre de coup maximum jouable, nouvelle valeur : {}", nbCoupMax);
+		loggerObjective.trace("Mise à jour du nombre de coup maximum jouable, nouvelle valeur : {}", nbCoupMax);
 	}
     
     /**
@@ -108,6 +108,7 @@ public class Objectif {
      */
     public void setGelatineRestante(int gelatineRestante) {
 		this.gelatineRestante = gelatineRestante;
+		loggerObjective.trace("Mise à jour du niveau de gélatine restant, nouvelle valeur : {}", gelatineRestante);
 	}
     
     /**
@@ -124,6 +125,7 @@ public class Objectif {
      */
     public void setNbRougeRestant(int nbRougeRestant) {
 		this.nbRougeRestant = nbRougeRestant;
+		loggerObjective.trace("Mise à jour du nombre de bonbon rouge restant, nouvelle valeur : {}", nbRougeRestant);
 	}
     
     /**
@@ -140,6 +142,7 @@ public class Objectif {
      */
     public void setNbVioletRestant(int nbVioletRestant) {
 		this.nbVioletRestant = nbVioletRestant;
+		loggerObjective.trace("Mise à jour du nombre de bonbon violet restant, nouvelle valeur : {}", nbVioletRestant);
 	}
     
     /**
@@ -156,6 +159,7 @@ public class Objectif {
      */
     public void setNbVertRestant(int nbVertRestant) {
 		this.nbVertRestant = nbVertRestant;
+		loggerObjective.trace("Mise à jour du nombre de bonbon vert restant, nouvelle valeur : {}", nbVertRestant);
 	}
     
     /**
@@ -172,6 +176,7 @@ public class Objectif {
      */
     public void setNbJauneRestant(int nbJauneRestant) {
 		this.nbJauneRestant = nbJauneRestant;
+		loggerObjective.trace("Mise à jour du nombre de bonbon jaune restant, nouvelle valeur : {}", nbJauneRestant);
 	}
     
     /**
@@ -188,6 +193,7 @@ public class Objectif {
      */
     public void setNbOrangeRestant(int nbOrangeRestant) {
 		this.nbOrangeRestant = nbOrangeRestant;
+		loggerObjective.trace("Mise à jour du nombre de bonbon orange restant, nouvelle valeur : {}", nbOrangeRestant);
 	}
     
     /**
@@ -204,6 +210,7 @@ public class Objectif {
      */
     public void setNbBleuRestant(int nbBleuRestant) {
 		this.nbBleuRestant = nbBleuRestant;
+		loggerObjective.trace("Mise à jour du nombre de bonbon bleu restant, nouvelle valeur : {}", nbBleuRestant);
 	}
     
     /**
@@ -220,6 +227,7 @@ public class Objectif {
      */
     public void setNbRayeRestant(int nbRayeRestant) {
 		this.nbRayeRestant = nbRayeRestant;
+		loggerObjective.trace("Mise à jour du nombre de bonbon rayé restant, nouvelle valeur : {}", nbRayeRestant);
 	}
     
     /**
@@ -236,6 +244,7 @@ public class Objectif {
      */
     public void setNbEmballeRestant(int nbEmballeRestant) {
 		this.nbEmballeRestant = nbEmballeRestant;
+		loggerObjective.trace("Mise à jour du nombre de bonbon emballé restant, nouvelle valeur : {}", nbEmballeRestant);
 	}
     
     /**
@@ -252,6 +261,7 @@ public class Objectif {
      */
     public void setNbMultiRestant(int nbMultiRestant) {
 		this.nbMultiRestant = nbMultiRestant;
+		loggerObjective.trace("Mise à jour du nombre de bonbon multicolore restant, nouvelle valeur : {}", nbMultiRestant);
 	}
     
     
@@ -262,7 +272,9 @@ public class Objectif {
 	 * @return boolean : estGagnee - boolean
 	 */
     public boolean estVerifier(int scoreCourant) {
-        return (
+    	boolean estGagnee;
+        
+    	if (
         		this.targetScore >= scoreCourant &&
         		this.nbCoupMax == 0 &&
         		this.gelatineRestante == 0 &&
@@ -275,7 +287,14 @@ public class Objectif {
         		this.nbRayeRestant == 0 &&
         		this.nbEmballeRestant == 0 &&
         		this.nbMultiRestant == 0
-        		);
+        	) {
+        			estGagnee = true;
+        			loggerObjective.trace("Condition de victoire, estGagné = {}", estGagnee);
+        } else {
+        			estGagnee = false;
+        			loggerObjective.trace("Condition de victoire, estGagné = {}", estGagnee);
+        }
+        
+        return estGagnee;
     }
-
 }
