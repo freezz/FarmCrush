@@ -77,17 +77,30 @@ public class FarmCrush {
 						
 						//Vérification si elle contient "ligne" ou "colonne"
 						if(contenuLigne[0].equals("ligne")){
-							System.out.println(contenuLigne[0]);
-							while()
-							System.out.println(contenuLigne[2]);
-							//param = Integer.parseInt(contenuLigne[1]);
-							//grille.setLigne(param);
+
+							//enleve les espaces entre ligne et le nombre associé
+							i = 1;
+							while(contenuLigne[i].equals(" ")||contenuLigne[i].equals("")){
+								i++;
+							}
+							
+							param = Integer.parseInt(contenuLigne[1]);
+							grille.setLigne(param);
+				
+						
+	
+							
 						}
 						else if(contenuLigne[0].equals("colonne")){
-							System.out.println(contenuLigne[0]);
-							System.out.println(contenuLigne[2]);
-							//param = Integer.parseInt(contenuLigne[1]);
-							//grille.setColonne(param);
+							
+							i = 1;
+							while(contenuLigne[i].equals(" ")||contenuLigne[i].equals("")){
+								i++;
+								//param = Integer.parseInt(contenuLigne[1]);
+								//grille.setLigne(param);
+							}
+							System.out.println(contenuLigne[i]);
+						
 						}
 						else{
 							
@@ -109,7 +122,7 @@ public class FarmCrush {
 			e.printStackTrace();
 		}
     	
-		grille.affiche();
+		//grille.affiche();
     }
 
 	/**
