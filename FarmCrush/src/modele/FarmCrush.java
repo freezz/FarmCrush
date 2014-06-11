@@ -59,6 +59,7 @@ public class FarmCrush {
     public void initialisationNiveau(String chemin) {
     	
     	int param = 0;
+    	int i = 0;
 		String ligneLue;	/** Variable contenant 1 ligne du fichier */
 		String [] contenuLigne;	/** tableau de tous les mots de la ligne */
 		
@@ -77,6 +78,7 @@ public class FarmCrush {
 						//Vérification si elle contient "ligne" ou "colonne"
 						if(contenuLigne[0].equals("ligne")){
 							System.out.println(contenuLigne[0]);
+							while()
 							System.out.println(contenuLigne[2]);
 							//param = Integer.parseInt(contenuLigne[1]);
 							//grille.setLigne(param);
