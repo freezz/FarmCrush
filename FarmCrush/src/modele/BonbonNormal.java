@@ -26,6 +26,9 @@ public class BonbonNormal extends Bonbon {
      */
 	@Override
 	public void destruction(Grille g) {
+		//trouver le bonbon dans la grille (recuperer coordonnées)
+		g.getPositionBonbon(this);
+		
     }
 
 	/**

@@ -26,6 +26,18 @@ public class BonbonRaye extends Bonbon {
      */
 	@Override
     public void destruction(Grille g) {
+		int i = 0;
+		int j = 0;
+		
+		/*detruire la ligne ou il y a le bonbon*/
+		Case[][] cases = g.getTableau();
+		//trouver le bonbon dans la grille (recuperer coordonnées)
+		
+		
+		
+		//effectuer la gravité
+		
+		//check la grille pour voir s'il n'y a pas d'autre interaction entre bonbon
     }
 
     /**
