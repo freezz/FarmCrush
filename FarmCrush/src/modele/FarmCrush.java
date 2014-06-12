@@ -172,6 +172,12 @@ public class FarmCrush {
 			
     }
     
+    
+	/**
+	 *  Sauvegarde les nombres associé aux parametres du fichier
+	 *   
+	 * @param f : Buffer contenant le contenu du fichier
+	 */
     private void recupereParam(BufferedReader f){
     	int param = 0; /** Variable contenant le nombre associé a un parametre */
 		String ligneLue;	/** Variable contenant 1 ligne du fichier */
@@ -189,10 +195,9 @@ public class FarmCrush {
 						
 						for(int j =0; j < grille.getColonne(); j++){
 							
-							
+						
 							
 						}//fin parcours colonne
-						
 						
 					}// fin parcours ligne
 					
