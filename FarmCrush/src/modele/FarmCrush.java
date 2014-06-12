@@ -182,12 +182,18 @@ public class FarmCrush {
     	int param = 0; /** Variable contenant le nombre associé a un parametre */
 		String ligneLue;	/** Variable contenant 1 ligne du fichier */
 		String [] contenuLigne;	/** tableau de tous les mots de la ligne */
-    	
+		Case[][] tableauRepere = grille.getTableau();
+		
+		
 		try {
+			int nbCouche = 0;
 			while((ligneLue = f.readLine()) != null){
+			
 			
 				//Récupération de la ligne
 				contenuLigne = ligneLue.split(" ");
+				
+				nbCouche = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);				
 				
 				if(contenuLigne[0].equals("gelatine")){
 
@@ -195,7 +201,7 @@ public class FarmCrush {
 						
 						for(int j =0; j < grille.getColonne(); j++){
 							
-						
+							tableauRepere[i][j].setGelatine(nbCouche);
 							
 						}//fin parcours colonne
 						
