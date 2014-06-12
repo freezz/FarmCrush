@@ -128,7 +128,7 @@ public class BonbonRaye extends Bonbon {
      */
 	@Override
 	public int getConditionLigne() {
-		return 0;
+		return 4;
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class BonbonRaye extends Bonbon {
      */
 	@Override
 	public int getConditionColonne() {
-		return 0;
+		return 4;
 	}
 
 }

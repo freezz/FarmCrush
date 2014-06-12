@@ -32,7 +32,39 @@ public class BonbonMulticolore extends Bonbon {
 	 */
 	@Override
 	public void destruction(Grille g) {
+		/*detruire le bonbon ayant une couleur au hasard*/
+
+		//detruire tout les bonbons d'une certaine couleur
+		delAllBonbonCouleur(g, this.choisirCouleurRandom());
+		
+		//effectuer la gravité
+		g.effectuerGraviter();
+		
+		//check la grille pour voir s'il n'y a pas d'autre interaction entre bonbon
+		g.checkGrille();
     }
+	
+	/**
+	 * Supprime tout les bonbon de couleur c de la grille
+	 * @param g
+	 * @param c
+	 */
+	private void delAllBonbonCouleur(Grille g, Couleur c){
+		
+		Case[][] cases = g.getTableau();
+		// parcourir toute la grille et supprimer chaque bonbon de couleur c
+		for(int i = 0 ; i < g.getLigne() ; i++){
+			for(int j = 0 ; j < g.getColonne() ; j++){
+				if(cases[i][j].getBonbon().getCouleur() == c){
+					//il sagit d'un bonbon de la couleur a supprimer
+					cases[i][j].getBonbon().destruction(g);
+				}
+				else{
+					//ce n'est pas la bonne couleur
+				}
+			}
+		}
+	}
 
 	/**
      * Interagit avec le bonbon passé en parametre pour determiner son comportement
@@ -94,7 +126,7 @@ public class BonbonMulticolore extends Bonbon {
      */
 	@Override
 	public int getConditionLigne() {
-		return 0;
+		return 5;
 	}
 
 	/**
@@ -104,7 +136,7 @@ public class BonbonMulticolore extends Bonbon {
      */
 	@Override
 	public int getConditionColonne() {
-		return 0;
+		return 5;
 	}
 
 }

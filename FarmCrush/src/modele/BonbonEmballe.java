@@ -31,7 +31,63 @@ public class BonbonEmballe extends Bonbon {
      */
 	@Override
 	public void destruction(Grille g) {
+		/*detruire le bloc (chaque bonbon autour du bonbon a detruire)*/
+		//Attention acces bord de tableau...
+		//trouver le bonbon dans la grille (recuperer coordonnées)
+		Coordonnee c = g.getPositionBonbon(this);
+		
+		// on supprime les bonbons autour du bonbon emballé
+		supBloc(g, false, c);
+		
+		//effectuer la gravité
+		g.effectuerGraviter();
+		
+		// Check grille ?
+		
+		//on resupprime le bloc entier (autour + le bonbon) 
+		supBloc(g, true, c);
+		
+		//effectuer la gravité
+		g.effectuerGraviter();
+		
+		//check la grille pour voir s'il n'y a pas d'autre interaction entre bonbon
+		g.checkGrille();
     }
+	
+	/**
+	 * Supprime les bonbons autour de coordBonbon (cases adjacentes)
+	 * si delBonbonMilieu == true, on supprime egalement le bonbon situé sur coordBonbon
+	 * @param coordBonbon
+	 */
+	private void supBloc(Grille g, boolean delBonbonMilieu, Coordonnee coordBonbon){
+		Case[][] cases = g.getTableau();
+		int i;
+		int j;
+		
+		// (-1 +1) ( 0 +1) (+1 +1)
+		// (-1  0) ( 0  0) (+1  0)
+		// (-1 -1) ( 0 -1) (+1 -1)
+		//to do : verifier qu'on est pas sur un bord...
+		
+		for( i = -1 ; i <= 1 ; i++ ) {
+			for( j = -1 ;  j <= 1 ; j++){
+				if(i != 0 && j != 0){ 
+					//on detruit le bonbon situé sur case[coordBonbon.getX() + i][coordBonbon.getX() + j]
+					cases[coordBonbon.getX() + i][coordBonbon.getX() + j].getBonbon().destruction(g);
+				}
+				else{
+					// i == 0 && j == 0
+					if(delBonbonMilieu){
+						cases[coordBonbon.getX() + i][coordBonbon.getX() + j].getBonbon().destruction(g);
+					}
+					else{
+						//on ne detruit pas le bonbon du milieu 
+						//donc on ne fait rien
+					}
+				}
+			}
+		}
+	}
 
 	/**
      * Interagit avec le bonbon passé en parametre pour determiner son comportement
@@ -90,7 +146,7 @@ public class BonbonEmballe extends Bonbon {
      */
 	@Override
 	public int getConditionLigne() {
-		return 0;
+		return 3;
 	}
 
 	/**
@@ -100,7 +156,7 @@ public class BonbonEmballe extends Bonbon {
      */
 	@Override
 	public int getConditionColonne() {
-		return 0;
+		return 3;
 	}
 
 }

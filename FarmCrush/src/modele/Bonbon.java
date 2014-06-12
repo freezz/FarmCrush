@@ -52,7 +52,7 @@ public abstract class Bonbon {
 	 * @return Couleur
 	 * @exception RuntimeException
 	 */
-    private Couleur choisirCouleurRandom() throws RuntimeException {
+    protected Couleur choisirCouleurRandom() throws RuntimeException {
     	int code = (int) (Math.random() * 6);
 		Couleur color = Couleur.VERT;
 		
