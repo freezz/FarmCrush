@@ -48,6 +48,15 @@ public class Case {
     	return bonbon;
     }
 
+    
+    /**
+     * Retourne le bonbon présent dans la poignée
+     * @return bonbon
+     */
+    public void setBonbon(Couleur c) {
+    	bonbon = new BonbonNormal(c);
+    }
+    
     /**
      * Retourne les coordonnées de la poignnée
      * @return Coordonnee
@@ -62,6 +71,14 @@ public class Case {
      */
     public Gelatine getGelatine() {
         return gelatine;
+    }
+    
+    /**
+     * Modifi la gélatine de la poignée
+     *
+     */
+    public void setGelatine(int nbCouche) {
+        gelatine = new Gelatine(nbCouche);
     }
 
   //Methodes
