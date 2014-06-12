@@ -28,7 +28,16 @@ public class BonbonNormal extends Bonbon {
 	@Override
 	public void destruction(Grille g) {
 		//trouver le bonbon dans la grille (recuperer coordonnées)
-		g.getPositionBonbon(this);
+		Coordonnee c = g.getPositionBonbon(this);
+		
+		//retirer le bonbon de la grille
+		g.supprimerBonbonCase(c);
+		
+		//effectuer la gravité
+		g.effectuerGraviter();
+		
+		//check grille
+		//g.checkGrille();
 		
     }
 
