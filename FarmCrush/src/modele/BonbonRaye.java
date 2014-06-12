@@ -13,8 +13,15 @@ import org.apache.logging.log4j.Logger;
 
 public class BonbonRaye extends Bonbon {
 	
+	/**
+	 * Sens de destruction du bonbon rayé (verticale/horizontale)
+	 */
+	private enum Axe{VERTICALE, HORIZONTALE};
+	private Axe sensDestruction;
+
    //Attributs
 	private static final Logger loggerBonbonRaye = LogManager.getLogger("modèle.bonbonRayé");
+
 
    //Constructeurs
 	/**
@@ -32,19 +39,50 @@ public class BonbonRaye extends Bonbon {
      */
 	@Override
     public void destruction(Grille g) {
-		int i = 0;
-		int j = 0;
 		
-		/*detruire la ligne ou il y a le bonbon*/
-		Case[][] cases = g.getTableau();
+		/*detruire la ligne/colonne ou il y a le bonbon*/
 		//trouver le bonbon dans la grille (recuperer coordonnées)
+		Coordonnee c = g.getPositionBonbon(this);
 		
-		
+		// ON supprime la ligne ou la colonne ou se trouve le bonbon rayé
+		supLigneColonneGrille(g, this.sensDestruction, c);
 		
 		//effectuer la gravité
+		g.effectuerGraviter();
 		
 		//check la grille pour voir s'il n'y a pas d'autre interaction entre bonbon
+		g.checkGrille();
     }
+	
+	/**
+	 * Supprime une ligne ou une colonne de la ligne
+	 * @param g
+	 */
+	private void supLigneColonneGrille(Grille g, Axe a, Coordonnee coordBonbon){
+		Case[][] cases = g.getTableau();
+		int i;
+		int ligne = coordBonbon.getY();
+		int colonne = coordBonbon.getY();
+		switch (a) {
+		case VERTICALE :
+			//supprimer colonne
+			for(i = 0 ; i <= g.getLigne() ; i++) {
+				cases[i][coordBonbon.getX()].getBonbon().destruction(g);// g ou null ?
+			}
+			break;
+			
+		case HORIZONTALE :
+			//supprimer ligne
+			for(i = 0 ; i <= g.getColonne() ; i++) {
+				cases[coordBonbon.getY()][i].getBonbon().destruction(g);// g ou null ?
+			}
+			break;
+
+		default:
+			//logger erreur
+			break;
+		}
+	}
 
     /**
      * Interagit avec le bonbon passé en parametre pour determiner son comportement

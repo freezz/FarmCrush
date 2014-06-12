@@ -12,5 +12,7 @@
 	<classpathentry kind="lib" path="/home/freez/Documents/apache-log4j-2.0-rc1-bin/log4j-api-2.0-rc1-javadoc.jar"/>
 	<classpathentry kind="lib" path="/home/freez/Documents/apache-log4j-2.0-rc1-bin/log4j-core-2.0-rc1.jar"/>
 	<classpathentry kind="lib" path="/home/freez/Documents/apache-log4j-2.0-rc1-bin/log4j-core-2.0-rc1-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/jbrougerie/Bureau/apache-log4j-2.0-rc1-bin/log4j-api-2.0-rc1.jar"/>
+	<classpathentry kind="lib" path="/home/jbrougerie/Bureau/apache-log4j-2.0-rc1-bin/log4j-core-2.0-rc1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
