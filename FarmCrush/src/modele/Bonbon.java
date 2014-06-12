@@ -15,7 +15,7 @@ public abstract class Bonbon {
     private int conditionNbColonne;
     protected Couleur couleur;
     public Historique historique;
-
+    
 
     /**
      * Retourne la couleur du bonbon
@@ -96,5 +96,37 @@ public abstract class Bonbon {
      * @return nombre de bonbon necessaire a la creation du bonbon
      */
     public abstract int getConditionColonne();
+    
+    
+    /**
+     *Ajoute de nouvelle coordonnées a l historique d'un bonbon
+     *
+     *@param c : nouvel coordonne a ajouter
+     */
+    public void ajoutCoordonneHistorique(Coordonnee c){
+    	if(historique.histAdd(c)){
+    		//
+    	}
+    	else{
+    		//ajouter log comme quoi il y a une erreur au niveau de l ajout dans l historique
+    	}
+    }
 
+    
+    
+    /**
+     *Ajoute de nouvelle coordonnées a l historique d'un bonbon
+     *
+     *@param i : abscisse a ajouter
+     *@param j : ordonne a ajouter
+     */
+    public void ajoutCoordonneHistorique(int i, int j){
+    	Coordonnee c = new Coordonnee(i, j);
+    	if(historique.histAdd(c)){
+    		//
+    	}
+    	else{
+    		//ajouter log comme quoi il y a une erreur au niveau de l ajout dans l historique
+    	}
+    }
 }

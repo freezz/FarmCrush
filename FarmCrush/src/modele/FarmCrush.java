@@ -228,6 +228,7 @@ public class FarmCrush {
 							c = ligneLue.charAt(j);
 							
 							grille.getCase(i, j).setBonbon(traduitCouleur(c));
+							grille.getCase(i, j).getBonbon().ajoutCoordonneHistorique(i, j);
 							
 						}//fin parcours colonne
 						

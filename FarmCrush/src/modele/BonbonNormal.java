@@ -25,6 +25,7 @@ public class BonbonNormal extends Bonbon {
 		this.couleur = c;
 		//historique
 		this.historique = new Historique();
+		// nb ligne et colonne condition ?
 	}
 	
 	/**

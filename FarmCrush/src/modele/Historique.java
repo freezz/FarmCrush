@@ -11,14 +11,14 @@ import java.util.ArrayList;
  */
 
 public class Historique {
-    private ArrayList<Coordonnee> coordonnees;	//Liste constituant un historique de coordonnées
+    private ArrayList<Coordonnee> listeCoordonnees;	//Liste constituant un historique de coordonnées
 
    //Constructeur
     /**
      * Construit un historique vide
      */
     public Historique() {
-    	coordonnees = new ArrayList<Coordonnee>();    	
+    	listeCoordonnees = new ArrayList<Coordonnee>();    	
     }
     
    //Accesseurs
@@ -27,7 +27,7 @@ public class Historique {
      * @return ArrayList<Coordonnee>
      */
     public final ArrayList<Coordonnee> getCoordonnees() {
-        return this.coordonnees;
+        return this.listeCoordonnees;
     }
     
    //Méthodes
@@ -37,7 +37,7 @@ public class Historique {
      * @return boolean
      */
     public final boolean histAdd(Coordonnee c) {
-    	return (coordonnees.add(c));
+    	return (listeCoordonnees.add(c));
     }
 
 }

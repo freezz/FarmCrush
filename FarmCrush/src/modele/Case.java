@@ -50,11 +50,51 @@ public class Case {
 
     
     /**
-     * Modifie la couleur du bonbon présent dans la poignée
-     * @return
+     * Crée une nouveau bonbon avec une nouvelle couleur
      */
     public void setBonbon(Couleur c) {
     	bonbon = new BonbonNormal(c);
+    }
+    
+    /**
+     * Modifie la couleur du bonbon présent dans la poignée
+     */
+    public void setBonbon(Bonbon b) {
+    	bonbon = b;
+    }
+    
+    /**
+     * Créer un nouveau bonbon aléatoirement
+     */
+    public void setBonbonAleatoire() {
+    	
+    	int code = (int) (Math.random() * 6);
+		Couleur color = Couleur.VERT;
+		
+		switch (code) {
+		case 0 :
+			color = Couleur.VERT;
+			break;
+		case 1 :
+			color = Couleur.ROUGE;
+			break;
+		case 2 :
+			color = Couleur.BLEU;
+			break;
+		case 3 :
+			color = Couleur.JAUNE;
+			break;
+		case 4 :
+			color = Couleur.ORANGE;
+			break;
+		case 5	:
+			color = Couleur.VIOLET;
+			break;
+		default:
+			throw new RuntimeException("Couleur Inexistante");
+		}
+		
+    	bonbon = new BonbonNormal(color);
     }
     
     /**
