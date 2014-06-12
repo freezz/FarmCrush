@@ -5,10 +5,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 
 public class FarmCrush {
 
+	//Looger
+	private static final Logger loggerFarmCrush = LogManager.getLogger("modèle.FarmCrush");
+		
 	//attributs
 
     private int scoreActuel;
@@ -93,11 +99,7 @@ public class FarmCrush {
 	 * @param obj : objectif associé au niveau
 	 */
     public void initialisationNiveau(String chemin) {
-    	
-		String ligneLue;	/** Variable contenant 1 ligne du fichier */
-		String [] contenuLigne;	/** tableau de tous les mots de la ligne */
-		
-		
+ 	
 		try {
 			BufferedReader f = new BufferedReader(new FileReader(chemin));
 			
@@ -128,9 +130,7 @@ public class FarmCrush {
     	
     }
 
-	
-    
-    
+  
     //Méthodes nécessaires à l'initialisation du niveau
 
     
@@ -174,7 +174,8 @@ public class FarmCrush {
     
     
 	/**
-	 *  Sauvegarde les nombres associé aux parametres du fichier
+	 *  Sauvegarde les nombres associé aux parametres du fichier :
+	 *  Parcours le fichier a la recherche de parametres puis les initialise
 	 *   
 	 * @param f : Buffer contenant le contenu du fichier
 	 */
@@ -209,7 +210,7 @@ public class FarmCrush {
 						}//fin parcours colonne
 						
 					}// fin parcours ligne
-					
+					loggerFarmCrush.trace("Gelatine complete");
 				}
 				else if(contenuLigne[0].equals("init")){
 					
@@ -228,7 +229,7 @@ public class FarmCrush {
 						}//fin parcours colonne
 						
 					}// fin parcours ligne
-			
+					loggerFarmCrush.trace("Grille remplit");
 				}	
 				else { 
 				
@@ -316,7 +317,13 @@ public class FarmCrush {
 			
     }
     
-    
+	/**
+	 *  detecte les espaces entre le premier element de la ligne et le premier parametre
+	 *  et renvoi l'indice du tableau de string correspondant au premier parametre
+	 *   
+	 * @param contenuLigne : Contenu de la ligne
+	 * @return indice correspondant au parametre recherché
+	 */
     private int indiceParam(String [] contenuLigne){
     	int i = 1;
 		while(contenuLigne[i].equals(" ")||contenuLigne[i].equals("")){
@@ -326,6 +333,13 @@ public class FarmCrush {
     	
     }
     
+    
+    /**
+	 *  Fonction renvoyant une couleur en fonction du caractere en parametre
+	 *   
+	 * @param c : caractere representant une couleur
+	 * @return couleur correspondant au caractere entré
+	 */
     private Couleur traduitCouleur(char c){
     	Couleur color;
     	

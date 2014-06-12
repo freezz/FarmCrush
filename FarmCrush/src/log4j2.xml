@@ -8,6 +8,8 @@
     <Loggers>
     	<Logger name="modèle.objectif" level="trace">
         </Logger>
+        <Logger name="modèle.FarmCrush" level="trace">
+        </Logger>
         <Logger name="modèle.bonbonEmballé" level="trace">
         </Logger>
         <Logger name="modèle.bonbonMulticolore" level="trace">

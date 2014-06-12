@@ -29,6 +29,13 @@ public class Grille {
     	tableauGrille = new Case[this.nbLigne][this.nbColonne];
     	
     	for(int i=0; i<nbLigne; i++){	
+    		
+        	for(int j=0; j<nbLigne; j++){	
+        		
+        		tableauGrille[i][j] = new Case(i,j);
+        		
+        	}
+    		
     	}
     }
     
