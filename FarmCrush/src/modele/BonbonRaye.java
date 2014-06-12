@@ -13,8 +13,8 @@ import org.apache.logging.log4j.Logger;
 
 public class BonbonRaye extends Bonbon {
 	
-   //Attributs
 	private static final Logger loggerBonbonRaye = LogManager.getLogger("modèle.bonbonRayé");
+   //Attributs
 
    //Constructeurs
 	/**
