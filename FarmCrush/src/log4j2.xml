@@ -8,7 +8,15 @@
     <Loggers>
     	<Logger name="modèle.objectif" level="trace">
         </Logger>
-        <Root level="info">
+        <Logger name="modèle.bonbonEmballé" level="trace">
+        </Logger>
+        <Logger name="modèle.bonbonMulticolore" level="trace">
+        </Logger>
+        <Logger name="modèle.bonbonNormal" level="trace">
+        </Logger>
+        <Logger name="modèle.bonbonRayé" level="trace">
+        </Logger>
+²        <Root level="info">
             <AppenderRef ref="stdout"/>
         </Root>        
     </Loggers>

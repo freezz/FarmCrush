@@ -17,7 +17,7 @@ public class Case {
 
   //Constructeurs
     /**
-     * Construit une case avec ses coordonnées, le niveau de gélatine et le bonbon
+     * Construit une case avec ses coordonnées et le bonbon
      * @param x
      * @param y
      * @param b
@@ -50,8 +50,8 @@ public class Case {
 
     
     /**
-     * Retourne le bonbon présent dans la poignée
-     * @return bonbon
+     * Modifie la couleur du bonbon présent dans la poignée
+     * @return
      */
     public void setBonbon(Couleur c) {
     	bonbon = new BonbonNormal(c);
@@ -74,7 +74,7 @@ public class Case {
     }
     
     /**
-     * Modifi la gélatine de la poignée
+     * Modifie la gélatine de la poignée
      *
      */
     public void setGelatine(int nbCouche) {
