@@ -343,7 +343,6 @@ public class FarmCrush {
 		default:
 			break;
 		}
-    	
     	return color;
     }
     
