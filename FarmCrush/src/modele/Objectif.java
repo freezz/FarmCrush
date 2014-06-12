@@ -276,7 +276,6 @@ public class Objectif {
         
     	if (
         		this.targetScore <= scoreCourant &&
-        		this.nbCoupMax == 0 &&
         		this.gelatineRestante == 0 &&
         		this.nbRougeRestant == 0 &&
         		this.nbVioletRestant == 0 &&

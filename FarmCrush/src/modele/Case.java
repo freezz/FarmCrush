@@ -58,6 +58,13 @@ public class Case {
     }
     
     /**
+     * Supprime un bonbon
+     */
+    public void supBonbon() {
+    	bonbon = null;
+    }
+    
+    /**
      * Retourne les coordonnées de la poignnée
      * @return Coordonnee
      */

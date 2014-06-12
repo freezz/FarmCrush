@@ -24,7 +24,11 @@ public class Grille {
     	nbColonne = 0;
     	nbLigne = 0;
      }
-    
+   
+    /**
+     * Initialise le tableau en lui donnant une taille
+     * et le rempli de cases vide
+     */
     public void initialiser(){
     	tableauGrille = new Case[this.nbLigne][this.nbColonne];
     	
@@ -39,10 +43,6 @@ public class Grille {
     	}
     }
     
-    public void affiche(){
-    	System.out.println(nbColonne);
-    	System.out.println(nbLigne);
-    }
     
     //Accesseurs
     
@@ -70,6 +70,14 @@ public class Grille {
     	return tableauGrille;
     }
     
+    /**
+     * Retourne le tableau de cases
+     * @return Case
+     */
+    public Case getCase(int i, int j){
+    	return tableauGrille[i][j];
+    }
+    
     //setteurs
     
     /**
@@ -90,34 +98,32 @@ public class Grille {
     
     //Méthodes
 	/**
-	 *   
-	 *   
-	 * @param 
-	 *   
-	 * @required
+	 *   Méthode permettant de faire descendre les bonbon 
+	 *   et remplissant les cases manquantes par de nouveau bonbon Normaux aléatoire 
 	 *  
-	 * @ensure
-	 *  
-	 * @throws 
-	 * 
-	 * @return 
 	 * 	 
 	 */
     public void effectuerGraviter() {
+    	
+    	for(int i = 0; i <= this.getLigne(); i++){
+			for(int j = 0; j <= this.getColonne(); j++){
+			
+			}
+			
+		}
+    	
+    	
+    	
+    	
     }
 
 	/**
 	 *   
+	 *   Fonction permettant de vérifier si aucune combinaison de bonbon est possible dans la grille
+	 *   Si oui, ils sont explosés
 	 *   
-	 * @param 
-	 *   
-	 * @required
-	 *  
-	 * @ensure
-	 *  
-	 * @throws 
 	 * 
-	 * @return 
+	 * @return boolean indiquant si la méthode a effectuer des modifications (true)
 	 * 	 
 	 */
     public boolean checkGrille() {
@@ -159,6 +165,6 @@ public class Grille {
      * @param coordBonbon Coordonnées du bonbon a retirer
      */
     public void supprimerBonbonCase(Coordonnee coordBonbon){
-    	tableauGrille[coordBonbon.getX()][coordBonbon.getY()].retirerContenu(this);
+    	tableauGrille[coordBonbon.getX()][coordBonbon.getY()].supBonbon();
     }
 }

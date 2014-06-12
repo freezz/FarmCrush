@@ -1,8 +1,7 @@
 package test;
 
-import modele.Bonbon;
-import modele.BonbonNormal;
-import modele.BonbonRaye;
+import modele.*;
+
 
 public class Test {
 

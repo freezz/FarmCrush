@@ -37,16 +37,9 @@ public class FarmCrush {
     
     /**
 	 *   
-	 *   
-	 * @param 
-	 *   
-	 * @required
-	 *  
-	 * @ensure
-	 *  
-	 * @throws 
+	 *   Retourne la valeur du score actuel
 	 * 
-	 * @return 
+	 * @return scoreActuel
 	 * 	 
 	 */
     public int getScoreActuel() {
@@ -55,17 +48,9 @@ public class FarmCrush {
     }
     
 	/**
+	 *   Retourne la valeur du nb de coup deja joué
 	 *   
-	 *   
-	 * @param 
-	 *   
-	 * @required
-	 *  
-	 * @ensure
-	 *  
-	 * @throws 
-	 * 
-	 * @return 
+	 * @return nbCoupJouer
 	 * 	 
 	 */
     public int getNbCoupJouer() {
@@ -74,21 +59,39 @@ public class FarmCrush {
     }
     
     //Méthodes
+    
 	/**
+	 *   Méthode codant l'interaction entre 2 bonbons ainsi que toutes les actions qui en découle
 	 *   
+	 * @param c1 : premiere Coordonnee 
 	 *   
-	 * @param 
-	 *   
-	 * @required
-	 *  
-	 * @ensure
-	 *  
-	 * @throws 
-	 * 
-	 * @return 
-	 * 	 
+	 * @param c1 : deuxieme Coordonnee 
 	 */
     public void jouer(final Coordonnee c1, final Coordonnee c2) {
+    	
+    	//Vérification que les conditions de victoires ou defaites ne sont pas atteintes
+    	if(nbCoupJouer <= objectif.getNbCoupMax() && objectif.estVerifier(scoreActuel)){
+    		
+    		//recupere les bonbon correspondant au coordonnées
+    		Bonbon bonbon1 = grille.getCase(c1.getX(),c1.getY()).getBonbon();
+    		Bonbon bonbon2 = grille.getCase(c2.getX(),c2.getY()).getBonbon();
+    		
+    		if(bonbon1.interagir(bonbon2, grille)){
+    			loggerFarmCrush.trace("bonbon1 a interagit correctement avec bonbon2");
+    		}
+    		else if(bonbon2.interagir(bonbon1, grille)){
+    			loggerFarmCrush.trace("bonbon2 a interagit correctement avec bonbon1");
+    		}
+    		else{
+    			loggerFarmCrush.trace("L'interaction entre les deux bonbon a échoué");
+    			
+    		}
+    		
+    		
+    		
+    	}//fin condition victoire
+    	
+    	
     }
 
 	/**
@@ -183,7 +186,7 @@ public class FarmCrush {
     	int param = 0; /** Variable contenant le nombre associé a un parametre */
 		String ligneLue;	/** Variable contenant 1 ligne du fichier */
 		String [] contenuLigne;	/** tableau de tous les mots de la ligne */
-		Case[][] tableauRepere = grille.getTableau();
+
 		
 		
 		try {
@@ -205,7 +208,7 @@ public class FarmCrush {
 							
 							nbCouche = Character.getNumericValue(ligneLue.charAt(j));
 							
-							tableauRepere[i][j].setGelatine(nbCouche);
+							grille.getCase(i, j).setGelatine(nbCouche);
 							
 						}//fin parcours colonne
 						
@@ -224,7 +227,7 @@ public class FarmCrush {
 							
 							c = ligneLue.charAt(j);
 							
-							tableauRepere[i][j].setBonbon(traduitCouleur(c));
+							grille.getCase(i, j).setBonbon(traduitCouleur(c));
 							
 						}//fin parcours colonne
 						
