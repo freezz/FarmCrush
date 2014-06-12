@@ -189,17 +189,20 @@ public class FarmCrush {
 			int nbCouche = 0;
 			while((ligneLue = f.readLine()) != null){
 			
-			
 				//Récupération de la ligne
 				contenuLigne = ligneLue.split(" ");
 				
-				nbCouche = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);				
-				
 				if(contenuLigne[0].equals("gelatine")){
+					
 
-					for(int i =0; i < grille.getLigne(); i++){
+					for(int i = 0; i < grille.getLigne(); i++){
+						
+						//Récupération de la ligne
+						ligneLue = f.readLine();					
 						
 						for(int j =0; j < grille.getColonne(); j++){
+							
+							nbCouche = Character.getNumericValue(ligneLue.charAt(j));
 							
 							tableauRepere[i][j].setGelatine(nbCouche);
 							
