@@ -1,5 +1,8 @@
 package modele;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Définition du Bonbon normal, bonbon standard
  * @author Thibault
@@ -10,6 +13,9 @@ package modele;
 
 public class BonbonNormal extends Bonbon {
 	
+   //Attributs
+	private static final Logger loggerBonbonNormal = LogManager.getLogger("modèle.bonbonNormal");
+
    //Constructeurs
 	/**
 	 * Construit un bonbon normal et son historique

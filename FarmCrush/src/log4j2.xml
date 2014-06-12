@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %-5p [%t] %c - %M - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+    	<Logger name="modèle.objectif" level="trace">
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="stdout"/>
+        </Root>        
+    </Loggers>
+</Configuration>

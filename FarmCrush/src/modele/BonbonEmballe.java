@@ -1,5 +1,8 @@
 package modele;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Définition du Bonbon emballé
  * @author Thibault
@@ -10,6 +13,8 @@ package modele;
 
 public class BonbonEmballe extends Bonbon {
 	
+   //attributs
+	private static final Logger loggerBonbonEmballe = LogManager.getLogger("modèle.bonbonEmballé");
    //Constructeurs
 	/**
 	 * Construit un bonbon emballé et son historique associé

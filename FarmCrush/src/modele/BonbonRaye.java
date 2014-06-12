@@ -1,5 +1,8 @@
 package modele;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Définition du Bonbon rayé
  * @author Thibault
@@ -15,7 +18,11 @@ public class BonbonRaye extends Bonbon {
 	 */
 	private enum Axe{VERTICALE, HORIZONTALE};
 	private Axe sensDestruction;
-	
+
+   //Attributs
+	private static final Logger loggerBonbonRaye = LogManager.getLogger("modèle.bonbonRayé");
+
+
    //Constructeurs
 	/**
 	 * Construit un bonbon rayé et son historique associé

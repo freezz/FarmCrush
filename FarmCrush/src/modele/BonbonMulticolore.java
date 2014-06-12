@@ -1,5 +1,8 @@
 package modele;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Définition du Bonbon Multicolore
  * @author Thibault
@@ -9,6 +12,9 @@ package modele;
  */
 
 public class BonbonMulticolore extends Bonbon {
+	
+   //Attributs
+	private static final Logger loggerBonbonMulticolore = LogManager.getLogger("modèle.bonbonMulticolore");
 	
    //Constructeurs
 	/**

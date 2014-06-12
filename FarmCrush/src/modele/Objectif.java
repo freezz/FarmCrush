@@ -275,7 +275,7 @@ public class Objectif {
     	boolean estGagnee;
         
     	if (
-        		this.targetScore >= scoreCourant &&
+        		this.targetScore <= scoreCourant &&
         		this.nbCoupMax == 0 &&
         		this.gelatineRestante == 0 &&
         		this.nbRougeRestant == 0 &&
