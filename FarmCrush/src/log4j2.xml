@@ -15,8 +15,7 @@
         <Logger name="modèle.bonbonNormal" level="trace">
         </Logger>
         <Logger name="modèle.bonbonRayé" level="trace">
-        </Logger>
-        <Root level="info">
+²        <Root level="info">
             <AppenderRef ref="stdout"/>
         </Root>        
     </Loggers>
