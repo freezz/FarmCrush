@@ -27,6 +27,11 @@ public class Grille {
     
     public void initialiser(){
     	tableauGrille = new Case[this.nbLigne][this.nbColonne];
+    	
+    	for(int i=0; i<nbLigne;; i++){
+    		
+    		
+    	}
     }
     
     public void affiche(){
