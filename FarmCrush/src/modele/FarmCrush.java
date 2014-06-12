@@ -45,7 +45,7 @@ public class FarmCrush {
 	 */
     public int getScoreActuel() {
 
-        return 0;
+        return scoreActuel;
     }
     
 	/**
@@ -64,7 +64,7 @@ public class FarmCrush {
 	 */
     public int getNbCoupJouer() {
 
-        return 0;
+        return nbCoupJouer;
     }
     
     //Méthodes
@@ -103,9 +103,10 @@ public class FarmCrush {
 			
 			
 			// récupération de ligne et colonne dans le fichier niveau
-			recupereLigneColonne(grille,f);
+			recupereLigneColonne(f);
 			
 			//on remet le curseur au debut du fichier
+			
 			f.close();
 			f = new BufferedReader(new FileReader(chemin));
 					
@@ -113,11 +114,15 @@ public class FarmCrush {
 			grille.initialiser();
 					
 			// On recupere tous les parametres		
-			this.recupereParam(grille,f);
+			this.recupereParam(f);
 
 			
+			f.close();
 		} catch (FileNotFoundException e) {
 			// Impossible d'ouvrir le fichier
+			e.printStackTrace();
+		} catch (IOException e) {
+			// Impossible de fermer le fichier
 			e.printStackTrace();
 		}
     	
@@ -128,9 +133,14 @@ public class FarmCrush {
     
     //Méthodes nécessaires à l'initialisation du niveau
 
-    private void recupereLigneColonne(Grille grille,BufferedReader f){
-    	int param = 0;
-    	int i = 0;
+    
+	/**
+	 *  Sauvegarde le nombre de ligne et colonne dans la grille
+	 *   
+	 * @param f : Buffer contenant le contenu du fichier
+	 */
+    private void recupereLigneColonne(BufferedReader f){
+    	int param = 0;      /** Variable contenant le nombre associé a un parametre */
 		String ligneLue;	/** Variable contenant 1 ligne du fichier */
 		String [] contenuLigne;	/** tableau de tous les mots de la ligne */
     	
@@ -143,25 +153,13 @@ public class FarmCrush {
 				//Vérification si elle contient "ligne" ou "colonne"
 				if(contenuLigne[0].equals("ligne")){
 
-					//enleve les espaces entre ligne et le nombre associé
-					i = 1;
-					while(contenuLigne[i].equals(" ")||contenuLigne[i].equals("")){
-						i++;
-					}
-					
-					param = Integer.parseInt(contenuLigne[i]);
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
 					grille.setLigne(param);
 		
 				}
 				else if(contenuLigne[0].equals("colonne")){
 					
-					//enleve les espaces entre colonne et le nombre associé
-					i = 1;
-					while(contenuLigne[i].equals(" ")||contenuLigne[i].equals("")){
-						i++;
-					}
-					
-					param = Integer.parseInt(contenuLigne[i]);
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
 					grille.setColonne(param);
 			
 				}				
@@ -174,7 +172,7 @@ public class FarmCrush {
 			
     }
     
-    private void recupereParam(Grille grille,BufferedReader f){
+    private void recupereParam(BufferedReader f){
     	int param = 0; /** Variable contenant le nombre associé a un parametre */
 		String ligneLue;	/** Variable contenant 1 ligne du fichier */
 		String [] contenuLigne;	/** tableau de tous les mots de la ligne */
@@ -185,75 +183,103 @@ public class FarmCrush {
 				//Récupération de la ligne
 				contenuLigne = ligneLue.split(" ");
 				
+				if(contenuLigne[0].equals("gelatine")){
+
+					for(int i =0; i < grille.getLigne(); i++){
+						
+						for(int j =0; j < grille.getColonne(); j++){
+							
+							
+							
+						}//fin parcours colonne
+						
+						
+					}// fin parcours ligne
+					
+				}
+				else if(contenuLigne[0].equals("init")){
+					
+;
+			
+				}	
+				else { 
+				
 				//Vérification des varables aux debuts de ligne
 				switch (contenuLigne[0]) {
 				case "score":
 					
+					
 					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
-					grille.setLigne(param);
+					objectif.setTargetScore(param);
 					break;
 					
 				case "coups":
 					
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
+					objectif.setNbCoupMax(param);			
 					break;
 					
 				case "vert":
 					
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
+					objectif.setNbVertRestant(param);
 					break;
 					
 				case "rouge":
 					
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
+					objectif.setNbRougeRestant(param);
 					break;
 					
 				case "bleu":
 					
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
+					objectif.setNbBleuRestant(param);	
 					break;
 					
 				case "jaune":
 					
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
+					objectif.setNbJauneRestant(param);	
 					break;
 					
 				case "Orange":
 					
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
+					objectif.setNbOrangeRestant(param);	
 					break;
 					
 				case "violet":
 					
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
+					objectif.setNbVioletRestant(param);	
 					break;
 					
 				case "raye":
 					
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
+					objectif.setNbRayeRestant(param);
 					break;
 					
 				case "emballe":
 					
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
+					objectif.setNbEmballeRestant(param);	
 					break;
 					
 				case "multi":
 					
+					param = Integer.parseInt(contenuLigne[indiceParam(contenuLigne)]);
+					objectif.setNbMultiRestant(param);
 					break;
 
 				default:
 					break;
 				}
-				if(contenuLigne[0].equals("ligne")){
-
-					
-		
-				}
-				else if(contenuLigne[0].equals("colonne")){
-					
-					//enleve les espaces entre colonne et le nombre associé
-					i = 1;
-					while(contenuLigne[i].equals(" ")||contenuLigne[i].equals("")){
-						i++;
-					}
-					
-					param = Integer.parseInt(contenuLigne[i]);
-					grille.setColonne(param);
-			
-				}				
-			}
+				
+				}//fin si
+				
+			}//fin boucle while
 			
 		} catch (IOException e) {
 			// Impossible de lire la ligne du fichier
@@ -272,6 +298,39 @@ public class FarmCrush {
     	
     }
     
-    
+    private Couleur traduitCouleur(String c){
+    	Couleur color;
+    	
+    	switch (c) {
+		case "v":
+			color = Couleur.VERT;
+			break;
+			
+		case "r":
+			color = Couleur.ROUGE;			
+			break;
+			
+		case "b":
+			color = Couleur.BLEU;			
+			break;
+			
+		case "j":
+			color = Couleur.JAUNE;		
+			break;
+			
+		case "o":
+			color = Couleur.ORANGE;		
+			break;
+
+		case "p":
+			color = Couleur.VIOLET;	
+			break;
+			
+		default:
+			break;
+		}
+    	
+    	return color;
+    }
     
 }
