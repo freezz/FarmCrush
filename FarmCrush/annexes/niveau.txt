@@ -1,9 +1,9 @@
 #Description d'un niveau pour le jeu FarmCrush
 ligne   8
 colonne      5
-score   5000
+score         5000
 coups   20
-vert  20
+vert    20
 violet  20
 
 
