@@ -213,7 +213,21 @@ public class FarmCrush {
 				}
 				else if(contenuLigne[0].equals("init")){
 					
-;
+					char c;
+					for(int i = 0; i < grille.getLigne(); i++){
+						
+						//Récupération de la ligne
+						ligneLue = f.readLine();					
+						
+						for(int j =0; j < grille.getColonne(); j++){
+							
+							c = ligneLue.charAt(j);
+							
+							tableauRepere[i][j].setBonbon(traduitCouleur(c));
+							
+						}//fin parcours colonne
+						
+					}// fin parcours ligne
 			
 				}	
 				else { 
@@ -312,35 +326,36 @@ public class FarmCrush {
     	
     }
     
-    private Couleur traduitCouleur(String c){
+    private Couleur traduitCouleur(char c){
     	Couleur color;
     	
     	switch (c) {
-		case "v":
+		case 'v':
 			color = Couleur.VERT;
 			break;
 			
-		case "r":
+		case 'r':
 			color = Couleur.ROUGE;			
 			break;
 			
-		case "b":
+		case 'b':
 			color = Couleur.BLEU;			
 			break;
 			
-		case "j":
+		case 'j':
 			color = Couleur.JAUNE;		
 			break;
 			
-		case "o":
+		case 'o':
 			color = Couleur.ORANGE;		
 			break;
 
-		case "p":
+		case 'p':
 			color = Couleur.VIOLET;	
 			break;
 			
 		default:
+			color = Couleur.JAUNE;
 			break;
 		}
     	return color;
