@@ -149,18 +149,16 @@ public class Grille {
     	int i = 0;
     	int j = 0;
     	Coordonnee coordonneeBonbon;
-    	
-    	// pas sur mais je pense que dans les while on a : i < this.getLigne()
-    	
+    	    	
     	//recherche du bonbon dans la grille
-    	while(i <= this.getLigne() && tableauGrille[i][j].getBonbon() != b){
-			while(j <= this.getColonne() && tableauGrille[i][j].getBonbon() != b){
+    	while(i < this.getLigne() && tableauGrille[i][j].getBonbon() != b){
+			while(j < this.getColonne() && tableauGrille[i][j].getBonbon() != b){
 				j++;
 			}
 			i++;
 		}
     	
-    	if(tableauGrille[i][j].getBonbon() != b){
+    	if(tableauGrille[i][j].getBonbon() == b){
     		//bonbon trouvé
     		coordonneeBonbon = new Coordonnee(i, j);
     	}
