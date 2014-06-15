@@ -13,16 +13,18 @@ import org.apache.logging.log4j.Logger;
 
 public class BonbonMulticolore extends Bonbon {
 	
-   //Attributs
+
 	private static final Logger loggerBonbonMulticolore = LogManager.getLogger("modèle.bonbonMulticolore");
+	
+	//Attributs
 	
    //Constructeurs
 	/**
 	 * Construit un bobon multicolore et son historique associé
 	 * @param c - Couleur
 	 */
-	public BonbonMulticolore(Couleur c) {
-		this.couleur = c;
+	public BonbonMulticolore() {
+		this.couleur = Couleur.MULTI;
 		this.historique = new Historique();
 	}
 	
@@ -74,7 +76,7 @@ public class BonbonMulticolore extends Bonbon {
      */
 	@Override
     public boolean interagir(Bonbon b, Grille g) {
-		boolean res;
+		boolean res = false;
 		if(b instanceof BonbonNormal){
 			// b est un bonbon normal
 			res = b.interagir((BonbonNormal) b, g);
@@ -136,7 +138,7 @@ public class BonbonMulticolore extends Bonbon {
      */
 	@Override
 	public int getConditionColonne() {
-		return 5;
+		return 0;
 	}
 
 }

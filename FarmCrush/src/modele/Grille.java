@@ -144,6 +144,7 @@ public class Grille {
     public boolean checkGrille() {
 
     	Coordonnee result = new Coordonnee(0, 0);
+    	boolean action = false;
     	
     	for(int j = 0; j < this.getColonne(); j++){
     		
@@ -153,16 +154,20 @@ public class Grille {
 			    	//il faut faire descendre le bonbon du dessus
 			    	result = checkBonbon(new Coordonnee(i, j));
 			    	
+			    	CreationBonbon(new Coordonnee(i, j), result.getX(), result.getY());
 			    	
+			    	if(result.getX() > 2 || result.getY() > 2){
+			    		action = true;
+			    	}
 			    	
-			    {
+			    }
 			    		
 			    	
 			}//ligne
 			
 		}//colonne
     	
-		return false;
+		return action;
     }
     
     /**
@@ -614,6 +619,46 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     	return(tableauGrille[c.getX()][c.getY()].getBonbon() == null);
     }
 
-    
+    private void CreationBonbon(Coordonnee pos, int i, int j){
+    	
+    	// si ajout nouveau type de bonbon, ajouter le la
+    	
+    	BonbonNormal bonbon = new BonbonNormal(Couleur.JAUNE);
+    	BonbonRaye bonbonRaye = new BonbonRaye(Couleur.JAUNE);
+    	BonbonEmballe bonbonEmballe = new BonbonEmballe(Couleur.JAUNE);
+    	BonbonMulticolore bonbonmulti = new BonbonMulticolore();
+    	
+    	// en fonction du bonbon dectecté, on effectu differentes actions
+    	if(i == bonbonmulti.getConditionLigne()){
+    		
+    		
+    	}
+    	else if(j == bonbonmulti.getConditionLigne()){
+    		
+    		
+    	}
+    	else if(i == bonbonRaye.getConditionLigne()){
+    		
+    		
+    	}
+    	else if(j == bonbonRaye.getConditionLigne()){
+    		
+    		
+    	}
+    	else if(i == bonbonEmballe.getConditionLigne() && j == bonbonEmballe.getConditionLigne()){
+    		
+    		
+    	}
+    	else if(i == bonbon.getConditionLigne()){
+    		
+    		
+    	}
+    	else if(j == bonbon.getConditionLigne()){
+    		
+    		
+    	}
+    	
+    	
+    }
     
 }
