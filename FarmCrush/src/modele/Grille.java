@@ -619,6 +619,17 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     	return(tableauGrille[c.getX()][c.getY()].getBonbon() == null);
     }
 
+    
+    /**
+	 *   
+	 *   Méthodes détruisant les cases constituant un forme 
+	 *   et crée un nouveau bonbon si besoin
+	 *   
+	 * @param pos : coordonné ou le nouveau bonbon sera créé
+	 * @param i : indice sur le nb de bonbon identique sur une ligne
+	 * @param j : inidice sur le nb de bonbon identique sur une colonne
+	 * 	 
+	 */
     private void CreationBonbon(Coordonnee pos, int i, int j){
     	
     	// si ajout nouveau type de bonbon, ajouter le la
@@ -630,7 +641,9 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     	
     	// en fonction du bonbon dectecté, on effectu differentes actions
     	if(i == bonbonmulti.getConditionLigne()){
-    		
+    		//destruction 
+    		this.detruireBonbonExistant(pos);
+    		//creation nouveau
     		
     	}
     	else if(j == bonbonmulti.getConditionLigne()){
@@ -658,6 +671,26 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		
     	}
     	
+    	
+    }//fin methode
+    
+    /**
+	 *   
+	 *   Méthodes détruisant les cases constituant un forme 
+	 *   et crée un nouveau bonbon si besoin
+	 *   
+	 * @param pos : coordonné ou le nouveau bonbon sera créé
+	 * @param i : indice sur le nb de bonbon identique sur une ligne
+	 * @param j : inidice sur le nb de bonbon identique sur une colonne
+	 * 	 
+	 */
+    public boolean detruireBonbonExistant(Coordonnee pos){
+		
+    	Couleur color = tableauGrille[pos.getX()][pos.getY()].getBonbon().getCouleur();// couleur du bonbon recherché
+    	
+    	//
+    	
+    	return false;
     	
     }
     
