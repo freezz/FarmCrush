@@ -97,7 +97,12 @@ public class Grille {
     	nbLigne = y;
     }
     
+    
+    
+    
     //Méthodes
+    
+    
 	/**
 	 *   Méthode permettant de faire descendre les bonbon 
 	 *   et remplissant les cases manquantes par de nouveau bonbon Normaux aléatoire 
@@ -138,7 +143,26 @@ public class Grille {
 	 */
     public boolean checkGrille() {
 
-        return false;
+    	Coordonnee result = new Coordonnee(0, 0);
+    	
+    	for(int j = 0; j < this.getColonne(); j++){
+    		
+    		for(int i = 0; i < this.getLigne(); i++){
+		
+			    if(this.getCase(i,j).getBonbon() != null){
+			    	//il faut faire descendre le bonbon du dessus
+			    	result = checkBonbon(new Coordonnee(i, j));
+			    	
+			    	
+			    	
+			    {
+			    		
+			    	
+			}//ligne
+			
+		}//colonne
+    	
+		return false;
     }
     
     /**
@@ -225,19 +249,34 @@ public class Grille {
     	
     	//on regarde a droite en recursif
 
-    	Coordonnee resultaDroite = checkBonbonAdroite(pos, new Coordonnee(0, 0), color);
-    	resultaDroite.setX(resultaDroite.getX());
+    	Coordonnee resultaDroite = new Coordonnee(0, 0);
+    	Coordonnee coorDroite = new Coordonnee(pos.getX()+1, pos.getY());
     	
-    	//on regarde a droite en recursif
+		if(coorDroite.getX()<nbColonne){
+			if(!BonbonNull(coorDroite)){
+				resultaDroite = checkBonbonAdroite(coorDroite, new Coordonnee(0, 0), color);
+				}
+		}
+		
+    	//on regarde a gauche recursif
 
-    	Coordonnee resultaGauche = checkBonbonAgauche(pos, new Coordonnee(0, 0), color);
-    	resultaGauche.setX(resultaGauche.getX()-1);
+    	Coordonnee resultaGauche = new Coordonnee(0, 0);
+    	Coordonnee coorGauche = new Coordonnee(pos.getX()-1, pos.getY());
     	
-    	//on rejoute le resultat
+		if(coorGauche.getX()>0){
+			if(!BonbonNull(coorGauche)){
+				resultaDroite = checkBonbonAgauche(coorGauche, new Coordonnee(0, 0), color);
+				}
+		}
     	
-    	if((resultaDroite.getX()+resultaGauche.getX())>2){
-    		nbBonbonLigneColonne.setX(resultaDroite.getX()+resultaGauche.getX());
+    	
+    	//on rejoute le resultat ligne
+    	
+    	if((resultaDroite.getX()+resultaGauche.getX())>1){
+    		nbBonbonLigneColonne.setX(resultaDroite.getX()+resultaGauche.getX()+1);
     	}
+    	
+    	nbBonbonLigneColonne.setY(nbBonbonLigneColonne.getY()+resultaDroite.getY()+resultaGauche.getY());
     	
     	//on regarde en haut
     	Coordonnee coorEnHaut = new Coordonnee(pos.getX(), pos.getY()+1);
@@ -254,10 +293,10 @@ public class Grille {
     	Coordonnee resultEnBas = new Coordonnee(0, 0);
 		if(coorEnBas.getY()>0){
 			if(!BonbonNull(coorEnBas)){
-				resultEnBas = checkBonbonEnHaut(coorEnBas, new Coordonnee(0, 0), color);}
+				resultEnBas = checkBonbonEnBas(coorEnBas, new Coordonnee(0, 0), color);}
 		}
     	
-    	//on rejoute le resultat
+    	//on rejoute le resultat colonne
     	
     	if((resultEnHaut.getY()+resultEnBas.getY())>1){
     		nbBonbonLigneColonne.setY(resultEnHaut.getY()+resultEnBas.getY()+1);
@@ -281,13 +320,32 @@ public class Grille {
     private Coordonnee checkBonbonAdroite(Coordonnee c, Coordonnee result, Couleur color) {
 
     	
-    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    		
+        	//on regarde a droite en recursif
+
+        	Coordonnee resulthaut = checkBonbonEnHautSimple(c, new Coordonnee(0, 0), color);
+        	resulthaut.setY(resulthaut.getY());
+        	
+        	//on regarde a droite en recursif
+
+        	Coordonnee resultBas = checkBonbonEnBasSimple(c, new Coordonnee(0, 0), color);
+        	resultBas.setY(resultBas.getY()-1);
+        	
+        	//on rejoute le resultat
+        	
+        	if((resulthaut.getY()+resultBas.getY())>2){
+        		result.setX(result.getX()+resulthaut.getX()+resultBas.getX());
+        	}
     		
     		
     		c.setX(c.getX()+1);
     		if(c.getX()<nbColonne){
     			if(!BonbonNull(c)){
-    			result.setX(result.getX()+checkBonbonAdroite(c, result, color).getX());}
+    			Coordonnee aDroite = checkBonbonAdroite(c, result, color);
+				result.setY(result.getY()+aDroite.getY());
+				result.setX(result.getX()+aDroite.getX());
+    			}
     		}
     		result.setX(result.getX()+1);
     	}
@@ -295,6 +353,29 @@ public class Grille {
     	return result;
     }//fin methode
     
+    /**
+	 *   
+	 *   Sous fonction de checkBonbonAdroite
+	 *   
+	 * @return pair d'entier sous la forme de coordonnées (cheat)
+	 * 	 
+	 */
+    private Coordonnee checkBonbonAdroiteSimple(Coordonnee c, Coordonnee result, Couleur color) {
+
+    	
+    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    		
+    		
+    		c.setX(c.getX()+1);
+    		if(c.getX()<nbColonne){
+    			if(!BonbonNull(c)){
+    			result.setX(result.getX()+checkBonbonAdroiteSimple(c, result, color).getX());}
+    		}
+    		result.setX(result.getX()+1);
+    	}
+    	
+    	return result;
+    }//fin methode
     
 	/**
 	 *   
@@ -309,11 +390,56 @@ public class Grille {
     	
     	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		
+        	//on regarde en haut
+
+        	Coordonnee resulthaut = checkBonbonEnHautSimple(c, new Coordonnee(0, 0), color);
+        	resulthaut.setY(resulthaut.getY());
+        	
+        	//on regarde en bas
+
+        	Coordonnee resultBas = checkBonbonEnBasSimple(c, new Coordonnee(0, 0), color);
+        	resultBas.setY(resultBas.getY()-1);
+        	
+        	//on rejoute le resultat
+        	
+        	if((resulthaut.getY()+resultBas.getY())>2){
+        		result.setX(result.getX()+resulthaut.getX()+resultBas.getX());
+        	}
+    		
     		
     		c.setX(c.getX()-1);
     		if(c.getX()>0){
     			if(!BonbonNull(c)){
-    			result.setX(result.getX()+checkBonbonAdroite(c, result, color).getX());}
+    			Coordonnee aGauche = checkBonbonAgauche(c, result, color);
+				result.setY(result.getY()+aGauche.getY());
+				result.setX(result.getX()+aGauche.getX());
+    			}
+    		}
+    		result.setX(result.getX()+1);
+    	}
+    	
+    	
+    	
+    	return result;
+    }//fin methode
+    
+	/**
+	 *   
+	 *   Sous fonction de checkBonbonAgauche
+	 *   
+	 * @return pair d'entier sous la forme de coordonnées (cheat)
+	 * 	 
+	 */
+    private Coordonnee checkBonbonAgaucheSimple(Coordonnee c, Coordonnee result, Couleur color) {
+
+    	
+    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    		
+    		
+    		c.setX(c.getX()-1);
+    		if(c.getX()>0){
+    			if(!BonbonNull(c)){
+    			result.setX(result.getX()+checkBonbonAgaucheSimple(c, result, color).getX());}
     		}
     		result.setX(result.getX()+1);
     	}
@@ -337,12 +463,12 @@ public class Grille {
     		
         	//on regarde a droite en recursif
 
-        	Coordonnee resultaDroite = checkBonbonAdroite(c, new Coordonnee(0, 0), color);
+        	Coordonnee resultaDroite = checkBonbonAdroiteSimple(c, new Coordonnee(0, 0), color);
         	resultaDroite.setX(resultaDroite.getX());
         	
         	//on regarde a droite en recursif
 
-        	Coordonnee resultaGauche = checkBonbonAgauche(c, new Coordonnee(0, 0), color);
+        	Coordonnee resultaGauche = checkBonbonAgaucheSimple(c, new Coordonnee(0, 0), color);
         	resultaGauche.setX(resultaGauche.getX()-1);
         	
         	//on rejoute le resultat
@@ -383,7 +509,7 @@ public class Grille {
     		c.setY(c.getY()+1);
     		if(c.getY()<nbLigne){
     			if(!BonbonNull(c)){
-    				Coordonnee enhaut = checkBonbonEnHaut(c, result, color);
+    				Coordonnee enhaut = checkBonbonEnHautSimple(c, result, color);
     				result.setY(result.getY()+enhaut.getY());
     				
     			}
@@ -411,12 +537,12 @@ public class Grille {
     		
         	//on regarde a droite en recursif
 
-        	Coordonnee resultaDroite = checkBonbonAdroite(c, new Coordonnee(0, 0), color);
+        	Coordonnee resultaDroite = checkBonbonAdroiteSimple(c, new Coordonnee(0, 0), color);
         	resultaDroite.setX(resultaDroite.getX());
         	
         	//on regarde a droite en recursif
 
-        	Coordonnee resultaGauche = checkBonbonAgauche(c, new Coordonnee(0, 0), color);
+        	Coordonnee resultaGauche = checkBonbonAgaucheSimple(c, new Coordonnee(0, 0), color);
         	resultaGauche.setX(resultaGauche.getX()-1);
         	
         	//on rajoute le resultat ligne
@@ -462,7 +588,7 @@ public class Grille {
     		c.setY(c.getY()-1);
     		if(c.getY()>0){
     			if(!BonbonNull(c)){
-    				Coordonnee enhaut = checkBonbonEnBas(c, result, color);
+    				Coordonnee enhaut = checkBonbonEnBasSimple(c, result, color);
     				result.setY(result.getY()+enhaut.getY());
 		
     			}
