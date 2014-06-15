@@ -205,4 +205,289 @@ public class Grille {
     	}
     	
     }//fin methode
+    
+    
+	/**
+	 *   
+	 *   Fonction permettant de retourner le nombre de bonbon de la meme couleur 
+	 *   en ligne et en colonne
+	 *   
+	 * 
+	 * @return pair d'entier sous la forme de coordonnées (cheat)
+	 * X nb de bonbon identique sur la meme ligne
+	 * et Y sur la meme colonne
+	 * 	 
+	 */
+    private Coordonnee checkBonbon(Coordonnee pos) {
+
+    	Coordonnee nbBonbonLigneColonne = new Coordonnee(0, 0);// Création des coordonnee de retour
+    	Couleur color = tableauGrille[pos.getX()][pos.getY()].getBonbon().getCouleur();// couleur du bonbon recherché
+    	
+    	//on regarde a droite en recursif
+
+    	Coordonnee resultaDroite = checkBonbonAdroite(pos, new Coordonnee(0, 0), color);
+    	resultaDroite.setX(resultaDroite.getX());
+    	
+    	//on regarde a droite en recursif
+
+    	Coordonnee resultaGauche = checkBonbonAgauche(pos, new Coordonnee(0, 0), color);
+    	resultaGauche.setX(resultaGauche.getX()-1);
+    	
+    	//on rejoute le resultat
+    	
+    	if((resultaDroite.getX()+resultaGauche.getX())>2){
+    		nbBonbonLigneColonne.setX(resultaDroite.getX()+resultaGauche.getX());
+    	}
+    	
+    	//on regarde en haut
+    	Coordonnee coorEnHaut = new Coordonnee(pos.getX(), pos.getY()+1);
+    	Coordonnee resultEnHaut = new Coordonnee(0, 0);
+    	
+		if(coorEnHaut.getY()<nbLigne){
+			if(!BonbonNull(coorEnHaut)){
+				resultEnHaut = checkBonbonEnHaut(coorEnHaut, new Coordonnee(0, 0), color);}
+		}
+    	
+    	//on regarde en bas
+    	
+    	Coordonnee coorEnBas = new Coordonnee(pos.getX(), pos.getY()-1);
+    	Coordonnee resultEnBas = new Coordonnee(0, 0);
+		if(coorEnBas.getY()>0){
+			if(!BonbonNull(coorEnBas)){
+				resultEnBas = checkBonbonEnHaut(coorEnBas, new Coordonnee(0, 0), color);}
+		}
+    	
+    	//on rejoute le resultat
+    	
+    	if((resultEnHaut.getY()+resultEnBas.getY())>1){
+    		nbBonbonLigneColonne.setY(resultEnHaut.getY()+resultEnBas.getY()+1);
+    	}
+    	
+    	nbBonbonLigneColonne.setX(nbBonbonLigneColonne.getX()+resultEnHaut.getX()+resultEnBas.getX());
+		
+		
+        return nbBonbonLigneColonne;
+    }//fin methode
+    
+    
+	/**
+	 *   
+	 *   Fonction permettant de retourner le nombre de bonbon de la meme couleur 
+	 *   en ligne 
+	 *   
+	 * @return pair d'entier sous la forme de coordonnées (cheat)
+	 * 	 
+	 */
+    private Coordonnee checkBonbonAdroite(Coordonnee c, Coordonnee result, Couleur color) {
+
+    	
+    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    		
+    		
+    		c.setX(c.getX()+1);
+    		if(c.getX()<nbColonne){
+    			if(!BonbonNull(c)){
+    			result.setX(result.getX()+checkBonbonAdroite(c, result, color).getX());}
+    		}
+    		result.setX(result.getX()+1);
+    	}
+    	
+    	return result;
+    }//fin methode
+    
+    
+	/**
+	 *   
+	 *   Fonction permettant de retourner le nombre de bonbon de la meme couleur 
+	 *   en ligne 
+	 *   
+	 * @return pair d'entier sous la forme de coordonnées (cheat)
+	 * 	 
+	 */
+    private Coordonnee checkBonbonAgauche(Coordonnee c, Coordonnee result, Couleur color) {
+
+    	
+    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    		
+    		
+    		c.setX(c.getX()-1);
+    		if(c.getX()>0){
+    			if(!BonbonNull(c)){
+    			result.setX(result.getX()+checkBonbonAdroite(c, result, color).getX());}
+    		}
+    		result.setX(result.getX()+1);
+    	}
+    	
+    	return result;
+    }//fin methode
+    
+    
+	/**
+	 *   
+	 *   Fonction permettant de retourner le nombre de bonbon de la meme couleur 
+	 *   en colonne et en ligne en montant
+	 *   
+	 * @return pair d'entier sous la forme de coordonnées (cheat)
+	 * 	 
+	 */
+    private Coordonnee checkBonbonEnHaut(Coordonnee c, Coordonnee result, Couleur color) {
+
+    	
+    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    		
+        	//on regarde a droite en recursif
+
+        	Coordonnee resultaDroite = checkBonbonAdroite(c, new Coordonnee(0, 0), color);
+        	resultaDroite.setX(resultaDroite.getX());
+        	
+        	//on regarde a droite en recursif
+
+        	Coordonnee resultaGauche = checkBonbonAgauche(c, new Coordonnee(0, 0), color);
+        	resultaGauche.setX(resultaGauche.getX()-1);
+        	
+        	//on rejoute le resultat
+        	
+        	if((resultaDroite.getX()+resultaGauche.getX())>2){
+        		result.setX(result.getX()+resultaDroite.getX()+resultaGauche.getX());
+        	}
+    		
+        	// et on regarde de nouveau en haut
+    		c.setY(c.getY()+1);
+    		if(c.getY()<nbLigne){
+    			if(!BonbonNull(c)){
+    				Coordonnee enhaut = checkBonbonEnHaut(c, result, color);
+    				result.setY(result.getY()+enhaut.getY());
+    				result.setX(result.getX()+enhaut.getX());
+    				
+    			}
+    		}
+    		
+    		result.setY(result.getY()+1);
+    	}
+    	
+    	return result;
+    }//fin methode
+    
+    /**
+	 *   
+	 *   Sous fonction de checkBonbonEnHaut 
+	 *   
+	 * @return pair d'entier sous la forme de coordonnées (cheat)
+	 * 	 
+	 */
+    private Coordonnee checkBonbonEnHautSimple(Coordonnee c, Coordonnee result, Couleur color) {
+
+    	
+    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    		
+    		c.setY(c.getY()+1);
+    		if(c.getY()<nbLigne){
+    			if(!BonbonNull(c)){
+    				Coordonnee enhaut = checkBonbonEnHaut(c, result, color);
+    				result.setY(result.getY()+enhaut.getY());
+    				
+    			}
+    		}
+    		
+    		result.setY(result.getY()+1);
+    	}
+    	
+    	return result;
+    }//fin methode
+    
+    
+	/**
+	 *   
+	 *   Fonction permettant de retourner le nombre de bonbon de la meme couleur 
+	 *   en colonne et en ligne en regardant en bas
+	 *   
+	 * @return pair d'entier sous la forme de coordonnées (cheat)
+	 * 	 
+	 */
+    private Coordonnee checkBonbonEnBas(Coordonnee c, Coordonnee result, Couleur color) {
+
+    	
+    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    		
+        	//on regarde a droite en recursif
+
+        	Coordonnee resultaDroite = checkBonbonAdroite(c, new Coordonnee(0, 0), color);
+        	resultaDroite.setX(resultaDroite.getX());
+        	
+        	//on regarde a droite en recursif
+
+        	Coordonnee resultaGauche = checkBonbonAgauche(c, new Coordonnee(0, 0), color);
+        	resultaGauche.setX(resultaGauche.getX()-1);
+        	
+        	//on rajoute le resultat ligne
+        	
+        	if((resultaDroite.getX()+resultaGauche.getX())>2){
+        		result.setX(result.getX()+resultaDroite.getX()+resultaGauche.getX());
+        	}
+    		
+        	// et on regarde de nouveau en haut
+    		c.setY(c.getY()-1);
+    		if(c.getY()>0){
+    			if(!BonbonNull(c)){
+    				Coordonnee enhaut = checkBonbonEnBas(c, result, color);
+    				result.setY(result.getY()+enhaut.getY());
+    				result.setX(result.getX()+enhaut.getX());
+    				
+    			
+    			}
+    		}
+    		
+    		result.setY(result.getY()+1);
+    		
+    		
+    	}
+    	
+    	return result;
+    }//fin methode
+    
+	/**
+	 *   
+	 *   Fonction permettant de retourner le nombre de bonbon de la meme couleur 
+	 *   en colonne sur la meme colonne en regardant vers le bas
+	 *   
+	 * @return pair d'entier sous la forme de coordonnées (cheat)
+	 * 	 
+	 */
+    private Coordonnee checkBonbonEnBasSimple(Coordonnee c, Coordonnee result, Couleur color) {
+
+    	
+    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    		
+    		
+    		c.setY(c.getY()-1);
+    		if(c.getY()>0){
+    			if(!BonbonNull(c)){
+    				Coordonnee enhaut = checkBonbonEnBas(c, result, color);
+    				result.setY(result.getY()+enhaut.getY());
+		
+    			}
+    		}
+    		
+    		result.setY(result.getY()+1);
+    		
+    		
+    	}
+    	
+    	return result;
+    }//fin methode
+    
+    
+    /**
+	 *   
+	 *   Fonction informant si le bonbon a la coordonnée donnée n'existe pas
+	 *   
+	 * @return boolean true si bonbon n existe pas
+	 * 	 
+	 */
+    public boolean BonbonNull(Coordonnee c){
+    	return(tableauGrille[c.getX()][c.getY()].getBonbon() == null);
+    }
+
+    
+    
 }

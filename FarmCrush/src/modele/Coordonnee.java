@@ -39,5 +39,19 @@ public class Coordonnee {
     public int getY() {
         return this.y;
     }
+    
+    /**
+     * Modifi l'abscisse de la case
+     */
+    public void setX(int i) {
+        this.x = i;
+    }
+
+    /**
+     * Modifi l'ordonnée de la case
+     */
+    public void setY(int i) {
+        this.y = i;
+    }
 
 }
