@@ -4,13 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Observable;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
 
-public class FarmCrush {
+public class FarmCrush extends Observable {
 
 	//Looger
 	private static final Logger loggerFarmCrush = LogManager.getLogger("modèle.FarmCrush");
