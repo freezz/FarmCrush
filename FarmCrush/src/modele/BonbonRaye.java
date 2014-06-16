@@ -162,10 +162,10 @@ public class BonbonRaye extends Bonbon {
         	this.setAxe(Axe.VERTICALE);
         	b.setAxe(Axe.HORIZONTALE);
         	
-        	this.destruction(g);
+        	g.retirerBonbonCase(c2);
         	
         	if(!g.BonbonNull(c1)){
-        		b.destruction(g);
+        		g.retirerBonbonCase(c1);
         	}
     	}
     	
