@@ -1,5 +1,8 @@
 package modele;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Modelise une case de la grille de jeu
  * @author Thibault
@@ -14,8 +17,12 @@ public class Case {
     public Gelatine gelatine;		
     public Bonbon bonbon;			
     public Coordonnee coordonnee;	
-
-  //Constructeurs
+    
+  //Looger
+  	private static final Logger loggerCase = LogManager.getLogger("modèle.Case");
+    
+    //Constructeurs
+  	
     /**
      * Construit une case avec ses coordonnées et le bonbon
      * @param x
@@ -136,5 +143,6 @@ public class Case {
     public void retirerContenu(Grille g) {
     	this.gelatine.retirerCouche();
     	this.bonbon.destruction(g);
+    	loggerCase.trace(" Un bonbon est enlevé dans la case : {} {}", coordonnee.getX(), coordonnee.getY());
     }
 }

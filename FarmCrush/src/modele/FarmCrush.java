@@ -80,6 +80,7 @@ public class FarmCrush extends Observable {
     		Bonbon bonbon1 = grille.getCase(c1.getX(),c1.getY()).getBonbon();
     		Bonbon bonbon2 = grille.getCase(c2.getX(),c2.getY()).getBonbon();
     		
+    		loggerFarmCrush.trace("est pret a jouer");
     		
     		if(bonbon1.interagir(bonbon2, grille)){
     			loggerFarmCrush.trace("bonbon1 a interagit correctement avec bonbon2");
@@ -104,11 +105,6 @@ public class FarmCrush extends Observable {
     			
     		}
     		
-			grille.effectuerGraviter();
-			
-			while(grille.checkGrille()){
-				grille.effectuerGraviter();
-			}
     		
     		this.notifyObservers();
     		
@@ -153,6 +149,18 @@ public class FarmCrush extends Observable {
 		} catch (IOException e) {
 			// Impossible de fermer le fichier
 			e.printStackTrace();
+		}
+		
+		loggerFarmCrush.trace("Initialisation Ok - début gravité");
+		
+		grille.effectuerGraviter();
+		
+		loggerFarmCrush.trace("Gravité Ok - début checkGrille");
+		
+		while(grille.checkGrille()){
+
+			grille.effectuerGraviter();
+
 		}
     	
     }

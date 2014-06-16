@@ -78,7 +78,7 @@ public class BonbonRaye extends Bonbon {
 	 * @param g
 	 */
 	private void supLigneColonneGrille(Grille g, Axe a, Coordonnee coordBonbon){
-		Case[][] cases = g.getTableau();
+
 		
 		int i;
 		g.supprimerBonbonCase(coordBonbon);
@@ -88,14 +88,18 @@ public class BonbonRaye extends Bonbon {
 		case VERTICALE :
 			//supprimer colonne
 			for(i = 0 ; i < g.getLigne() ; i++) {
-				cases[coordBonbon.getX()][i].retirerContenu(g);// g ou null ?
+				if(!g.BonbonNull(new Coordonnee(coordBonbon.getX(), i))){
+					g.getCase(coordBonbon.getX(),i).retirerContenu(g);
+				}
 			}
 			break;
 			
 		case HORIZONTALE :
 			//supprimer ligne
 			for(i = 0 ; i < g.getColonne() ; i++) {
-				cases[i][coordBonbon.getY()].retirerContenu(g);// g ou null ?
+				if(!g.BonbonNull(new Coordonnee(coordBonbon.getX(), i))){
+					g.getCase(coordBonbon.getX(),i).retirerContenu(g);
+				}
 			}
 			break;
 

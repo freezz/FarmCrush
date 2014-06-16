@@ -1,5 +1,8 @@
 package modele;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import modele.BonbonRaye.Axe;
 
 
@@ -13,6 +16,10 @@ import modele.BonbonRaye.Axe;
 
 public class Grille {
 
+	
+	//Looger
+	private static final Logger loggerGrille = LogManager.getLogger("modèle.Grille");
+	
 	//attributs
 
     private int nbColonne;
@@ -78,7 +85,11 @@ public class Grille {
      * @return Case
      */
     public Case getCase(int i, int j){
+    	if(i>8 || j>8){
+    		loggerGrille.trace("Pb d'emploi de getcase : {}{}", i, j);
+    	}
     	return tableauGrille[i][j];
+    	
     }
     
     //setteurs
@@ -158,14 +169,16 @@ public class Grille {
     	Coordonnee result = new Coordonnee(0, 0);
     	boolean action = false;
     	
-    	for(int j = 0; j < this.getColonne(); j++){
+		loggerGrille.trace("mais ou est donc la boucle infini ?");
+		
+    	for(int j = 0; j < this.getLigne(); j++){
     		
-    		for(int i = 0; i < this.getLigne(); i++){
+    		for(int i = 0; i < this.getColonne(); i++){
 		
 			    if(this.getCase(i,j).getBonbon() != null){
 			    	//il faut faire descendre le bonbon du dessus
 			    	result = checkBonbon(new Coordonnee(i, j));
-			    	
+
 			    	CreationBonbon(new Coordonnee(i, j), result.getX(), result.getY());
 			    	
 			    	if(result.getX() > 2 || result.getY() > 2){
@@ -214,27 +227,28 @@ public class Grille {
      * @param b
      */
     public Coordonnee getPositionBonbon(Bonbon b) {
-    	int i = 0;
-    	int j = 0;
-    	Coordonnee coordonneeBonbon;
+
+    	Coordonnee coordonneeBonbon = null;
     	    	
     	//recherche du bonbon dans la grille
-    	while(i < this.getLigne() && this.getCase(i,j).getBonbon() != b){
-			while(j < this.getColonne() && this.getCase(i,j).getBonbon() != b){
-				j++;
-			}
-			i++;
-		}
     	
-    	if(tableauGrille[i][j].getBonbon() == b){
-    		//bonbon trouvé
-    		coordonneeBonbon = new Coordonnee(i, j);
+    	for(int i = 0; i < this.getColonne(); i++){
+    		
+    		for(int j = 0; j <this.getLigne(); j++){
+    			
+    	    	if(this.getCase(i,j).getBonbon() == b){
+    	    		//bonbon trouvé
+    	    		coordonneeBonbon = new Coordonnee(i, j);
+    	    		break;
+    	    	}
+    			
+    		}
+    		
     	}
-    	else {
-    		//bonbon non trouvé
-    		coordonneeBonbon = null;
-    	}
+    	
+
     	return coordonneeBonbon;
+    	
     }
     
     /**
@@ -329,11 +343,15 @@ public class Grille {
     	nbBonbonLigneColonne.setY(nbBonbonLigneColonne.getY()+resultaDroite.getY()+resultaGauche.getY());
     	
     	//on regarde en haut
+    	
     	Coordonnee coorEnHaut = new Coordonnee(pos.getX(), pos.getY()+1);
+
     	Coordonnee resultEnHaut = new Coordonnee(0, 0);
     	
 		if(coorEnHaut.getY()<nbLigne){
 			if(!BonbonNull(coorEnHaut)){
+				
+				
 				resultEnHaut = checkBonbonEnHaut(coorEnHaut, new Coordonnee(0, 0), color);}
 		}
     	
@@ -374,12 +392,12 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		
         	//on regarde a droite en recursif
 
-        	Coordonnee resulthaut = checkBonbonEnHautSimple(c, new Coordonnee(0, 0), color);
+        	Coordonnee resulthaut = checkBonbonEnHautSimple(new Coordonnee(c.getX(), c.getY()), new Coordonnee(0, 0), color);
         	resulthaut.setY(resulthaut.getY());
         	
         	//on regarde a droite en recursif
 
-        	Coordonnee resultBas = checkBonbonEnBasSimple(c, new Coordonnee(0, 0), color);
+        	Coordonnee resultBas = checkBonbonEnBasSimple(new Coordonnee(c.getX(), c.getY()), new Coordonnee(0, 0), color);
         	resultBas.setY(resultBas.getY()-1);
         	
         	//on rejoute le resultat
@@ -392,7 +410,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		c.setX(c.getX()+1);
     		if(c.getX()<nbColonne){
     			if(!BonbonNull(c)){
-    			Coordonnee aDroite = checkBonbonAdroite(c, result, color);
+    			Coordonnee aDroite = checkBonbonAdroite(new Coordonnee(c.getX(), c.getY()), result, color);
 				result.setY(result.getY()+aDroite.getY());
 				result.setX(result.getX()+aDroite.getX());
     			}
@@ -419,7 +437,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		c.setX(c.getX()+1);
     		if(c.getX()<nbColonne){
     			if(!BonbonNull(c)){
-    			result.setX(result.getX()+checkBonbonAdroiteSimple(c, result, color).getX());}
+    			result.setX(result.getX()+checkBonbonAdroiteSimple(new Coordonnee(c.getX(), c.getY()), result, color).getX());}
     		}
     		result.setX(result.getX()+1);
     	}
@@ -442,12 +460,12 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		
         	//on regarde en haut
 
-        	Coordonnee resulthaut = checkBonbonEnHautSimple(c, new Coordonnee(0, 0), color);
+        	Coordonnee resulthaut = checkBonbonEnHautSimple(new Coordonnee(c.getX(), c.getY()), new Coordonnee(0, 0), color);
         	resulthaut.setY(resulthaut.getY());
         	
         	//on regarde en bas
 
-        	Coordonnee resultBas = checkBonbonEnBasSimple(c, new Coordonnee(0, 0), color);
+        	Coordonnee resultBas = checkBonbonEnBasSimple(new Coordonnee(c.getX(), c.getY()), new Coordonnee(0, 0), color);
         	resultBas.setY(resultBas.getY()-1);
         	
         	//on rejoute le resultat
@@ -460,7 +478,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		c.setX(c.getX()-1);
     		if(c.getX()>0){
     			if(!BonbonNull(c)){
-    			Coordonnee aGauche = checkBonbonAgauche(c, result, color);
+    			Coordonnee aGauche = checkBonbonAgauche(new Coordonnee(c.getX(), c.getY()), result, color);
 				result.setY(result.getY()+aGauche.getY());
 				result.setX(result.getX()+aGauche.getX());
     			}
@@ -489,7 +507,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		c.setX(c.getX()-1);
     		if(c.getX()>0){
     			if(!BonbonNull(c)){
-    			result.setX(result.getX()+checkBonbonAgaucheSimple(c, result, color).getX());}
+    			result.setX(result.getX()+checkBonbonAgaucheSimple(new Coordonnee(c.getX(), c.getY()), result, color).getX());}
     		}
     		result.setX(result.getX()+1);
     	}
@@ -508,17 +526,17 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
 	 */
     private Coordonnee checkBonbonEnHaut(Coordonnee c, Coordonnee result, Couleur color) {
 
-    	
+
     	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
     		
         	//on regarde a droite en recursif
 
-        	Coordonnee resultaDroite = checkBonbonAdroiteSimple(c, new Coordonnee(0, 0), color);
+        	Coordonnee resultaDroite = checkBonbonAdroiteSimple(new Coordonnee(c.getX(), c.getY()), new Coordonnee(0, 0), color);
         	resultaDroite.setX(resultaDroite.getX());
         	
         	//on regarde a droite en recursif
 
-        	Coordonnee resultaGauche = checkBonbonAgaucheSimple(c, new Coordonnee(0, 0), color);
+        	Coordonnee resultaGauche = checkBonbonAgaucheSimple(new Coordonnee(c.getX(), c.getY()), new Coordonnee(0, 0), color);
         	resultaGauche.setX(resultaGauche.getX()-1);
         	
         	//on rejoute le resultat
@@ -531,7 +549,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		c.setY(c.getY()+1);
     		if(c.getY()<nbLigne){
     			if(!BonbonNull(c)){
-    				Coordonnee enhaut = checkBonbonEnHaut(c, result, color);
+    				Coordonnee enhaut = checkBonbonEnHaut(new Coordonnee(c.getX(), c.getY()), result, color);
     				result.setY(result.getY()+enhaut.getY());
     				result.setX(result.getX()+enhaut.getX());
     				
@@ -559,7 +577,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		c.setY(c.getY()+1);
     		if(c.getY()<nbLigne){
     			if(!BonbonNull(c)){
-    				Coordonnee enhaut = checkBonbonEnHautSimple(c, result, color);
+    				Coordonnee enhaut = checkBonbonEnHautSimple(new Coordonnee(c.getX(), c.getY()), result, color);
     				result.setY(result.getY()+enhaut.getY());
     				
     			}
@@ -587,12 +605,12 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		
         	//on regarde a droite en recursif
 
-        	Coordonnee resultaDroite = checkBonbonAdroiteSimple(c, new Coordonnee(0, 0), color);
+        	Coordonnee resultaDroite = checkBonbonAdroiteSimple(new Coordonnee(c.getX(), c.getY()), new Coordonnee(0, 0), color);
         	resultaDroite.setX(resultaDroite.getX());
         	
         	//on regarde a droite en recursif
 
-        	Coordonnee resultaGauche = checkBonbonAgaucheSimple(c, new Coordonnee(0, 0), color);
+        	Coordonnee resultaGauche = checkBonbonAgaucheSimple(new Coordonnee(c.getX(), c.getY()), new Coordonnee(0, 0), color);
         	resultaGauche.setX(resultaGauche.getX()-1);
         	
         	//on rajoute le resultat ligne
@@ -605,7 +623,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		c.setY(c.getY()-1);
     		if(c.getY()>0){
     			if(!BonbonNull(c)){
-    				Coordonnee enhaut = checkBonbonEnBas(c, result, color);
+    				Coordonnee enhaut = checkBonbonEnBas(new Coordonnee(c.getX(), c.getY()), result, color);
     				result.setY(result.getY()+enhaut.getY());
     				result.setX(result.getX()+enhaut.getX());
     				
@@ -638,7 +656,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		c.setY(c.getY()-1);
     		if(c.getY()>0){
     			if(!BonbonNull(c)){
-    				Coordonnee enhaut = checkBonbonEnBasSimple(c, result, color);
+    				Coordonnee enhaut = checkBonbonEnBasSimple(new Coordonnee(c.getX(), c.getY()), result, color);
     				result.setY(result.getY()+enhaut.getY());
 		
     			}
@@ -816,7 +834,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		
     		if(c.getY()>0){
     			if(!BonbonNull(c)){
-    				destructBonbonEnBas(c, color);
+    				destructBonbonEnBas(new Coordonnee(c.getX(), c.getY()), color);
     				
 		
     			}
@@ -844,7 +862,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		
     		if(c.getY()<nbLigne){
     			if(!BonbonNull(c)){
-    				destructBonbonEnHaut(c, color);
+    				destructBonbonEnHaut(new Coordonnee(c.getX(), c.getY()), color);
     				
 		
     			}
@@ -867,12 +885,12 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
      	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
      		
      		getCase(c.getX(),c.getY()).retirerContenu(this);
-     		
+
      		c.setX(c.getX()+1);
-     		
-     		if(c.getY()<nbColonne){
+
+     		if(c.getX()<nbColonne){
      			if(!BonbonNull(c)){
-     				destructBonbonAdroite(c, color);
+     				destructBonbonAdroite(new Coordonnee(c.getX(), c.getY()), color);
      				
  		
      			}
@@ -898,9 +916,9 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
       		
       		c.setX(c.getX()-1);
       		
-      		if(c.getY()>0){
+      		if(c.getX()>0){
       			if(!BonbonNull(c)){
-      				destructBonbonAgauche(c, color);
+      				destructBonbonAgauche(new Coordonnee(c.getX(), c.getY()), color);
       				
   		
       			}
