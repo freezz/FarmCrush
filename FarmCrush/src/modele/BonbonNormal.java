@@ -66,7 +66,7 @@ public class BonbonNormal extends Bonbon {
     public boolean interagir(BonbonNormal b, Grille g) {
     	
     	Coordonnee c = g.getPositionBonbon(this);
-    	g.retirerBonbonCase(c);
+    	//detection
 		
 		return true;
         

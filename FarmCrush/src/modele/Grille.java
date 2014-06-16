@@ -108,7 +108,9 @@ public class Grille {
      * @param coordBonbon Coordonnées du bonbon a retirer
      */
     public void retirerBonbonCase(Coordonnee coordBonbon){
+    	if(!this.BonbonNull(coordBonbon)){
     	tableauGrille[coordBonbon.getX()][coordBonbon.getY()].retirerContenu(this);
+    	}
     }
     
 	/**
