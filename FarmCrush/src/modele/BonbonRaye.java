@@ -47,11 +47,6 @@ public class BonbonRaye extends Bonbon {
 		// ON supprime la ligne ou la colonne ou se trouve le bonbon rayé
 		supLigneColonneGrille(g, this.sensDestruction, c);
 		
-		//effectuer la gravité
-		g.effectuerGraviter();
-		
-		//check la grille pour voir s'il n'y a pas d'autre interaction entre bonbon
-		g.checkGrille();
     }
 	
 	/**
@@ -60,21 +55,23 @@ public class BonbonRaye extends Bonbon {
 	 */
 	private void supLigneColonneGrille(Grille g, Axe a, Coordonnee coordBonbon){
 		Case[][] cases = g.getTableau();
+		
 		int i;
-		int ligne = coordBonbon.getY();
-		int colonne = coordBonbon.getY();
+		g.supprimerBonbonCase(coordBonbon);
+		
 		switch (a) {
+		
 		case VERTICALE :
 			//supprimer colonne
-			for(i = 0 ; i <= g.getLigne() ; i++) {
-				cases[i][coordBonbon.getX()].getBonbon().destruction(g);// g ou null ?
+			for(i = 0 ; i < g.getLigne() ; i++) {
+				cases[coordBonbon.getX()][i].retirerContenu(g);// g ou null ?
 			}
 			break;
 			
 		case HORIZONTALE :
 			//supprimer ligne
-			for(i = 0 ; i <= g.getColonne() ; i++) {
-				cases[coordBonbon.getY()][i].getBonbon().destruction(g);// g ou null ?
+			for(i = 0 ; i < g.getColonne() ; i++) {
+				cases[i][coordBonbon.getY()].retirerContenu(g);// g ou null ?
 			}
 			break;
 
@@ -109,6 +106,10 @@ public class BonbonRaye extends Bonbon {
     }
     
     public boolean interagir(BonbonNormal b, Grille g) {
+    	
+    	Coordonnee c = g.getPositionBonbon(this);
+    	//detection
+    	
         return true;
     }
     

@@ -26,6 +26,7 @@ public class BonbonNormal extends Bonbon {
 		//historique
 		this.historique = new Historique();
 		// nb ligne et colonne condition ?
+		
 	}
 	
 	/**
@@ -39,12 +40,6 @@ public class BonbonNormal extends Bonbon {
 		
 		//retirer le bonbon de la grille
 		g.supprimerBonbonCase(c);
-		
-		//effectuer la gravité
-		g.effectuerGraviter();
-		
-		//check grille
-		//g.checkGrille();
 		
     }
 
@@ -69,7 +64,15 @@ public class BonbonNormal extends Bonbon {
     }
     
     public boolean interagir(BonbonNormal b, Grille g) {
-        return true;
+    	
+    	Coordonnee c = g.getPositionBonbon(this);
+    	//detection
+
+		return g.checkInteraction(c);
+        
+        
+        
+        
     }
 
 	@Override
@@ -84,7 +87,7 @@ public class BonbonNormal extends Bonbon {
      */
 	@Override
 	public int getConditionLigne() {
-		return 0;
+		return 3;
 	}
 
 	/**
@@ -94,7 +97,7 @@ public class BonbonNormal extends Bonbon {
      */
 	@Override
 	public int getConditionColonne() {
-		return 0;
+		return 3;
 	}
 
 }
