@@ -180,6 +180,33 @@ public class Grille {
 		return action;
     }
     
+	/**
+	 *   
+	 *   Fonction permettant de vérifier si aucune combinaison de bonbon est possible 
+	 *   a partir d'une postion
+	 * 
+	 * @return boolean indiquant si la méthode a effectuer des modifications (true)
+	 * 	 
+	 */
+    public boolean checkInteraction(Coordonnee pos){
+    	
+    	boolean action = false;
+	    if(this.getCase(pos.getX(),pos.getY()).getBonbon() != null){
+	    	//il faut faire descendre le bonbon du dessus
+	    	Coordonnee result = checkBonbon(pos);
+	    	
+	    	CreationBonbon(pos, result.getX(), result.getY());
+	    	
+	    	if(result.getX() > 2 || result.getY() > 2){
+	    		action = true;
+	    	}
+	    	
+	    }
+	    
+	    return action;
+    }
+    
+    
     /**
      * Obtenir la position du bonbon passéen paramettre
      * @param b
@@ -190,8 +217,8 @@ public class Grille {
     	Coordonnee coordonneeBonbon;
     	    	
     	//recherche du bonbon dans la grille
-    	while(i < this.getLigne() && tableauGrille[i][j].getBonbon() != b){
-			while(j < this.getColonne() && tableauGrille[i][j].getBonbon() != b){
+    	while(i < this.getLigne() && this.getCase(i,j).getBonbon() != b){
+			while(j < this.getColonne() && this.getCase(i,j).getBonbon() != b){
 				j++;
 			}
 			i++;
@@ -214,7 +241,7 @@ public class Grille {
      * @param coordBonbon Coordonnées du bonbon a retirer
      */
     public void supprimerBonbonCase(Coordonnee coordBonbon){
-    	tableauGrille[coordBonbon.getX()][coordBonbon.getY()].supBonbon();
+    	this.getCase(coordBonbon.getX(),coordBonbon.getY()).supBonbon();
     }
     
     
@@ -266,7 +293,7 @@ public class Grille {
     private Coordonnee checkBonbon(Coordonnee pos) {
 
     	Coordonnee nbBonbonLigneColonne = new Coordonnee(0, 0);// Création des coordonnee de retour
-    	Couleur color = tableauGrille[pos.getX()][pos.getY()].getBonbon().getCouleur();// couleur du bonbon recherché
+    	Couleur color = this.getCase(pos.getX(),pos.getY()).getBonbon().getCouleur();// couleur du bonbon recherché
     	
     	//on regarde a droite en recursif
 
@@ -384,7 +411,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     private Coordonnee checkBonbonAdroiteSimple(Coordonnee c, Coordonnee result, Couleur color) {
 
     	
-    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
     		
     		
     		c.setX(c.getX()+1);
@@ -409,7 +436,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     private Coordonnee checkBonbonAgauche(Coordonnee c, Coordonnee result, Couleur color) {
 
     	
-    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
     		
         	//on regarde en haut
 
@@ -454,7 +481,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     private Coordonnee checkBonbonAgaucheSimple(Coordonnee c, Coordonnee result, Couleur color) {
 
     	
-    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
     		
     		
     		c.setX(c.getX()-1);
@@ -480,7 +507,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     private Coordonnee checkBonbonEnHaut(Coordonnee c, Coordonnee result, Couleur color) {
 
     	
-    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
     		
         	//on regarde a droite en recursif
 
@@ -525,7 +552,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     private Coordonnee checkBonbonEnHautSimple(Coordonnee c, Coordonnee result, Couleur color) {
 
     	
-    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
     		
     		c.setY(c.getY()+1);
     		if(c.getY()<nbLigne){
@@ -554,7 +581,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     private Coordonnee checkBonbonEnBas(Coordonnee c, Coordonnee result, Couleur color) {
 
     	
-    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
     		
         	//on regarde a droite en recursif
 
@@ -603,7 +630,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     private Coordonnee checkBonbonEnBasSimple(Coordonnee c, Coordonnee result, Couleur color) {
 
     	
-    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
     		
     		
     		c.setY(c.getY()-1);
@@ -632,7 +659,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
 	 * 	 
 	 */
     public boolean BonbonNull(Coordonnee c){
-    	return(tableauGrille[c.getX()][c.getY()].getBonbon() == null);
+    	return(getCase(c.getX(),c.getY()).getBonbon() == null);
     }
 
     
@@ -655,7 +682,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     	BonbonEmballe bonbonEmballe = new BonbonEmballe(Couleur.JAUNE);
     	BonbonMulticolore bonbonmulti = new BonbonMulticolore();
     	
-    	Couleur color = tableauGrille[pos.getX()][pos.getY()].getBonbon().getCouleur();// couleur du bonbon recherché
+    	Couleur color = getCase(pos.getX(),pos.getY()).getBonbon().getCouleur();// couleur du bonbon recherché
     	
     	// en fonction du bonbon dectecté, on effectu differentes actions
     	if(i == bonbonmulti.getConditionLigne()){
@@ -663,44 +690,44 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		//destruction 
     		this.detruireBonbonExistant(pos,i,0);
     		//creation nouveau
-    		tableauGrille[pos.getX()][pos.getY()].setBonbon(new BonbonMulticolore());
+    		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonMulticolore());
     		
     	}
     	else if(j == bonbonmulti.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,0,j);
     		//creation nouveau
-    		tableauGrille[pos.getX()][pos.getY()].setBonbon(new BonbonMulticolore());
+    		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonMulticolore());
     	}
     	else if(i == bonbonRaye.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,i,0);
     		//creation nouveau
-    		tableauGrille[pos.getX()][pos.getY()].setBonbon(new BonbonRaye(color));
+    		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonRaye(color));
     	}
     	else if(j == bonbonRaye.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,0,j);
     		//creation nouveau
-    		tableauGrille[pos.getX()][pos.getY()].setBonbon(new BonbonRaye(color));
+    		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonRaye(color));
     	}
     	else if(i == bonbonEmballe.getConditionLigne() && j == bonbonEmballe.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,i,j);
     		//creation nouveau
-    		tableauGrille[pos.getX()][pos.getY()].setBonbon(new BonbonEmballe(color));
+    		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonEmballe(color));
     	}
     	else if(i == bonbon.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,i,0);
-    		//creation nouveau
-    		tableauGrille[pos.getX()][pos.getY()].setBonbonAleatoire();
+    		
+    		//il n'y a pas de création de bonbon
     	}
     	else if(j == bonbon.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,0,j);
-    		//creation nouveau
-    		tableauGrille[pos.getX()][pos.getY()].setBonbonAleatoire();
+
+    		//il n'y a pas de création de bonbon
     		
     	}
     	
@@ -719,7 +746,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
 	 */
     public void detruireBonbonExistant(Coordonnee pos,int i, int j){
 		
-    	Couleur color = tableauGrille[pos.getX()][pos.getY()].getBonbon().getCouleur();// couleur du bonbon recherché
+    	Couleur color = getCase(pos.getX(),pos.getY()).getBonbon().getCouleur();// couleur du bonbon recherché
 
     	//on traite le i (les lignes)
     	
@@ -779,9 +806,9 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     private void destructBonbonEnBas(Coordonnee c, Couleur color) {
 
     	
-    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
     		
-    		tableauGrille[c.getX()][c.getY()].retirerContenu(this);
+    		getCase(c.getX(),c.getY()).retirerContenu(this);
     		
     		c.setY(c.getY()-1);
     		
@@ -807,9 +834,9 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     private void destructBonbonEnHaut(Coordonnee c, Couleur color) {
 
     	
-    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
     		
-    		tableauGrille[c.getX()][c.getY()].retirerContenu(this);
+    		getCase(c.getX(),c.getY()).retirerContenu(this);
     		
     		c.setY(c.getY()+1);
     		
@@ -835,9 +862,9 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
      private void destructBonbonAdroite(Coordonnee c, Couleur color) {
 
      	
-     	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+     	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
      		
-     		tableauGrille[c.getX()][c.getY()].retirerContenu(this);
+     		getCase(c.getX(),c.getY()).retirerContenu(this);
      		
      		c.setX(c.getX()+1);
      		
@@ -863,9 +890,9 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
       private void destructBonbonAgauche(Coordonnee c, Couleur color) {
 
       	
-      	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+      	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
       		
-      		tableauGrille[c.getX()][c.getY()].retirerContenu(this);
+      		getCase(c.getX(),c.getY()).retirerContenu(this);
       		
       		c.setX(c.getX()-1);
       		

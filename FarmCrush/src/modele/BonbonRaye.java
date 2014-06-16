@@ -109,6 +109,7 @@ public class BonbonRaye extends Bonbon {
     	
     	Coordonnee c = g.getPositionBonbon(this);
     	//detection
+    	
         return true;
     }
     

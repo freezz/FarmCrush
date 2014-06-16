@@ -67,8 +67,8 @@ public class BonbonNormal extends Bonbon {
     	
     	Coordonnee c = g.getPositionBonbon(this);
     	//detection
-		
-		return true;
+
+		return g.checkInteraction(c);
         
         
         
@@ -87,7 +87,7 @@ public class BonbonNormal extends Bonbon {
      */
 	@Override
 	public int getConditionLigne() {
-		return 0;
+		return 3;
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class BonbonNormal extends Bonbon {
      */
 	@Override
 	public int getConditionColonne() {
-		return 0;
+		return 3;
 	}
 
 }
