@@ -55,6 +55,10 @@ public class CrushGUI implements Observer{
     /** Cases du jeu */
     private JToggleButton[][] cases ;
     
+    public JToggleButton[][] getCases() {
+    	return cases;
+    }
+    
     /** Le modèle - nécessaire pour les controleurs  */
     private FarmCrush modele;
     
@@ -95,7 +99,7 @@ public class CrushGUI implements Observer{
 					cases[i][j].setBackground(new Color(0, 255 / coucheGelatine, 0));
 				}
 				
-				//cases[i][j].addMouseListener(new ClickLabel());
+				cases[i][j].addActionListener(new CrushControleur(m,this));
 		    }
 		}
     	
@@ -242,9 +246,18 @@ public class CrushGUI implements Observer{
     
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
-		
+		//On met a jour la vue de toute les cases
+		for (int i = 0 ; i < this.modele.grille.getLigne() ; i++) {
+		    for (int j = 0 ; j < this.modele.grille.getColonne() ; j++) {
+				cases[i][j].setIcon(contenu2Image(this.modele.grille.getCase(i, j)));
+				int coucheGelatine = this.modele.grille.getCase(i, j).getGelatine().getCoucheGelatine();
+				if( coucheGelatine != 0) {
+					cases[i][j].setBackground(new Color(0, 255 / coucheGelatine, 0));
+				}
+				cases[i][j].setSelected(false);
+				//cases[i][j].addActionListener(new CrushControleur(this.modele,this));
+		    }
+		}
 	}
 
 }
