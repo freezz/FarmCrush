@@ -74,7 +74,7 @@ public class FarmCrush extends Observable {
     public void jouer(final Coordonnee c1, final Coordonnee c2) {
     	
     	//Vérification que les conditions de victoires ou defaites ne sont pas atteintes
-    	if(nbCoupJouer <= objectif.getNbCoupMax() && objectif.estVerifier(scoreActuel)){
+    	if(nbCoupJouer <= objectif.getNbCoupMax() && !objectif.estVerifier(scoreActuel)){
     		
     		//recupere les bonbon correspondant au coordonnées
     		Bonbon bonbon1 = grille.getCase(c1.getX(),c1.getY()).getBonbon();
