@@ -27,25 +27,25 @@ import modele.FarmCrush;
 public class CrushGUI implements Observer{
 	
 	/* Ensemble des icons */
-	private static final ImageIcon orange = new ImageIcon("orange.ico");
-    private static final ImageIcon rouge = new ImageIcon("rouge.ico");
-    private static final ImageIcon vert = new ImageIcon("vert.ico");
-    private static final ImageIcon bleu = new ImageIcon("bleu.ico");
-    private static final ImageIcon violet = new ImageIcon("violet.ico");
-    private static final ImageIcon jaune = new ImageIcon("jaune.ico");
-    private static final ImageIcon orange_raye = new ImageIcon("orange_raye.ico");
-    private static final ImageIcon rouge_raye = new ImageIcon("rouge_raye.ico");
-    private static final ImageIcon vert_raye = new ImageIcon("vert_raye.ico");
-    private static final ImageIcon bleu_raye = new ImageIcon("bleu_raye.ico");
-    private static final ImageIcon violet_raye = new ImageIcon("violet_raye.ico");
-    private static final ImageIcon jaune_raye = new ImageIcon("jaune_raye.ico");
-    private static final ImageIcon orange_emballe = new ImageIcon("orange_emballe.ico");
-    private static final ImageIcon rouge_emballe = new ImageIcon("rouge_emballe.ico");
-    private static final ImageIcon vert_emballe = new ImageIcon("vert_emballe.ico");
-    private static final ImageIcon bleu_emballe = new ImageIcon("bleu_emballe.ico");
-    private static final ImageIcon violet_emballe = new ImageIcon("violet_emballe.ico");
-    private static final ImageIcon jaune_emballe = new ImageIcon("jaune_emballe.ico");
-    private static final ImageIcon multicolore = new ImageIcon("multicolore.ico");
+	private static final ImageIcon orange = new ImageIcon("img/orange.ico");
+    private static final ImageIcon rouge = new ImageIcon("img/rouge.ico");
+    private static final ImageIcon vert = new ImageIcon("img/vert.ico");
+    private static final ImageIcon bleu = new ImageIcon("img/bleu.ico");
+    private static final ImageIcon violet = new ImageIcon("img/violet.ico");
+    private static final ImageIcon jaune = new ImageIcon("img/jaune.ico");
+    private static final ImageIcon orange_raye = new ImageIcon("img/orange_raye.ico");
+    private static final ImageIcon rouge_raye = new ImageIcon("img/rouge_raye.ico");
+    private static final ImageIcon vert_raye = new ImageIcon("img/vert_raye.ico");
+    private static final ImageIcon bleu_raye = new ImageIcon("img/bleu_raye.ico");
+    private static final ImageIcon violet_raye = new ImageIcon("img/violet_raye.ico");
+    private static final ImageIcon jaune_raye = new ImageIcon("img/jaune_raye.ico");
+    private static final ImageIcon orange_emballe = new ImageIcon("img/orange_emballe.ico");
+    private static final ImageIcon rouge_emballe = new ImageIcon("img/rouge_emballe.ico");
+    private static final ImageIcon vert_emballe = new ImageIcon("img/vert_emballe.ico");
+    private static final ImageIcon bleu_emballe = new ImageIcon("img/bleu_emballe.ico");
+    private static final ImageIcon violet_emballe = new ImageIcon("img/violet_emballe.ico");
+    private static final ImageIcon jaune_emballe = new ImageIcon("img/jaune_emballe.ico");
+    private static final ImageIcon multicolore = new ImageIcon("img/multicolore.ico");
 
     /** Fenêtre principale */
     private JFrame fenetre;
@@ -89,8 +89,9 @@ public class CrushGUI implements Observer{
 				//attribut public interdit...
 				cases[i][j].setIcon(contenu2Image(m.grille.getCase(i, j)));
 				//GELATINE ??
+				//case[i][j].
 				
-				cases[i][j].addMouseListener(new ClickLabel());
+				//cases[i][j].addMouseListener(new ClickLabel());
 		    }
 		}
     	
@@ -101,9 +102,9 @@ public class CrushGUI implements Observer{
 		JMenuBar barreMenu = new JMenuBar();
 		JMenu menus = new JMenu("Jeu");
 		JMenuItem itemNouvellePartie = new JMenuItem("Nouvelle Partie");
-		itemNouvellePartie.addActionListener(new ActionNouvellePartie());
+		//itemNouvellePartie.addActionListener(new ActionNouvellePartie());
 		JMenuItem itemQuitter = new JMenuItem("Quitter");
-		itemQuitter.addActionListener(new ActionQuitter());
+		//itemQuitter.addActionListener(new ActionQuitter());
 		menus.add(itemNouvellePartie);
 		menus.add(itemQuitter);
 		barreMenu.add(menus);
