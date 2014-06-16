@@ -25,13 +25,16 @@ public class FarmCrush {
 
     //Constructeurs
     
-    public FarmCrush(){
+    public FarmCrush(String chemin){
     	
     	scoreActuel = 0;
     	nbCoupJouer = 0;
     	objectif = new Objectif();
     	grille = new Grille();
     	
+    	
+    	//initialisation du modele
+    	this.initialisationNiveau(chemin);
     }
     //accesseurs
     

@@ -641,33 +641,37 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     	
     	// en fonction du bonbon dectecté, on effectu differentes actions
     	if(i == bonbonmulti.getConditionLigne()){
+    		
     		//destruction 
-    		this.detruireBonbonExistant(pos);
+    		this.detruireBonbonExistant(pos,i,0);
     		//creation nouveau
+    		tableauGrille[pos.getX()][pos.getY()].setBonbon(new BonbonMulticolore());
     		
     	}
     	else if(j == bonbonmulti.getConditionLigne()){
     		
-    		
+    		this.detruireBonbonExistant(pos,0,j);
     	}
     	else if(i == bonbonRaye.getConditionLigne()){
     		
-    		
+    		this.detruireBonbonExistant(pos,i,0);
     	}
     	else if(j == bonbonRaye.getConditionLigne()){
     		
+    		this.detruireBonbonExistant(pos,0,j);
     		
     	}
     	else if(i == bonbonEmballe.getConditionLigne() && j == bonbonEmballe.getConditionLigne()){
     		
-    		
+    		this.detruireBonbonExistant(pos,i,j);
     	}
     	else if(i == bonbon.getConditionLigne()){
     		
-    		
+    		this.detruireBonbonExistant(pos,i,0);
     	}
     	else if(j == bonbon.getConditionLigne()){
     		
+    		this.detruireBonbonExistant(pos,0,j);
     		
     	}
     	
@@ -684,13 +688,168 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
 	 * @param j : inidice sur le nb de bonbon identique sur une colonne
 	 * 	 
 	 */
-    public void detruireBonbonExistant(Coordonnee pos){
+    public void detruireBonbonExistant(Coordonnee pos,int i, int j){
 		
     	Couleur color = tableauGrille[pos.getX()][pos.getY()].getBonbon().getCouleur();// couleur du bonbon recherché
 
+    	//on traite le i (les lignes)
     	
+    	if(i!=0){
+
+    		Coordonnee coorDroite = new Coordonnee(pos.getX()+1, pos.getY());
+    	
+			if(coorDroite.getX()<nbColonne){
+				if(!BonbonNull(coorDroite)){
+					destructBonbonAdroite(coorDroite, color);
+				}
+			}
+		
+    		//on regarde a gauche recursif
+
+    		Coordonnee coorGauche = new Coordonnee(pos.getX()-1, pos.getY());
+    	
+			if(coorGauche.getX()>0){
+				if(!BonbonNull(coorGauche)){
+					destructBonbonAgauche(coorGauche, color);
+				}
+			}
+    	
+    	}
+    	
+    	if(j!=0){
+    	
+    		//on regarde en haut
+    		Coordonnee coorEnHaut = new Coordonnee(pos.getX(), pos.getY()+1);
+    	
+    		if(coorEnHaut.getY()<nbLigne){
+    			if(!BonbonNull(coorEnHaut)){
+    				destructBonbonEnHaut(coorEnHaut, color);}
+    		}
+    	
+    		//on regarde en bas
+    	
+    		Coordonnee coorEnBas = new Coordonnee(pos.getX(), pos.getY()-1);
+
+    		if(coorEnBas.getY()>0){
+    			if(!BonbonNull(coorEnBas)){
+    				destructBonbonEnBas(coorEnBas, color);}
+    		}
+    	
+    	}
+		
     	
 
     }
+    
+    /**
+	 *   
+	 *   Fonction se déplacant vers le bas en faisant exploser les bonbon sur son passage
+	 *
+	 * 	 
+	 */
+    private void destructBonbonEnBas(Coordonnee c, Couleur color) {
+
+    	
+    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    		
+    		tableauGrille[c.getX()][c.getY()].retirerContenu(this);
+    		
+    		c.setY(c.getY()-1);
+    		
+    		if(c.getY()>0){
+    			if(!BonbonNull(c)){
+    				destructBonbonEnBas(c, color);
+    				
+		
+    			}
+    		}
+    		
+    	}
+    	
+    }//fin methode
+    
+    
+    /**
+	 *   
+	 *   Fonction se déplacant vers le haut en faisant exploser les bonbon sur son passage
+	 *
+	 * 	 
+	 */
+    private void destructBonbonEnHaut(Coordonnee c, Couleur color) {
+
+    	
+    	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+    		
+    		tableauGrille[c.getX()][c.getY()].retirerContenu(this);
+    		
+    		c.setY(c.getY()+1);
+    		
+    		if(c.getY()<nbLigne){
+    			if(!BonbonNull(c)){
+    				destructBonbonEnHaut(c, color);
+    				
+		
+    			}
+    		}
+    		
+    	}
+    	
+    }//fin methode
+    
+    
+    /**
+ 	 *   
+ 	 *   Fonction se déplacant vers la droite en faisant exploser les bonbon sur son passage
+ 	 *
+ 	 * 	 
+ 	 */
+     private void destructBonbonAdroite(Coordonnee c, Couleur color) {
+
+     	
+     	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+     		
+     		tableauGrille[c.getX()][c.getY()].retirerContenu(this);
+     		
+     		c.setX(c.getX()+1);
+     		
+     		if(c.getY()<nbColonne){
+     			if(!BonbonNull(c)){
+     				destructBonbonAdroite(c, color);
+     				
+ 		
+     			}
+     		}
+     		
+     	}
+     	
+     }//fin methode
+     
+     
+     /**
+  	 *   
+  	 *   Fonction se déplacant vers la droite en faisant exploser les bonbon sur son passage
+  	 *
+  	 * 	 
+  	 */
+      private void destructBonbonAgauche(Coordonnee c, Couleur color) {
+
+      	
+      	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
+      		
+      		tableauGrille[c.getX()][c.getY()].retirerContenu(this);
+      		
+      		c.setX(c.getX()-1);
+      		
+      		if(c.getY()>0){
+      			if(!BonbonNull(c)){
+      				destructBonbonAgauche(c, color);
+      				
+  		
+      			}
+      		}
+      		
+      	}
+      	
+      }//fin methode
     
 }
