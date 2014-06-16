@@ -52,7 +52,7 @@ public class BonbonNormal extends Bonbon {
 	@Override
     public boolean interagir(Bonbon b, Grille g) {
 		boolean res;
-		loggerBonbonNormal.trace("mais ou est donc la boucle infini ?");
+		loggerBonbonNormal.trace("On entre dans interaction");
 		if(b instanceof BonbonNormal){
 			// b est un bonbon normal
 			BonbonNormal b1 = (BonbonNormal) b;
@@ -66,7 +66,7 @@ public class BonbonNormal extends Bonbon {
     }
     
     public boolean interagir(BonbonNormal b, Grille g) {
-    	
+		loggerBonbonNormal.trace("Avec bonbon normal");
     	boolean action = false;
 
     	

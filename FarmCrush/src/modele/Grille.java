@@ -134,14 +134,17 @@ public class Grille {
 	 */
     public void effectuerGraviter() {
     	//On doit parcourir colonne par colonne en remontant ligne par ligne
-    	
+		loggerGrille.trace("Le probleme serait dans gravité ?");
+		
     	for(int j = 0; j < this.getColonne(); j++){
     		
     		for(int i = 0; i < this.getLigne(); i++){
 		
 			    if(this.getCase(i,j).getBonbon() == null){
 			    	//il faut faire descendre le bonbon du dessus
+					loggerGrille.trace("Dans faire descencre ?");
 			    	faireDescendreBonbon(i,j);
+					loggerGrille.trace("faire descendre hors de cause ?");
 			    }
 			    else{
 			    	//rien
@@ -150,7 +153,7 @@ public class Grille {
 			
 		}//colonne
     	
-    	
+		loggerGrille.trace("gravité hors de cause ?");
     	
     	
     }
@@ -191,6 +194,8 @@ public class Grille {
 			}//ligne
 			
 		}//colonne
+    	
+    	loggerGrille.trace("hors de cause ?");
     	
 		return action;
     }
@@ -266,17 +271,19 @@ public class Grille {
      * 
      * 
      */
-    public void faireDescendreBonbon(int i, int j){
+    public void faireDescendreBonbon(int i1, int j){
     	int compteur = 0;
     	
-    	while(this.getCase(i,j).getBonbon() == null && compteur < nbLigne-i){
+    	while(this.getCase(i1,j).getBonbon() == null && compteur < nbLigne-i1){
     		
-    		for(int i1 = i;i1 < nbLigne-1; i1++){
-    			this.getCase(i1,j).setBonbon(this.getCase(i1+1,j).getBonbon());
+    		loggerGrille.trace("Je le sent bien la ?"); 
+    		
+    		for(int i = i1;i < nbLigne-1; i++){
+    			this.getCase(i,j).setBonbon(this.getCase(i+1,j).getBonbon());
     			
     			//Dans le cas ou ce n'est pas un bonbon null, il faut lui mettre a jour son historique
-    			if(this.getCase(i1,j).getBonbon() != null){
-    				this.getCase(i1,j).getBonbon().ajoutCoordonneHistorique(i1, j); 
+    			if(this.getCase(i,j).getBonbon() != null){
+    				this.getCase(i,j).getBonbon().ajoutCoordonneHistorique(i, j); 
     			}
     			
     			compteur++;
@@ -284,11 +291,11 @@ public class Grille {
     		}//fin for
     	}
     	
-    	if(this.getCase(i,j).getBonbon() == null){
+    	if(this.getCase(i1,j).getBonbon() == null){
     		
-    		for(int i1 = i;i1 < nbLigne; i1++){
-    		this.getCase(i1, j).setBonbonAleatoire();
-		    this.getCase(i1, j).getBonbon().ajoutCoordonneHistorique(i1, j);
+    		for(int i = i1;i < nbLigne; i++){
+    		this.getCase(i, j).setBonbonAleatoire();
+		    this.getCase(i, j).getBonbon().ajoutCoordonneHistorique(i, j);
     		}
     	}
     	

@@ -75,21 +75,26 @@ public class BonbonMulticolore extends Bonbon {
 	@Override
     public boolean interagir(Bonbon b, Grille g) {
 		boolean res = false;
+		loggerBonbonMulticolore.trace("On entre dans interaction");
 		if(b instanceof BonbonNormal){
 			// b est un bonbon normal
-			res = b.interagir((BonbonNormal) b, g);
+			BonbonNormal b1 = (BonbonNormal) b;
+			res = b.interagir(b1, g);
 		}
 		else if(b instanceof BonbonRaye){
 			// b est un bonbon rayé
-			res = b.interagir((BonbonRaye) b, g);
+			BonbonRaye b2 = (BonbonRaye) b;
+			res = b.interagir(b2, g);
 		}
 		else if (b instanceof BonbonEmballe){
 			// b est un bonbon emballé
-			res = b.interagir((BonbonEmballe) b, g);
+			BonbonEmballe b3  = (BonbonEmballe) b;
+			res = b.interagir(b3, g);
 		}
 		else if (b instanceof BonbonMulticolore){
 			// b est un bonbon multicolore
-			res = b.interagir((BonbonMulticolore) b, g);
+			BonbonMulticolore b4  = (BonbonMulticolore) b;
+			res = b.interagir(b4, g);
 		}
 		else {
 			// b est un bonbon inconnu
@@ -99,7 +104,7 @@ public class BonbonMulticolore extends Bonbon {
     }
     
     public boolean interagir(BonbonNormal b, Grille g) {
-    	
+		loggerBonbonMulticolore.trace("Avec bonbon normal");
 		Coordonnee c1 = g.getPositionBonbon(this);
 		
 		g.supprimerBonbonCase(c1);
@@ -110,7 +115,7 @@ public class BonbonMulticolore extends Bonbon {
     }
     
     public boolean interagir(BonbonRaye b, Grille g) {
-    	
+		loggerBonbonMulticolore.trace("Avec bonbon Raye");
 		Coordonnee c1 = g.getPositionBonbon(this);
 		
 		g.supprimerBonbonCase(c1);
@@ -134,7 +139,7 @@ public class BonbonMulticolore extends Bonbon {
     
     public boolean interagir(BonbonEmballe b, Grille g) {
     	
-      	
+		loggerBonbonMulticolore.trace("Avec bonbon Emballe");
     		Coordonnee c1 = g.getPositionBonbon(this);
     		
     		g.supprimerBonbonCase(c1);
@@ -158,7 +163,7 @@ public class BonbonMulticolore extends Bonbon {
     }
     
     public boolean interagir(BonbonMulticolore b, Grille g) {
-    	
+		loggerBonbonMulticolore.trace("Entre multi");
 		Coordonnee c1 = g.getPositionBonbon(this);
 		
 		g.supprimerBonbonCase(c1);

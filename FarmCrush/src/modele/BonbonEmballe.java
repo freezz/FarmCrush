@@ -99,17 +99,21 @@ public class BonbonEmballe extends Bonbon {
 	@Override
     public boolean interagir(Bonbon b, Grille g) {
     	boolean res;
+		loggerBonbonEmballe.trace("On entre dans interaction");
 		if(b instanceof BonbonNormal){
 			//b est un bonbon normal
-			res = b.interagir((BonbonNormal) b, g);
+			BonbonNormal b1 = (BonbonNormal) b;
+			res = b.interagir(b1, g);
 		}
 		else if(b instanceof BonbonRaye){
 			//b est un bonbon rayé
-			res = b.interagir((BonbonRaye) b, g);
+			BonbonRaye b2 = (BonbonRaye) b;
+			res = b.interagir(b2, g);
 		}
 		else if (b instanceof BonbonEmballe){
 			// b est un bonbon emballé
-			res = b.interagir((BonbonEmballe) b, g);
+			BonbonEmballe b3  = (BonbonEmballe) b;
+			res = b.interagir(b3, g);
 		}
 		else {
 			//b est un bonbon inconnu
@@ -119,7 +123,7 @@ public class BonbonEmballe extends Bonbon {
     }
     
     public boolean interagir(BonbonNormal b, Grille g) {
-    	
+		loggerBonbonEmballe.trace("Avec bonbon normal");
     	boolean action = false;
     	
     	Coordonnee c1 = g.getPositionBonbon(this);
@@ -148,7 +152,7 @@ public class BonbonEmballe extends Bonbon {
     }
     
     public boolean interagir(BonbonRaye b, Grille g) {
-    	
+		loggerBonbonEmballe.trace("Avec bonbon Raye");
 		Coordonnee c1 = g.getPositionBonbon(this);
 		Coordonnee c2 = g.getPositionBonbon(b);
 		
@@ -191,7 +195,7 @@ public class BonbonEmballe extends Bonbon {
     }
     
     public boolean interagir(BonbonEmballe b, Grille g) {
-    	
+		loggerBonbonEmballe.trace("Avec bonbon Emballe");
     	Coordonnee c1 = g.getPositionBonbon(this);
 		Coordonnee c2 = g.getPositionBonbon(b);
 		

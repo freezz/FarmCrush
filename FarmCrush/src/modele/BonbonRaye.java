@@ -118,13 +118,16 @@ public class BonbonRaye extends Bonbon {
     @Override
     public boolean interagir(Bonbon b, Grille g) {
     	boolean res;
+		loggerBonbonRaye.trace("On entre dans interaction");
 		if(b instanceof BonbonNormal){
 			// b est un bonbon normal
-			res = b.interagir((BonbonNormal) b, g);
+			BonbonNormal b1 = (BonbonNormal) b;
+			res = b.interagir(b1, g);
 		}
 		else if(b instanceof BonbonRaye){
 			// b est un bonbon raye
-			res = b.interagir((BonbonRaye) b, g);
+			BonbonRaye b2 = (BonbonRaye) b;
+			res = b.interagir(b2, g);
 		}
 		else {
 			// b est un bonbon inconnu
@@ -134,7 +137,7 @@ public class BonbonRaye extends Bonbon {
     }
     
     public boolean interagir(BonbonNormal b, Grille g) {
-    	
+		loggerBonbonRaye.trace("Avec bonbon normal");
     	boolean action = false;
     	
     	Coordonnee c1 = g.getPositionBonbon(this);
@@ -164,6 +167,7 @@ public class BonbonRaye extends Bonbon {
     
     public boolean interagir(BonbonRaye b, Grille g) {
     	boolean action = false;
+		loggerBonbonRaye.trace("Avec bonbon Raye");
     	
     	Coordonnee c1 = g.getPositionBonbon(this);
     	Coordonnee c2 = g.getPositionBonbon(b);
