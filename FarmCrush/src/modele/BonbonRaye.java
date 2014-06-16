@@ -24,6 +24,8 @@ public class BonbonRaye extends Bonbon {
 
 
    //Constructeurs
+	
+	
 	/**
 	 * Construit un bonbon rayé et son historique associé
 	 * @param c - Couleur
@@ -34,10 +36,27 @@ public class BonbonRaye extends Bonbon {
 		this.historique = new Historique();
 	}
 
+	
+	/**
+	 * Modifi la valeur de l'axe du bonbon rayé
+	 * 
+	 */
 	public void setAxe(Axe abs){
 		
 		this.sensDestruction = abs;
 	}
+	
+	
+	/**
+	 * retourne la valeur de l'axe du bonbon rayé
+	 * 
+	 */
+	public Axe getAxe(){
+		
+		return this.sensDestruction;
+	}
+	
+	
 	/**
      * Desctruction du bonbon
      * @param g Grille

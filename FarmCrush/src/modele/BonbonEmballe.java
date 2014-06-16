@@ -1,5 +1,7 @@
 package modele;
 
+import modele.BonbonRaye.Axe;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -60,16 +62,14 @@ public class BonbonEmballe extends Bonbon {
 	 */
 	private void supBloc(Grille g, boolean delBonbonMilieu, Coordonnee coordBonbon, int k){
 		
-		int i;
-		int j;
-		
+				
 		// (-1 +1) ( 0 +1) (+1 +1)
 		// (-1  0) ( 0  0) (+1  0)
 		// (-1 -1) ( 0 -1) (+1 -1)
 		//to do : verifier qu'on est pas sur un bord...
 		
-		for( i = -k ; i <= k ; i++ ) {
-			for( j = -k ;  j <= k ; j++){
+		for( int i = -k ; i <= k ; i++ ) {
+			for( int j = -k ;  j <= k ; j++){
 				if(i != 0 && j != 0){ 
 					if((coordBonbon.getX() + i) < g.getColonne() || (coordBonbon.getX() + j) > g.getLigne()){
 					//on detruit le bonbon situé sur case[coordBonbon.getX() + i][coordBonbon.getX() + j]
@@ -152,9 +152,57 @@ public class BonbonEmballe extends Bonbon {
 		Coordonnee c1 = g.getPositionBonbon(this);
 		Coordonnee c2 = g.getPositionBonbon(b);
 		
+		Bonbon b1 = new BonbonNormal(this.getCouleur());
+		Bonbon b2 = new BonbonNormal(b.getCouleur());
+		
+		g.getCase(c1.getX(), c1.getY()).setBonbon(b1);
+		g.getCase(c2.getX(), c2.getY()).setBonbon(b2);
+		
+		int k1 = 0, k2 = 0;
+		
+		if(b.getAxe() == Axe.VERTICALE){
+			k1 = 1;
+			k2 = g.getLigne();
+		}
+		else if(b.getAxe() == Axe.VERTICALE){
+			k1 = g.getColonne();
+			k2 = 1;
+		}
+		else{
+			//on ne doit jamais rentrer dedans
+			
+		}
+		
+		
+		for( int i = -k1 ; i <= k1 ; i++ ) {
+			for( int j = -k2 ;  j <= k2 ; j++){
+				if(i != 0 && j != 0){ 
+					
+					if((c1.getX() + i) < g.getColonne() || (c1.getX() + j) > g.getLigne()){
+					//on detruit le bonbon situé sur case[coordBonbon.getX() + i][coordBonbon.getX() + j]
+					g.getCase(c1.getX() + i,c1.getX() + j).retirerContenu(g);
+					}
+				}
+
+			}
+		}
+    	
+        return true;
+    }
+    
+    public boolean interagir(BonbonEmballe b, Grille g) {
+    	
+    	Coordonnee c1 = g.getPositionBonbon(this);
+		Coordonnee c2 = g.getPositionBonbon(b);
+		
+		Bonbon b1 = new BonbonNormal(this.getCouleur());
+		Bonbon b2 = new BonbonNormal(b.getCouleur());
+		
+		g.getCase(c1.getX(), c1.getY()).setBonbon(b1);
+		g.getCase(c2.getX(), c2.getY()).setBonbon(b2);
 		
 		// on supprime les bonbons autour du bonbon emballé
-		supBloc(g, false, c1,1);
+		supBloc(g, false, c1,2);
 		
 		//effectuer la gravité
 		g.effectuerGraviter();
@@ -164,14 +212,11 @@ public class BonbonEmballe extends Bonbon {
 		}
 		
 		//on resupprime le bloc entier (autour + le bonbon) 
-		c1 = g.getPositionBonbon(this);
-		supBloc(g, true, c1,1);
+		c1 = g.getPositionBonbon(b1);
+		supBloc(g, true, c1,2);
     	
         return true;
-    }
-    
-    public boolean interagir(BonbonEmballe b, Grille g) {
-        return true;
+        
     }
     
     /**

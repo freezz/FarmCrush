@@ -11,8 +11,6 @@ package modele;
 
 public abstract class Bonbon {
 
-    //private int conditionNbLigne;
-    //private int conditionNbColonne;
     protected Couleur couleur;
     public Historique historique;
     
