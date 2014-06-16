@@ -169,14 +169,16 @@ public class Grille {
     	Coordonnee result = new Coordonnee(0, 0);
     	boolean action = false;
     	
-    	for(int j = 0; j < this.getColonne(); j++){
+		loggerGrille.trace("mais ou est donc la boucle infini ?");
+		
+    	for(int j = 0; j < this.getLigne(); j++){
     		
-    		for(int i = 0; i < this.getLigne(); i++){
+    		for(int i = 0; i < this.getColonne(); i++){
 		
 			    if(this.getCase(i,j).getBonbon() != null){
 			    	//il faut faire descendre le bonbon du dessus
 			    	result = checkBonbon(new Coordonnee(i, j));
-			    	
+
 			    	CreationBonbon(new Coordonnee(i, j), result.getX(), result.getY());
 			    	
 			    	if(result.getX() > 2 || result.getY() > 2){

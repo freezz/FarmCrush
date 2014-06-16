@@ -88,7 +88,7 @@ public class BonbonRaye extends Bonbon {
 		case VERTICALE :
 			//supprimer colonne
 			for(i = 0 ; i < g.getLigne() ; i++) {
-				if(g.BonbonNull(new Coordonnee(coordBonbon.getX(), i))){
+				if(!g.BonbonNull(new Coordonnee(coordBonbon.getX(), i))){
 					g.getCase(coordBonbon.getX(),i).retirerContenu(g);
 				}
 			}
@@ -97,7 +97,7 @@ public class BonbonRaye extends Bonbon {
 		case HORIZONTALE :
 			//supprimer ligne
 			for(i = 0 ; i < g.getColonne() ; i++) {
-				if(g.BonbonNull(new Coordonnee(coordBonbon.getX(), i))){
+				if(!g.BonbonNull(new Coordonnee(coordBonbon.getX(), i))){
 					g.getCase(coordBonbon.getX(),i).retirerContenu(g);
 				}
 			}

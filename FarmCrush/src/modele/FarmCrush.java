@@ -158,7 +158,9 @@ public class FarmCrush extends Observable {
 		loggerFarmCrush.trace("Gravité Ok - début checkGrille");
 		
 		while(grille.checkGrille()){
+
 			grille.effectuerGraviter();
+
 		}
     	
     }
