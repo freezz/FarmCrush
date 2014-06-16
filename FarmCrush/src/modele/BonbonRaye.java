@@ -16,7 +16,7 @@ public class BonbonRaye extends Bonbon {
 	/**
 	 * Sens de destruction du bonbon rayé (verticale/horizontale)
 	 */
-	private enum Axe{VERTICALE, HORIZONTALE};
+	public enum Axe{VERTICALE, HORIZONTALE};
 	private Axe sensDestruction;
 
    //Attributs
@@ -28,11 +28,16 @@ public class BonbonRaye extends Bonbon {
 	 * Construit un bonbon rayé et son historique associé
 	 * @param c - Couleur
 	 */
-	public BonbonRaye(Couleur c) {
+	public BonbonRaye(Couleur c, Axe vertouhorizon) {
 		this.couleur = c;
+		this.sensDestruction = vertouhorizon;
 		this.historique = new Historique();
 	}
 
+	public void setAxe(Axe abs){
+		
+		this.sensDestruction = abs;
+	}
 	/**
      * Desctruction du bonbon
      * @param g Grille
@@ -107,14 +112,65 @@ public class BonbonRaye extends Bonbon {
     
     public boolean interagir(BonbonNormal b, Grille g) {
     	
-    	Coordonnee c = g.getPositionBonbon(this);
-    	//detection
+    	boolean action = false;
     	
-        return true;
+    	Coordonnee c1 = g.getPositionBonbon(this);
+    	Coordonnee c2 = g.getPositionBonbon(b);
+    	
+    	Bonbon stock = b;
+    	
+    	//changement de position entre les deux bonbons
+    	g.getCase(c2.getX(), c2.getY()).setBonbon(this);
+    	g.getCase(c1.getX(), c1.getY()).setBonbon(stock);
+    	
+    	if(g.checkInteraction(c1)){
+    		action = true;
+    	}
+    	else if(g.checkInteraction(c2)){
+    		action = true;
+    	}
+    	else{
+    		//si aucune interection marche, on revient a la normale
+        	g.getCase(c2.getX(), c2.getY()).setBonbon(stock);
+        	g.getCase(c1.getX(), c1.getY()).setBonbon(this);
+    	}
+    	
+
+		return action;
     }
     
     public boolean interagir(BonbonRaye b, Grille g) {
-        return true;
+    	boolean action = false;
+    	
+    	Coordonnee c1 = g.getPositionBonbon(this);
+    	Coordonnee c2 = g.getPositionBonbon(b);
+    	
+    	Bonbon stock = b;
+    	
+    	//changement de position entre les deux bonbons
+    	g.getCase(c2.getX(), c2.getY()).setBonbon(this);
+    	g.getCase(c1.getX(), c1.getY()).setBonbon(stock);
+    	
+    	if(g.checkInteraction(c1)){
+    		action = true;
+    	}
+    	else if(g.checkInteraction(c2)){
+    		action = true;
+    	}
+    	else{
+    		//si aucune interection marche, on revient a la normale
+        	this.setAxe(Axe.VERTICALE);
+        	b.setAxe(Axe.HORIZONTALE);
+        	
+        	this.destruction(g);
+        	
+        	if(!g.BonbonNull(c1)){
+        		b.destruction(g);
+        	}
+    	}
+    	
+		return action;
+
     }
 
 	@Override
@@ -139,7 +195,7 @@ public class BonbonRaye extends Bonbon {
      */
 	@Override
 	public int getConditionColonne() {
-		return 4;
+		return 0;
 	}
 
 }
