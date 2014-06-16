@@ -74,10 +74,6 @@ public class CrushGUI implements Observer{
     private JLabel rayeRestant;
     private JLabel multicolorRestant;
     
-    
-    
-    
-    
     /**
      * Construit l'interface graphique
      * @param m modele de l'application
