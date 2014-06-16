@@ -1,5 +1,7 @@
 package modele;
 
+import modele.BonbonRaye.Axe;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,15 +37,12 @@ public class BonbonMulticolore extends Bonbon {
 	@Override
 	public void destruction(Grille g) {
 		/*detruire le bonbon ayant une couleur au hasard*/
-
+		Coordonnee c1 = g.getPositionBonbon(this);
+		
+		g.supprimerBonbonCase(c1);
 		//detruire tout les bonbons d'une certaine couleur
 		delAllBonbonCouleur(g, this.choisirCouleurRandom());
 		
-		//effectuer la gravité
-		g.effectuerGraviter();
-		
-		//check la grille pour voir s'il n'y a pas d'autre interaction entre bonbon
-		g.checkGrille();
     }
 	
 	/**
@@ -53,13 +52,12 @@ public class BonbonMulticolore extends Bonbon {
 	 */
 	private void delAllBonbonCouleur(Grille g, Couleur c){
 		
-		Case[][] cases = g.getTableau();
 		// parcourir toute la grille et supprimer chaque bonbon de couleur c
 		for(int i = 0 ; i < g.getLigne() ; i++){
 			for(int j = 0 ; j < g.getColonne() ; j++){
-				if(cases[i][j].getBonbon().getCouleur() == c){
+				if(!g.BonbonNull(new Coordonnee(i,j)) && g.getCase(i, j).getBonbon().getCouleur() == c){
 					//il sagit d'un bonbon de la couleur a supprimer
-					cases[i][j].getBonbon().destruction(g);
+					g.getCase(i, j).retirerContenu(g);
 				}
 				else{
 					//ce n'est pas la bonne couleur
@@ -101,18 +99,82 @@ public class BonbonMulticolore extends Bonbon {
     }
     
     public boolean interagir(BonbonNormal b, Grille g) {
+    	
+		Coordonnee c1 = g.getPositionBonbon(this);
+		
+		g.supprimerBonbonCase(c1);
+		
+    	delAllBonbonCouleur(g, b.getCouleur());
+    	
         return true;
     }
     
     public boolean interagir(BonbonRaye b, Grille g) {
+    	
+		Coordonnee c1 = g.getPositionBonbon(this);
+		
+		g.supprimerBonbonCase(c1);
+		
+		for(int i = 0 ; i < g.getLigne() ; i++){
+			for(int j = 0 ; j < g.getColonne() ; j++){
+				if(!g.BonbonNull(new Coordonnee(i,j)) && g.getCase(i, j).getBonbon().getCouleur() == b.getCouleur()){
+					//il sagit d'un bonbon de la couleur a transformer en bonbon 
+					g.getCase(i, j).setBonbon(new BonbonRaye(b.getCouleur(), Axe.VERTICALE));
+				}
+				else{
+					//ce n'est pas la bonne couleur
+				}
+			}
+		}
+		
+    	delAllBonbonCouleur(g, b.getCouleur());
+    	
         return true;
     }
     
     public boolean interagir(BonbonEmballe b, Grille g) {
-        return true;
+    	
+      	
+    		Coordonnee c1 = g.getPositionBonbon(this);
+    		
+    		g.supprimerBonbonCase(c1);
+    		
+    		for(int i = 0 ; i < g.getLigne() ; i++){
+    			for(int j = 0 ; j < g.getColonne() ; j++){
+    				if(!g.BonbonNull(new Coordonnee(i,j)) && g.getCase(i, j).getBonbon().getCouleur() == b.getCouleur()){
+    					//il sagit d'un bonbon de la couleur a transformer en bonbon 
+    					g.getCase(i, j).setBonbon(new BonbonEmballe(b.getCouleur()));
+    				}
+    				else{
+    					//ce n'est pas la bonne couleur
+    				}
+    			}
+    		}
+    		
+        	delAllBonbonCouleur(g, b.getCouleur());
+        	
+            return true;
+
     }
     
     public boolean interagir(BonbonMulticolore b, Grille g) {
+    	
+		Coordonnee c1 = g.getPositionBonbon(this);
+		
+		g.supprimerBonbonCase(c1);
+		
+    	for(int i = 0 ; i < g.getLigne() ; i++){
+			for(int j = 0 ; j < g.getColonne() ; j++){
+				if(!g.BonbonNull(new Coordonnee(i,j)) ){
+					//il sagit d'un bonbon de la couleur a transformer en bonbon 
+					g.getCase(i, j).retirerContenu(g);
+				}
+				else{
+					//ce n'est pas la bonne couleur
+				}
+			}
+		}
+    	
         return true;
     }
 
