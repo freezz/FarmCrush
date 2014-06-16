@@ -30,9 +30,9 @@ public class CrushGUI implements Observer{
 	private static final ImageIcon orange = new ImageIcon("img/orange.ico");
     private static final ImageIcon rouge = new ImageIcon("img/rouge.ico");
     private static final ImageIcon vert = new ImageIcon("img/vert.ico");
-    private static final ImageIcon bleu = new ImageIcon("img/bleu.ico");
-    private static final ImageIcon violet = new ImageIcon("img/violet.ico");
-    private static final ImageIcon jaune = new ImageIcon("img/jaune.ico");
+    private static final ImageIcon bleu = new ImageIcon("img/croix.jpg");
+    private static final ImageIcon violet = new ImageIcon("img/bleu.png");
+    private static final ImageIcon jaune = new ImageIcon("img/bleu.png");
     private static final ImageIcon orange_raye = new ImageIcon("img/orange_raye.ico");
     private static final ImageIcon rouge_raye = new ImageIcon("img/rouge_raye.ico");
     private static final ImageIcon vert_raye = new ImageIcon("img/vert_raye.ico");
@@ -51,7 +51,7 @@ public class CrushGUI implements Observer{
     private JFrame fenetre;
     
     /** Cases du jeu */
-    private JLabel[][] cases;
+    private JLabel[][] cases ;
     
     /** Le modèle - nécessaire pour les controleurs  */
     private FarmCrush modele;
@@ -81,19 +81,25 @@ public class CrushGUI implements Observer{
     public CrushGUI(FarmCrush m) {
     	
     	this.modele = m;
-    	
     	//Création des cases
+    	cases = new JLabel[m.grille.getLigne()][m.grille.getColonne()];
     	for (int i = 0 ; i < m.grille.getLigne() ; i++) {
 		    for (int j = 0 ; j < m.grille.getColonne() ; j++) {
 				cases[i][j] = new JLabel();
 				//attribut public interdit...
-				cases[i][j].setIcon(contenu2Image(m.grille.getCase(i, j)));
+				//cases[i][j].setIcon(contenu2Image(m.grille.getCase(i, j)));
+				cases[i][j].setIcon(new ImageIcon("img/bleu.png"));
 				//GELATINE ??
 				//case[i][j].
 				
 				//cases[i][j].addMouseListener(new ClickLabel());
 		    }
 		}
+    	
+    	// Construction de la vue (présentation)
+		fenetre = new JFrame("FarmCrush");
+		fenetre.setLocation(300,200);
+		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	
     	//ajout des elements de la vue 
     	Container contenu = fenetre.getContentPane();
@@ -116,7 +122,8 @@ public class CrushGUI implements Observer{
     	JPanel pObjectifs = new JPanel(new FlowLayout());
     	// Ensemble des objectifs //
     	JLabel lScore = new JLabel("Score :");
-    	score = new JLabel(""+m.objectif.getTargetScore());
+    	score = new JLabel();
+    	score.setIcon(bleu);
     	JLabel lCoupRestant = new JLabel("Coups Restant :");
     	coupsRestants = new JLabel(""+m.objectif.getTargetScore());
     	JLabel lVertRestant = new JLabel("Vert :");
@@ -137,11 +144,11 @@ public class CrushGUI implements Observer{
     	rayeRestant = new JLabel(""+m.objectif.getNbRayeRestant());
     	JLabel lMultiRestant = new JLabel("Multicolor :");
     	multicolorRestant = new JLabel(""+m.objectif.getNbMultiRestant());
+    	pObjectifs.add(lScore);
+    	pObjectifs.add(score);
+    	pObjectifs.add(lCoupRestant);
+    	pObjectifs.add(coupsRestants);
     	/*pObjectifs.add(...);
-    	pObjectifs.add(...);
-    	pObjectifs.add(...);
-    	pObjectifs.add(...);
-    	pObjectifs.add(...);
     	pObjectifs.add(...);
     	pObjectifs.add(...);
     	pObjectifs.add(...);
@@ -162,8 +169,8 @@ public class CrushGUI implements Observer{
 		progressbar.setStringPainted(true);
 		
 		pFenetre.add(barreMenu, BorderLayout.NORTH);
-		pFenetre.add(pGrille, BorderLayout.EAST);
-		pFenetre.add(pObjectifs, BorderLayout.WEST);
+		pFenetre.add(pGrille, BorderLayout.CENTER);
+		//pFenetre.add(pObjectifs, BorderLayout.WEST);
 		
 		contenu.add(pFenetre);
 		
@@ -183,7 +190,6 @@ public class CrushGUI implements Observer{
 		Bonbon bonbonContenu = contenu.getBonbon();
 		switch (bonbonContenu.getCouleur()) {
 		    case ORANGE:
-		    	
 		    	resultat = orange;
 			break;
 	
