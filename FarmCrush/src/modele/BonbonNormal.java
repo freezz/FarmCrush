@@ -54,7 +54,8 @@ public class BonbonNormal extends Bonbon {
 		boolean res;
 		if(b instanceof BonbonNormal){
 			// b est un bonbon normal
-			res = b.interagir((BonbonNormal) b, g);
+			BonbonNormal b1 = (BonbonNormal) b;
+			res = b.interagir(b1, g);
 		}
 		else {
 			// b est un bonbon inconnu

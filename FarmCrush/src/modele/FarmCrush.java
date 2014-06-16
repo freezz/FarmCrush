@@ -105,11 +105,6 @@ public class FarmCrush extends Observable {
     			
     		}
     		
-			grille.effectuerGraviter();
-			
-			while(grille.checkGrille()){
-				grille.effectuerGraviter();
-			}
     		
     		this.notifyObservers();
     		
@@ -154,6 +149,16 @@ public class FarmCrush extends Observable {
 		} catch (IOException e) {
 			// Impossible de fermer le fichier
 			e.printStackTrace();
+		}
+		
+		loggerFarmCrush.trace("Initialisation Ok - début gravité");
+		
+		grille.effectuerGraviter();
+		
+		loggerFarmCrush.trace("Gravité Ok - début checkGrille");
+		
+		while(grille.checkGrille()){
+			grille.effectuerGraviter();
 		}
     	
     }
