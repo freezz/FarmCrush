@@ -80,6 +80,7 @@ public class FarmCrush extends Observable {
     		Bonbon bonbon1 = grille.getCase(c1.getX(),c1.getY()).getBonbon();
     		Bonbon bonbon2 = grille.getCase(c2.getX(),c2.getY()).getBonbon();
     		
+    		loggerFarmCrush.trace("est pret a jouer");
     		
     		if(bonbon1.interagir(bonbon2, grille)){
     			loggerFarmCrush.trace("bonbon1 a interagit correctement avec bonbon2");
