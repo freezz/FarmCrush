@@ -80,12 +80,14 @@ public class CrushGUI implements Observer{
     private JLabel rayeRestant;
     private JLabel multicolorRestant;
     
+    private CrushControleur controleur;
+    
     /**
      * Construit l'interface graphique
      * @param m modele de l'application
      */
     public CrushGUI(FarmCrush m) {
-    	
+    	controleur = new CrushControleur(m,this);
     	this.modele = m;
     	//Création des cases
     	cases = new JToggleButton[m.grille.getLigne()][m.grille.getColonne()];
@@ -99,7 +101,7 @@ public class CrushGUI implements Observer{
 					cases[i][j].setBackground(new Color(0, 255 / coucheGelatine, 0));
 				}
 				
-				cases[i][j].addActionListener(new CrushControleur(m,this));
+				cases[i][j].addActionListener(controleur);
 		    }
 		}
     	
@@ -247,6 +249,7 @@ public class CrushGUI implements Observer{
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		//On met a jour la vue de toute les cases
+		System.out.println("Vu mise a jour");
 		for (int i = 0 ; i < this.modele.grille.getLigne() ; i++) {
 		    for (int j = 0 ; j < this.modele.grille.getColonne() ; j++) {
 				cases[i][j].setIcon(contenu2Image(this.modele.grille.getCase(i, j)));

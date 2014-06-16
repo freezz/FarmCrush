@@ -30,6 +30,7 @@ public class CrushControleur implements ActionListener{
 		
 		switch (etat) {
 		case PREMIER_CLICK:
+			System.out.println("PREMIER_CLICK");
 			//on enregistre le bouton sur lequelle on vient d'appuyer
 			boutonPrecedent = b;
 			
@@ -38,9 +39,12 @@ public class CrushControleur implements ActionListener{
 			break;
 			
 		case DEUXIEME_CLICK:
+			System.out.println("DEUXIEME_CLICK");
 			Coordonnee coordBoutonCourant = trouverCoordonneeBouton(this.vue.getCases(), b);
+			//System.out.println(coordBoutonCourant.getX() + "," + coordBoutonCourant.getY());
 			Coordonnee coordBoutonPrecedent = trouverCoordonneeBouton(this.vue.getCases(), boutonPrecedent);
-			this.modele.jouer(coordBoutonCourant, coordBoutonPrecedent);
+			//System.out.println(coordBoutonPrecedent.getX() + "," + coordBoutonPrecedent.getY());
+			this.modele.jouer(new Coordonnee(0, 0), new Coordonnee(0, 1));
 			etat = Etat.PREMIER_CLICK;
 			break;
 
