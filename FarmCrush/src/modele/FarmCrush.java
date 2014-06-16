@@ -104,6 +104,12 @@ public class FarmCrush extends Observable {
     			
     		}
     		
+			grille.effectuerGraviter();
+			
+			while(grille.checkGrille()){
+				grille.effectuerGraviter();
+			}
+    		
     		this.notifyObservers();
     		
     		
