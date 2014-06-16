@@ -104,6 +104,7 @@ public class FarmCrush extends Observable {
     			
     		}
     		
+    		this.notifyObservers();
     		
     		
     	}//fin condition victoire
