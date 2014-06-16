@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Objectif {
 	
-   //Looger
+   //Logger
 	private static final Logger loggerObjective = LogManager.getLogger("modèle.objectif");
 
    //attributs
