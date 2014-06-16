@@ -684,14 +684,13 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
 	 * @param j : inidice sur le nb de bonbon identique sur une colonne
 	 * 	 
 	 */
-    public boolean detruireBonbonExistant(Coordonnee pos){
+    public void detruireBonbonExistant(Coordonnee pos){
 		
     	Couleur color = tableauGrille[pos.getX()][pos.getY()].getBonbon().getCouleur();// couleur du bonbon recherché
+
     	
-    	//
     	
-    	return false;
-    	
+
     }
     
 }
