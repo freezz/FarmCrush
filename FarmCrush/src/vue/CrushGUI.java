@@ -1,6 +1,5 @@
 package vue;
 import controleur.*;
-import Morpion;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -20,9 +19,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-import MorpionGUI.ActionNouvellePartie;
-import MorpionGUI.ActionQuitter;
-import MorpionGUI.ClickLabel;
 import modele.Bonbon;
 import modele.Case;
 import modele.Couleur;
