@@ -1,5 +1,7 @@
 package modele;
 
+import modele.BonbonRaye.Axe;
+
 
 /**
  * Gestion de la grille
@@ -678,7 +680,7 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     	// si ajout nouveau type de bonbon, ajouter le la
     	
     	BonbonNormal bonbon = new BonbonNormal(Couleur.JAUNE);
-    	BonbonRaye bonbonRaye = new BonbonRaye(Couleur.JAUNE);
+    	BonbonRaye bonbonRaye = new BonbonRaye(Couleur.JAUNE,Axe.HORIZONTALE);
     	BonbonEmballe bonbonEmballe = new BonbonEmballe(Couleur.JAUNE);
     	BonbonMulticolore bonbonmulti = new BonbonMulticolore();
     	
@@ -703,15 +705,15 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     		
     		this.detruireBonbonExistant(pos,i,0);
     		//creation nouveau
-    		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonRaye(color));
+    		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonRaye(color,Axe.HORIZONTALE));
     	}
     	else if(j == bonbonRaye.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,0,j);
     		//creation nouveau
-    		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonRaye(color));
+    		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonRaye(color,Axe.VERTICALE));
     	}
-    	else if(i == bonbonEmballe.getConditionLigne() && j == bonbonEmballe.getConditionLigne()){
+    	else if(i == bonbonEmballe.getConditionLigne() && j == bonbonEmballe.getConditionColonne()){
     		
     		this.detruireBonbonExistant(pos,i,j);
     		//creation nouveau
