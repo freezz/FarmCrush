@@ -639,6 +639,8 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     	BonbonEmballe bonbonEmballe = new BonbonEmballe(Couleur.JAUNE);
     	BonbonMulticolore bonbonmulti = new BonbonMulticolore();
     	
+    	Couleur color = tableauGrille[pos.getX()][pos.getY()].getBonbon().getCouleur();// couleur du bonbon recherché
+    	
     	// en fonction du bonbon dectecté, on effectu differentes actions
     	if(i == bonbonmulti.getConditionLigne()){
     		
@@ -651,27 +653,38 @@ if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
     	else if(j == bonbonmulti.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,0,j);
+    		//creation nouveau
+    		tableauGrille[pos.getX()][pos.getY()].setBonbon(new BonbonMulticolore());
     	}
     	else if(i == bonbonRaye.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,i,0);
+    		//creation nouveau
+    		tableauGrille[pos.getX()][pos.getY()].setBonbon(new BonbonRaye(color));
     	}
     	else if(j == bonbonRaye.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,0,j);
-    		
+    		//creation nouveau
+    		tableauGrille[pos.getX()][pos.getY()].setBonbon(new BonbonRaye(color));
     	}
     	else if(i == bonbonEmballe.getConditionLigne() && j == bonbonEmballe.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,i,j);
+    		//creation nouveau
+    		tableauGrille[pos.getX()][pos.getY()].setBonbon(new BonbonEmballe(color));
     	}
     	else if(i == bonbon.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,i,0);
+    		//creation nouveau
+    		tableauGrille[pos.getX()][pos.getY()].setBonbonAleatoire();
     	}
     	else if(j == bonbon.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,0,j);
+    		//creation nouveau
+    		tableauGrille[pos.getX()][pos.getY()].setBonbonAleatoire();
     		
     	}
     	
