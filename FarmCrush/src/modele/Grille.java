@@ -102,6 +102,14 @@ public class Grille {
     
     //Méthodes
     
+    /**
+     * Supprime le bonbon d'une case grace a ces coordonnées
+     * retire une couche de gelatine dans cette case
+     * @param coordBonbon Coordonnées du bonbon a retirer
+     */
+    public void retirerBonbonCase(Coordonnee coordBonbon){
+    	tableauGrille[coordBonbon.getX()][coordBonbon.getY()].retirerContenu(this);
+    }
     
 	/**
 	 *   Méthode permettant de faire descendre les bonbon 
@@ -207,6 +215,12 @@ public class Grille {
     	tableauGrille[coordBonbon.getX()][coordBonbon.getY()].supBonbon();
     }
     
+    
+    /**
+     * 
+     * 
+     * 
+     */
     public void faireDescendreBonbon(int i, int j){
     	int compteur = 0;
     	
