@@ -73,6 +73,9 @@ public class FarmCrush extends Observable {
 	 */
     public void jouer(final Coordonnee c1, final Coordonnee c2) {
     	
+    	loggerFarmCrush.trace("PB A LA SOURCE {}{}",c1.getX(),c1.getY());
+    	loggerFarmCrush.trace("PB A LA SOURCE {}{}",c2.getX(),c2.getY());
+    	
     	//Vérification que les conditions de victoires ou defaites ne sont pas atteintes
     	if(nbCoupJouer <= objectif.getNbCoupMax() && !objectif.estVerifier(scoreActuel)){
     		

@@ -56,7 +56,7 @@ public class BonbonNormal extends Bonbon {
 		if(b instanceof BonbonNormal){
 			// b est un bonbon normal
 			BonbonNormal b1 = (BonbonNormal) b;
-			res = b.interagir(b1, g);
+			res = this.interagir(b1, g);
 		}
 		else {
 			// b est un bonbon inconnu
@@ -72,6 +72,8 @@ public class BonbonNormal extends Bonbon {
     	
     	Coordonnee c1 = g.getPositionBonbon(this);
     	Coordonnee c2 = g.getPositionBonbon(b);
+    	loggerBonbonNormal.trace("pb a la source {}{}",c1.getX(),c1.getY());
+    	loggerBonbonNormal.trace("pb a la source {}{}",c2.getX(),c2.getY());
     	
     	Bonbon stock = b;
     	

@@ -122,12 +122,12 @@ public class BonbonRaye extends Bonbon {
 		if(b instanceof BonbonNormal){
 			// b est un bonbon normal
 			BonbonNormal b1 = (BonbonNormal) b;
-			res = b.interagir(b1, g);
+			res = this.interagir(b1, g);
 		}
 		else if(b instanceof BonbonRaye){
 			// b est un bonbon raye
 			BonbonRaye b2 = (BonbonRaye) b;
-			res = b.interagir(b2, g);
+			res = this.interagir(b2, g);
 		}
 		else {
 			// b est un bonbon inconnu

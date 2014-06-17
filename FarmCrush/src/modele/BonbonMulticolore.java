@@ -79,22 +79,22 @@ public class BonbonMulticolore extends Bonbon {
 		if(b instanceof BonbonNormal){
 			// b est un bonbon normal
 			BonbonNormal b1 = (BonbonNormal) b;
-			res = b.interagir(b1, g);
+			res = this.interagir(b1, g);
 		}
 		else if(b instanceof BonbonRaye){
 			// b est un bonbon rayé
 			BonbonRaye b2 = (BonbonRaye) b;
-			res = b.interagir(b2, g);
+			res = this.interagir(b2, g);
 		}
 		else if (b instanceof BonbonEmballe){
 			// b est un bonbon emballé
 			BonbonEmballe b3  = (BonbonEmballe) b;
-			res = b.interagir(b3, g);
+			res = this.interagir(b3, g);
 		}
 		else if (b instanceof BonbonMulticolore){
 			// b est un bonbon multicolore
 			BonbonMulticolore b4  = (BonbonMulticolore) b;
-			res = b.interagir(b4, g);
+			res = this.interagir(b4, g);
 		}
 		else {
 			// b est un bonbon inconnu
