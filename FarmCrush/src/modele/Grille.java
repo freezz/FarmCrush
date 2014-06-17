@@ -136,9 +136,9 @@ public class Grille {
     	//On doit parcourir colonne par colonne en remontant ligne par ligne
 		loggerGrille.trace("Le probleme serait dans gravité ?");
 		
-    	for(int j = 0; j < this.getColonne(); j++){
+    	for(int i = 0; i < this.getColonne(); i++){
     		
-    		for(int i = 0; i < this.getLigne(); i++){
+    		for(int j = 0; j < this.getLigne(); j++){
 		
 			    if(this.getCase(i,j).getBonbon() == null){
 			    	//il faut faire descendre le bonbon du dessus
@@ -271,33 +271,34 @@ public class Grille {
      * 
      * 
      */
-    public void faireDescendreBonbon(int i1, int j){
-    	int compteur = 0;
+    public void faireDescendreBonbon(int i, int j1){
     	
-    	while(this.getCase(i1,j).getBonbon() == null && compteur < nbLigne-i1){
+    	while(this.getCase(i,j1).getBonbon() == null){
     		
-    		loggerGrille.trace("Je le sent bien la ?"); 
+    		loggerGrille.trace("Pb de boucle infini dans la methode"); 
     		
-    		for(int i = i1;i < nbLigne-1; i++){
-    			this.getCase(i,j).setBonbon(this.getCase(i+1,j).getBonbon());
+    		for(int j = j1; j < nbLigne; j++){
     			
-    			//Dans le cas ou ce n'est pas un bonbon null, il faut lui mettre a jour son historique
-    			if(this.getCase(i,j).getBonbon() != null){
-    				this.getCase(i,j).getBonbon().ajoutCoordonneHistorique(i, j); 
+    			loggerGrille.trace("Valeur de l'algo : ({},{}) ", i,j); 
+    			
+    			if(j == nbLigne-1){
+    				
+    	    		this.getCase(i, j).setBonbonAleatoire();
+    	    		
+    			}
+    			else{
+    				
+    				this.getCase(i,j).setBonbon(this.getCase(i,j+1).getBonbon());
+        			
+        			//Dans le cas ou ce n'est pas un bonbon null, il faut lui mettre a jour son historique
+        			if(this.getCase(i,j).getBonbon() != null){
+        				this.getCase(i,j).getBonbon().ajoutCoordonneHistorique(i, j); 
+        			}
     			}
     			
-    			compteur++;
-    			
     		}//fin for
-    	}
-    	
-    	if(this.getCase(i1,j).getBonbon() == null){
     		
-    		for(int i = i1;i < nbLigne; i++){
-    		this.getCase(i, j).setBonbonAleatoire();
-		    this.getCase(i, j).getBonbon().ajoutCoordonneHistorique(i, j);
-    		}
-    	}
+    	}//fin while
     	
     }//fin methode
     
