@@ -340,6 +340,34 @@ public class CrushGUI implements Observer{
 				//cases[i][j].addActionListener(new CrushControleur(this.modele,this));
 		    }
 		}
+		
+		majObjectifs();
+		
+	}
+	
+	private void majObjectifs(){
+		//score
+    	score.setText(""+this.modele.getScoreActuel());
+    	//coup restant
+    	coupsRestants.setText(""+(this.modele.objectif.getNbVertRestant() - this.modele.getNbCoupJouer()));
+    	//vert restant
+    	vertRestant.setText(""+this.modele.objectif.getNbVertRestant());
+    	//rouge restant
+    	rougeRestant.setText(""+this.modele.objectif.getNbRougeRestant());
+    	//bleu restant
+    	bleuRestant.setText(""+this.modele.objectif.getNbBleuRestant());
+    	//violet restant
+    	violetRestant.setText(""+this.modele.objectif.getNbVioletRestant());
+    	//jaune restant
+    	jauneRestant.setText(""+this.modele.objectif.getNbJauneRestant());
+    	//orange restant
+    	orangeRestant.setText(""+this.modele.objectif.getNbOrangeRestant());
+    	//emballe restant
+    	emballeRestant.setText(""+this.modele.objectif.getNbEmballeRestant());
+    	//raye restant
+    	rayeRestant.setText(""+this.modele.objectif.getNbRayeRestant());
+    	//multi restant
+    	multicolorRestant.setText(""+this.modele.objectif.getNbMultiRestant());
 	}
 	
 	public void selectionerCase(int i, int j, boolean selected){
