@@ -52,6 +52,9 @@ public class BonbonEmballe extends Bonbon {
 		c = g.getPositionBonbon(this);
 		supBloc(g, true, c,1);
 		
+		//On notifie les observers quil faut mettre a jour les objectifs
+		this.setChanged();
+		this.notifyObservers(this.getValeur());
     }
 	
 	/**

@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.Observable;
+
 
 /**
  * Classe abstraite spécifiant les Bonbons
@@ -9,7 +11,7 @@ package modele;
  * @version 0.1
  */
 
-public abstract class Bonbon {
+public abstract class Bonbon extends Observable{
 
     protected Couleur couleur;
     public Historique historique;

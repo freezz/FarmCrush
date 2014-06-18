@@ -5,12 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Observable;
+import java.util.Observer;
+
+import javax.swing.JOptionPane;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-public class FarmCrush extends Observable {
+public class FarmCrush extends Observable implements Observer{
 
 	//Looger
 	private static final Logger loggerFarmCrush = LogManager.getLogger("modèle.FarmCrush");
@@ -90,6 +93,9 @@ public class FarmCrush extends Observable {
     			while(grille.checkGrille()){
     				grille.effectuerGraviter();
     			}
+    			//on incrémente le nombre de coups joués
+        		this.nbCoupJouer++;
+        		loggerFarmCrush.trace("Nombre de coup joué : {}", this.nbCoupJouer);
     		}
     		else if(bonbon2.interagir(bonbon1, grille)){
     			loggerFarmCrush.trace("bonbon2 a interagit correctement avec bonbon1");
@@ -99,6 +105,9 @@ public class FarmCrush extends Observable {
     			while(grille.checkGrille()){
     				grille.effectuerGraviter();
     			}
+    			//on incrémente le nombre de coups joués
+        		this.nbCoupJouer++;
+        		loggerFarmCrush.trace("Nombre de coup joué : {}", this.nbCoupJouer);
     		}
     		else{
     			loggerFarmCrush.trace("L'interaction entre les deux bonbon a échoué");
@@ -412,5 +421,52 @@ public class FarmCrush extends Observable {
 		}
     	return color;
     }
+    
+	@Override
+	public void update(Observable bonbon, Object arg1) {
+
+		System.out.println("ENTREE UPDATE !!!!!!!!!!!");
+		if(bonbon instanceof BonbonNormal){
+			this.decrementerObjectifsCouleurs((BonbonNormal) bonbon);
+		}
+		else if(bonbon instanceof BonbonRaye){
+			this.decrementerObjectifsCouleurs((BonbonRaye) bonbon);
+			this.objectif.setNbRayeRestant(this.objectif.getNbRayeRestant() - 1);
+		}
+		else if(bonbon instanceof BonbonEmballe){
+			this.decrementerObjectifsCouleurs((BonbonEmballe) bonbon);
+			this.objectif.setNbEmballeRestant(this.objectif.getNbEmballeRestant() - 1);
+		}
+		else if(bonbon instanceof BonbonMulticolore){
+			this.objectif.setNbMultiRestant(this.objectif.getNbMultiRestant() - 1);
+		}
+		else{
+			//autre
+		}
+	}
+	
+	private void decrementerObjectifsCouleurs(Bonbon b){
+		if(b.getCouleur() == Couleur.BLEU){
+			this.objectif.setNbBleuRestant(this.objectif.getNbBleuRestant() - 1);
+		}
+		else if(b.getCouleur() == Couleur.VERT){
+			this.objectif.setNbVertRestant(this.objectif.getNbVertRestant() - 1);
+		}
+		else if(b.getCouleur() == Couleur.ROUGE){
+			this.objectif.setNbRougeRestant(this.objectif.getNbRougeRestant() - 1);
+		}
+		else if(b.getCouleur() == Couleur.ORANGE){
+			this.objectif.setNbOrangeRestant(this.objectif.getNbOrangeRestant() - 1);
+		}
+		else if(b.getCouleur() == Couleur.VIOLET){
+			this.objectif.setNbVioletRestant(this.objectif.getNbVioletRestant() - 1);
+		}
+		else if(b.getCouleur() == Couleur.JAUNE){
+			this.objectif.setNbJauneRestant(this.objectif.getNbJauneRestant() - 1);
+		}
+		else{
+			//Null
+		}
+	}
     
 }

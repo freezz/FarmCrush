@@ -71,6 +71,9 @@ public class BonbonRaye extends Bonbon {
 		// ON supprime la ligne ou la colonne ou se trouve le bonbon rayé
 		supLigneColonneGrille(g, this.sensDestruction, c);
 		
+		//On notifie les observers quil faut mettre a jour les objectifs
+		this.setChanged();
+		this.notifyObservers(this.getValeur());
     }
 	
 	/**

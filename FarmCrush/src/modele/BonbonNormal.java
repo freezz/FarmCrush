@@ -41,6 +41,9 @@ public class BonbonNormal extends Bonbon {
 		//retirer le bonbon de la grille
 		g.supprimerBonbonCase(c);
 		
+		//On notifie les observers quil faut mettre a jour les objectifs
+		this.setChanged();
+		this.notifyObservers(this.getValeur());
     }
 
 	/**

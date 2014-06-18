@@ -43,6 +43,9 @@ public class BonbonMulticolore extends Bonbon {
 		//detruire tout les bonbons d'une certaine couleur
 		delAllBonbonCouleur(g, this.choisirCouleurRandom());
 		
+		//On notifie les observers quil faut mettre a jour les objectifs
+		this.setChanged();
+		this.notifyObservers(this.getValeur());
     }
 	
 	/**
