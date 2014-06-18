@@ -52,6 +52,7 @@ public class CrushControleur implements ActionListener{
 			
 			loggerControleur.trace("Coordonnée premier click : ({},{})", xPrecedent, yPrecedent);
 			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonPrecedent.getX(), coordBoutonPrecedent.getY()).getBonbon().getCouleur());
+			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonPrecedent.getX(), coordBoutonPrecedent.getY()).getBonbon().getClass());
 			
 			Coordonnee coordBoutonCourant = trouverCoordonneeBouton(this.vue.getCases(), b);
 			int xCourant = coordBoutonCourant.getX();
@@ -59,6 +60,7 @@ public class CrushControleur implements ActionListener{
 
 			loggerControleur.trace("Coordonnée deuxieme click : ({},{})", xCourant, yCourant);
 			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonCourant.getX(), coordBoutonCourant.getY()).getBonbon().getCouleur());
+			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonCourant.getX(), coordBoutonCourant.getY()).getBonbon().getClass());
 			
 			//on verifie que la deuxieme case cliquée est bien cliquable
 			if(peutJouer(xCourant, yCourant, xPrecedent, yPrecedent)){
