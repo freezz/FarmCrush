@@ -44,10 +44,6 @@ public class BonbonEmballe extends Bonbon {
 		//effectuer la gravité
 		g.effectuerGraviter();
 		
-		while(g.checkGrille()){
-			g.effectuerGraviter();
-		}
-		
 		//on resupprime le bloc entier (autour + le bonbon) 
 		c = g.getPositionBonbon(this);
 		supBloc(g, true, c,1);
@@ -84,7 +80,8 @@ public class BonbonEmballe extends Bonbon {
 				}
 				else{
 					// i == 0 && j == 0
-					if(delBonbonMilieu){
+					if(delBonbonMilieu && g.BonbonNull(coordBonbon) ){
+						
 						g.getCase(coordBonbon.getX(),coordBonbon.getX()).retirerContenu(g);
 					}
 					else{

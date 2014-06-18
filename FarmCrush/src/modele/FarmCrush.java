@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JOptionPane;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -87,12 +85,7 @@ public class FarmCrush extends Observable implements Observer{
     		
     		if(bonbon1.interagir(bonbon2, grille)){
     			loggerFarmCrush.trace("bonbon1 a interagit correctement avec bonbon2");
-    			
-    			grille.effectuerGraviter();
-    			
-    			while(grille.checkGrille()){
-    				grille.effectuerGraviter();
-    			}
+
     			//on incrémente le nombre de coups joués
         		this.nbCoupJouer++;
         		loggerFarmCrush.trace("Nombre de coup joué : {}", this.nbCoupJouer);
@@ -100,11 +93,6 @@ public class FarmCrush extends Observable implements Observer{
     		else if(bonbon2.interagir(bonbon1, grille)){
     			loggerFarmCrush.trace("bonbon2 a interagit correctement avec bonbon1");
     			
-    			grille.effectuerGraviter();
-    			
-    			while(grille.checkGrille()){
-    				grille.effectuerGraviter();
-    			}
     			//on incrémente le nombre de coups joués
         		this.nbCoupJouer++;
         		loggerFarmCrush.trace("Nombre de coup joué : {}", this.nbCoupJouer);
@@ -114,6 +102,12 @@ public class FarmCrush extends Observable implements Observer{
     			
     		}
     		
+    		grille.effectuerGraviter();
+			
+			while(grille.checkGrille()){
+				grille.effectuerGraviter();
+			}
+			
     		this.setChanged();
     		this.notifyObservers();
     		

@@ -127,7 +127,12 @@ public class BonbonMulticolore extends Bonbon {
 			for(int j = 0 ; j < g.getColonne() ; j++){
 				if(!g.BonbonNull(new Coordonnee(i,j)) && g.getCase(i, j).getBonbon().getCouleur() == b.getCouleur()){
 					//il sagit d'un bonbon de la couleur a transformer en bonbon 
-					g.getCase(i, j).setBonbon(new BonbonRaye(b.getCouleur(), Axe.VERTICALE));
+					if(i < (g.getColonne()/2)){
+						g.getCase(i, j).setBonbon(new BonbonRaye(b.getCouleur(), Axe.VERTICALE));
+					}
+					else{
+						g.getCase(i, j).setBonbon(new BonbonRaye(b.getCouleur(), Axe.HORIZONTALE));
+					}
 				}
 				else{
 					//ce n'est pas la bonne couleur
@@ -144,9 +149,10 @@ public class BonbonMulticolore extends Bonbon {
     	
 		loggerBonbonMulticolore.trace("Avec bonbon Emballe");
     		Coordonnee c1 = g.getPositionBonbon(this);
+    		Coordonnee c2 = g.getPositionBonbon(b);
     		
-    		g.supprimerBonbonCase(c1);
-    		
+    		g.getCase(c1.getX(), c1.getY()).setBonbon(b.getCouleur());
+    		g.getCase(c2.getX(), c2.getY()).setBonbon(b.getCouleur());
 
         	delAllBonbonCouleur(g, b.getCouleur());
         	
