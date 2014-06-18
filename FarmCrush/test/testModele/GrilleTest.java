@@ -1,99 +1,41 @@
 package testModele;
 
 import static org.junit.Assert.*;
+import modele.Coordonnee;
+import modele.FarmCrush;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class GrilleTest {
 
+   //Attributs
+	private FarmCrush modele;
+	 
 	@Before
 	public void setUp() throws Exception {
+		modele = new FarmCrush("annexes/lvltest.txt");
 	}
-
+	
 	@Test
-	public void testGrille() {
-		fail("Not yet implemented");
+	public void testGetColonne () {
+		assertTrue(modele.grille.getColonne() == 9);
 	}
-
-	@Test
-	public void testInitialiser() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetColonne() {
-		fail("Not yet implemented");
-	}
-
+	
 	@Test
 	public void testGetLigne() {
-		fail("Not yet implemented");
+		assertTrue(modele.grille.getLigne() == 9);
 	}
-
-	@Test
-	public void testGetTableau() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetCase() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetColonne() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetLigne() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRetirerBonbonCase() {
-		fail("Not yet implemented");
-	}
-
+	
 	@Test
 	public void testBonbonNull() {
-		fail("Not yet implemented");
+		assertFalse(modele.grille.BonbonNull(new Coordonnee(0, 0)));
 	}
-
+	
 	@Test
-	public void testGetPositionBonbon() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSupprimerBonbonCase() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testEffectuerGraviter() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFaireDescendreBonbon() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCheckGrille() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCheckInteraction() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDetruireBonbonExistant() {
-		fail("Not yet implemented");
+	public void testSupprimerBonbon() {
+		modele.grille.supprimerBonbonCase(new Coordonnee(0, 0));
+		assertTrue(modele.grille.BonbonNull(new Coordonnee(0, 0)) == true);
 	}
 
 }
