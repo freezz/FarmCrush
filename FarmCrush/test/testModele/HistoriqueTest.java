@@ -35,10 +35,4 @@ public class HistoriqueTest {
 	public void testHistAdd() {
 		assertTrue(hist.histAdd(coord1));
 	}
-	
-	@Test
-	public void comparaison() {
-		assertTrue((hist.getCoordonnees().get(hist.getCoordonnees().size()-1)) == coord1);
-	}
-
 }
