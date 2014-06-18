@@ -466,7 +466,7 @@ public class Grille {
     	Coordonnee nbBonbonLigneColonne = new Coordonnee(0, 0);
     	// couleur du bonbon recherché
     	Couleur color = this.getCase(pos.getX(),pos.getY()).getBonbon().getCouleur();
-    	loggerGrille.trace("Couleur appel pour tous : {}", color);
+
     	
     	
     	//A DROITE
@@ -485,7 +485,7 @@ public class Grille {
     	//A GAUCHE
 
     	Coordonnee resultaGauche = new Coordonnee(0, 0);
-    	Coordonnee coorGauche = new Coordonnee(pos.getX(), pos.getY());
+    	Coordonnee coorGauche = new Coordonnee(pos.getX()-1, pos.getY());
     	
 		if(coorGauche.getX()>0){
 			if(!BonbonNull(coorGauche)){
@@ -513,8 +513,11 @@ public class Grille {
 
 				resultEnHaut = checkBonbonEnHautSimple(coorEnHaut, color);}
 		}
+		loggerGrille.trace("checkBonbonEnHaut retourne : {},{}",resultaDroite.getX(),resultaDroite.getY());
     	
-    	//on regarde en bas
+		
+		
+    	//EN BAS
     	
     	Coordonnee coorEnBas = new Coordonnee(pos.getX(), pos.getY()-1);
     	Coordonnee resultEnBas = new Coordonnee(0, 0);
@@ -522,8 +525,10 @@ public class Grille {
 			if(!BonbonNull(coorEnBas)){
 				resultEnBas = checkBonbonEnBasSimple(coorEnBas, color);}
 		}
+		loggerGrille.trace("checkBonbonBas retourne : {},{}",resultaDroite.getX(),resultaDroite.getY());
     	
-    	//On cumul les resultats trouvé en haut et en bas
+		
+		//On cumul les resultats trouvé en haut et en bas
     	
     	if((resultEnHaut.getY()+resultEnBas.getY())>1){
     		nbBonbonLigneColonne.setY(resultEnHaut.getY()+resultEnBas.getY()+1);
@@ -641,6 +646,8 @@ public class Grille {
     private Coordonnee checkBonbonEnBasSimple(Coordonnee c, Couleur color) {
 
     	Coordonnee result = new Coordonnee(0, 0);
+    	loggerGrille.trace("Position du test Bas : ({},{})", c.getX(),c.getY());
+    	loggerGrille.trace("Position du test Bas : ({},{})", c.getX(),c.getY());
     	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
     		
     		

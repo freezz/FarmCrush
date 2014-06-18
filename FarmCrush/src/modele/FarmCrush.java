@@ -238,7 +238,7 @@ public class FarmCrush extends Observable {
 						
 						for(int i =0; i < grille.getColonne(); i++){
 							
-							nbCouche = Character.getNumericValue(ligneLue.charAt(j));
+							nbCouche = Character.getNumericValue(ligneLue.charAt(i));
 							
 							grille.getCase(i, j).setGelatine(nbCouche);
 							
