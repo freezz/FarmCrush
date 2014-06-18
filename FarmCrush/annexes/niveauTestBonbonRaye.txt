@@ -26,12 +26,12 @@ gelatine  #si non présente: on suppose qu'il n'y a pas de gélatine
 #lollll
 
 init      # Si non présente : les bonbons sont initialement de couleur aléatoire  
-rjborpvjb
+rjborpvbb
 rjborpvjb
 brjborpvj
 rvoorpvjb
 rjborpvjb
 bbjborrvj
-rjborpvjb
-rjborpvjb
+rjborovjb
+rjboopojb
 brjborpvj

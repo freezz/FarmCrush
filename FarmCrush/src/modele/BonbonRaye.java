@@ -67,7 +67,7 @@ public class BonbonRaye extends Bonbon {
 		/*detruire la ligne/colonne ou il y a le bonbon*/
 		//trouver le bonbon dans la grille (recuperer coordonnées)
 		Coordonnee c = g.getPositionBonbon(this);
-		
+		loggerBonbonRaye.trace("sens de destruction : {}",this.sensDestruction);
 		// ON supprime la ligne ou la colonne ou se trouve le bonbon rayé
 		supLigneColonneGrille(g, this.sensDestruction, c);
 		
@@ -80,25 +80,25 @@ public class BonbonRaye extends Bonbon {
 	private void supLigneColonneGrille(Grille g, Axe a, Coordonnee coordBonbon){
 
 		
-		int i;
+		
 		g.supprimerBonbonCase(coordBonbon);
 		
 		switch (a) {
 		
-		case VERTICALE :
+		case HORIZONTALE :
 			//supprimer colonne
-			for(i = 0 ; i < g.getLigne() ; i++) {
-				if(!g.BonbonNull(new Coordonnee(coordBonbon.getX(), i))){
-					g.getCase(coordBonbon.getX(),i).retirerContenu(g);
+			for(int i = 0 ; i < g.getColonne() ; i++) {
+				if(!g.BonbonNull(new Coordonnee(i, coordBonbon.getY()))){
+					g.getCase(i,coordBonbon.getY()).retirerContenu(g);
 				}
 			}
 			break;
 			
-		case HORIZONTALE :
+		case  VERTICALE :
 			//supprimer ligne
-			for(i = 0 ; i < g.getColonne() ; i++) {
-				if(!g.BonbonNull(new Coordonnee(coordBonbon.getX(), i))){
-					g.getCase(coordBonbon.getX(),i).retirerContenu(g);
+			for(int j = 0 ; j < g.getLigne() ; j++) {
+				if(!g.BonbonNull(new Coordonnee(coordBonbon.getX(), j))){
+					g.getCase(coordBonbon.getX(),j).retirerContenu(g);
 				}
 			}
 			break;
