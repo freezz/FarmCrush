@@ -5,11 +5,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JToggleButton;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import vue.CrushGUI;
 import modele.Coordonnee;
 import modele.FarmCrush;
 
 public class CrushControleur implements ActionListener{
+	
+	private static final Logger loggerControleur = LogManager.getLogger("vue.CrushControleur");
 	
 	private enum Etat {PREMIER_CLICK, DEUXIEME_CLICK, FIN};
 	private Etat etat;
@@ -30,7 +35,7 @@ public class CrushControleur implements ActionListener{
 		
 		switch (etat) {
 		case PREMIER_CLICK:
-			System.out.println("PREMIER_CLICK");
+			loggerControleur.trace("Entrée dans etat PREMIER_CLICK");
 			//on enregistre le bouton sur lequelle on vient d'appuyer
 			boutonPrecedent = b;
 			
@@ -39,12 +44,12 @@ public class CrushControleur implements ActionListener{
 			break;
 			
 		case DEUXIEME_CLICK:
-			System.out.println("DEUXIEME_CLICK");
+			loggerControleur.trace("Entrée dans etat DEUXIEME_CLICK");
 			Coordonnee coordBoutonCourant = trouverCoordonneeBouton(this.vue.getCases(), b);
-			//System.out.println(coordBoutonCourant.getX() + "," + coordBoutonCourant.getY());
+			System.out.println(coordBoutonCourant.getX() + "," + coordBoutonCourant.getY());
 			Coordonnee coordBoutonPrecedent = trouverCoordonneeBouton(this.vue.getCases(), boutonPrecedent);
-			//System.out.println(coordBoutonPrecedent.getX() + "," + coordBoutonPrecedent.getY());
-			this.modele.jouer(new Coordonnee(0, 0), new Coordonnee(1, 0));
+			System.out.println(coordBoutonPrecedent.getX() + "," + coordBoutonPrecedent.getY());
+			//ethis.modele.jouer(coordBoutonPrecedent, coordBoutonCourant);
 			etat = Etat.PREMIER_CLICK;
 			break;
 
@@ -56,7 +61,16 @@ public class CrushControleur implements ActionListener{
 	}
 	
 	private Coordonnee trouverCoordonneeBouton(JToggleButton[][] grilleBouton, JToggleButton boutonAChercher) {
-		return null;
+		Coordonnee cTrouve = null;
+		for(int i = 0 ; i < this.modele.grille.getLigne() ; i++){
+			for(int j = 0 ; j < this.modele.grille.getColonne() ; j++){
+				if(grilleBouton[i][j] == boutonAChercher){
+					loggerControleur.trace("Bouton trouvé dans la grille");
+					cTrouve = new Coordonnee(j, i);
+				}
+			}
+		}
+		return cTrouve;
 		
 	}
 

@@ -91,7 +91,7 @@ public class CrushGUI implements Observer{
     	this.modele = m;
     	//Création des cases
     	cases = new JToggleButton[m.grille.getLigne()][m.grille.getColonne()];
-    	for (int i = 0 ; i < m.grille.getLigne() ; i++) {
+    	for (int i = m.grille.getLigne() -1 ; i >= 0 ; i--) {
 		    for (int j = 0 ; j < m.grille.getColonne() ; j++) {
 				cases[i][j] = new JToggleButton();
 				//attribut public interdit...
@@ -184,8 +184,8 @@ public class CrushGUI implements Observer{
 		
 		/* La grille */
 		JPanel pGrille = new JPanel(new GridLayout(m.grille.getLigne(), m.grille.getColonne()));
-		for (int i = 0; i < m.grille.getLigne(); i++) {
-		    for (int j = 0; j < m.grille.getColonne(); j++) {
+		for (int i = m.grille.getLigne() -1 ; i >= 0 ; i--) {
+		    for (int j = 0 ; j < m.grille.getColonne() ; j++) {
 		    	pGrille.add(cases[i][j]);
 		    }
 		}
