@@ -24,7 +24,7 @@
         </Logger>
         <Logger name="modèle.bonbonRayé" level="trace">
         </Logger>
-²        <Root level="info">
+²        <Root level="warn">
             <AppenderRef ref="stdout"/>
         </Root>        
     </Loggers>

@@ -71,9 +71,12 @@ public class BonbonEmballe extends Bonbon {
 		for( int i = -k ; i <= k ; i++ ) {
 			for( int j = -k ;  j <= k ; j++){
 				if(i != 0 && j != 0){ 
-					if((coordBonbon.getX() + i) > 0 || (coordBonbon.getX() + i) < g.getColonne() || (coordBonbon.getY() + j) < g.getLigne() || (coordBonbon.getY() + j) > 0){
+					if((coordBonbon.getX() + i) > 0 && (coordBonbon.getX() + i) < g.getColonne() && (coordBonbon.getY() + j) < g.getLigne() && (coordBonbon.getY() + j) > 0){
 					//on detruit le bonbon situé sur case[coordBonbon.getX() + i][coordBonbon.getX() + j]
-					g.getCase(coordBonbon.getX() + i,coordBonbon.getY() + j).retirerContenu(g);
+						if(!g.BonbonNull(new Coordonnee(coordBonbon.getX() + i,coordBonbon.getY() + j))){
+							g.getCase(coordBonbon.getX() + i,coordBonbon.getY() + j).retirerContenu(g);
+						}
+
 					}
 				}
 				else{
@@ -182,9 +185,13 @@ public class BonbonEmballe extends Bonbon {
 			for( int j = -k2 ;  j <= k2 ; j++){
 				if(i != 0 && j != 0){ 
 					
-					if((c1.getX() + i) < g.getColonne() || (c1.getX() + j) > g.getLigne()){
+					if((c1.getX() + i) > 0 && (c1.getX() + i) < g.getColonne() && (c1.getY() + j) < g.getLigne() && (c1.getY() + j) > 0){
 					//on detruit le bonbon situé sur case[coordBonbon.getX() + i][coordBonbon.getX() + j]
-					g.getCase(c1.getX() + i,c1.getX() + j).retirerContenu(g);
+
+						if(!g.BonbonNull(new Coordonnee(c1.getX() + i,c1.getY() + j))){
+							g.getCase(c1.getX() + i,c1.getY() + j).retirerContenu(g);
+						}
+					
 					}
 				}
 
