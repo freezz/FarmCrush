@@ -14,6 +14,8 @@
         </Logger>
         <Logger name="modèle.Case" level="trace">
         </Logger>
+        <Logger name="vue.CrushControleur" level="trace">
+        </Logger>
         <Logger name="modèle.bonbonEmballé" level="trace">
         </Logger>
         <Logger name="modèle.bonbonMulticolore" level="trace">
