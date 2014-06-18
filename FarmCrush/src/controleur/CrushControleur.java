@@ -61,14 +61,17 @@ public class CrushControleur implements ActionListener{
 			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonCourant.getX(), coordBoutonCourant.getY()).getBonbon().getCouleur());
 			
 			//on verifie que la deuxieme case cliquée est bien cliquable
-			if((xCourant == xPrecedent + 1 || xCourant == xPrecedent - 1 || xCourant == xPrecedent) && (yCourant == yPrecedent + 1 || yCourant == yPrecedent - 1 || yCourant == yPrecedent)){
+			if(peutJouer(xCourant, yCourant, xPrecedent, yPrecedent)){
 				loggerControleur.trace("Effectuer jouer");
-				//this.modele.jouer(coordBoutonPrecedent, coordBoutonCourant);
+				this.modele.jouer(coordBoutonPrecedent, coordBoutonCourant);
 				etat = Etat.PREMIER_CLICK;
 			}
 			else{
-				//impossible
-				loggerControleur.trace("Impossible de jouer a cet endroit");
+				loggerControleur.warn("La combinaiseon de ces deux cases est impossible");
+				//impossible de jouer le coup
+				
+				//on nettoie la vue
+				this.vue.selectionerCase(xCourant, yCourant, (xCourant == xPrecedent && xCourant == yPrecedent));
 			}
 			
 			break;
@@ -78,6 +81,21 @@ public class CrushControleur implements ActionListener{
 			break;
 		}
 		
+	}
+	
+	/**
+	 * Retourne vrai si le coup peut etre jouer et faux sinon
+	 * @param xCourant
+	 * @param yCourant
+	 * @param xPrecedent
+	 * @param yPrecedent
+	 * @return
+	 */
+	private boolean peutJouer(int xCourant, int yCourant, int xPrecedent, int yPrecedent){
+		return (xCourant == xPrecedent + 1 && yCourant == yPrecedent) || 
+				(xCourant == xPrecedent -1 && yCourant == yPrecedent) ||
+				(xCourant == xPrecedent && yCourant == yPrecedent + 1) ||
+				(xCourant == xPrecedent && yCourant == yPrecedent - 1);
 	}
 	
 	private Coordonnee trouverCoordonneeBouton(JToggleButton[][] grilleBouton, JToggleButton boutonAChercher) {
