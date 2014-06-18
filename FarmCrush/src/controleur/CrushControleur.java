@@ -47,8 +47,10 @@ public class CrushControleur implements ActionListener{
 			loggerControleur.trace("Entrée dans etat DEUXIEME_CLICK");
 			Coordonnee coordBoutonCourant = trouverCoordonneeBouton(this.vue.getCases(), b);
 			System.out.println(coordBoutonCourant.getX() + "," + coordBoutonCourant.getY());
+			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonCourant.getX(), coordBoutonCourant.getY()).getBonbon().getCouleur());
 			Coordonnee coordBoutonPrecedent = trouverCoordonneeBouton(this.vue.getCases(), boutonPrecedent);
 			System.out.println(coordBoutonPrecedent.getX() + "," + coordBoutonPrecedent.getY());
+			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonPrecedent.getX(), coordBoutonPrecedent.getY()).getBonbon().getCouleur());
 			//this.modele.jouer(new Coordonnee(0, 0), new Coordonnee(1, 0));
 			etat = Etat.PREMIER_CLICK;
 			break;
@@ -62,8 +64,8 @@ public class CrushControleur implements ActionListener{
 	
 	private Coordonnee trouverCoordonneeBouton(JToggleButton[][] grilleBouton, JToggleButton boutonAChercher) {
 		Coordonnee cTrouve = null;
-		for(int i = 0 ; i < this.modele.grille.getLigne() ; i++){
-			for(int j = 0 ; j < this.modele.grille.getColonne() ; j++){
+		for (int j = modele.grille.getLigne() -1 ; j >= 0 ; j--) {
+		    for (int i = 0 ; i < modele.grille.getColonne() ; i++) {
 				if(grilleBouton[i][j] == boutonAChercher){
 					loggerControleur.trace("Bouton trouvé dans la grille");
 					cTrouve = new Coordonnee(j, i);
