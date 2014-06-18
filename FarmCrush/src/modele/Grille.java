@@ -295,12 +295,12 @@ public class Grille {
 			    	
 			    	//il faut faire descendre le bonbon du dessus
 			    	result = checkBonbon(new Coordonnee(i, j));
+			    	loggerGrille.trace("Resultat de checkBonbon: nbBonbonLigne : {}  nbColonne : {}",result.getX(),result.getY());
 
-			    	CreationBonbon(new Coordonnee(i, j), result.getX(), result.getY());
 
 			    	if(result.getX() > 2 || result.getY() > 2){
-				    	System.out.println("           "+result.getX()+" "+result.getY());
-				    	System.out.println("           ("+i+", "+j+")");
+			    		
+				    	CreationBonbon(new Coordonnee(i, j), result.getX(), result.getY());
 			    		action = true;
 			    	}
 			    	
@@ -336,11 +336,11 @@ public class Grille {
 	    	loggerGrille.trace("Position en entrée de checkInteraction : ({},{})",pos.getX(),pos.getY());
 	    	
 	    	Coordonnee result = checkBonbon(new Coordonnee(pos.getX(), pos.getY()));
-	    	loggerGrille.trace("Resultat de RESULT : nbBonbonLigne : {}  nbColonne : {}",result.getX(),result.getY());
-	    	
-	    	CreationBonbon(new Coordonnee(pos.getX(), pos.getY()), result.getX(), result.getY());
-	    	
-	    	if(result.getX() > 2 || result.getY() > 2){
+	    	loggerGrille.trace("Resultat de checkBonbon: nbBonbonLigne : {}  nbColonne : {}",result.getX(),result.getY());
+	    
+	    	if(result.getX() > 2 || result.getY() > 2){// on ne traite pas les cas (0,0)
+	    		
+	    		CreationBonbon(new Coordonnee(pos.getX(), pos.getY()), result.getX(), result.getY());
 	    		action = true;
 	    	}
 	    	
@@ -480,7 +480,7 @@ public class Grille {
 				resultaDroite = checkBonbonAdroiteSimple(coorDroite, color);
 				}
 		}
-		loggerGrille.trace("checkBonbonDroite retourne : {},{}",resultaDroite.getX(),resultaDroite.getY());
+		loggerGrille.warn("checkBonbonDroite retourne : {},{}",resultaDroite.getX(),resultaDroite.getY());
 		
     	//A GAUCHE
 
@@ -492,7 +492,7 @@ public class Grille {
 				resultaGauche = checkBonbonAgaucheSimple(coorGauche, color);
 				}
 		}
-		loggerGrille.trace("checkBonbonGauche retourne : {},{}",resultaGauche.getX(),resultaGauche.getY());
+		loggerGrille.warn("checkBonbonGauche retourne : {},{}",resultaGauche.getX(),resultaGauche.getY());
     	
     			
 		//On cumule les resultat trouvés
@@ -513,7 +513,7 @@ public class Grille {
 
 				resultEnHaut = checkBonbonEnHautSimple(coorEnHaut, color);}
 		}
-		loggerGrille.trace("checkBonbonEnHaut retourne : {},{}",resultaDroite.getX(),resultaDroite.getY());
+		loggerGrille.warn("checkBonbonEnHaut retourne : {},{}",resultEnHaut.getX(),resultEnHaut.getY());
     	
 		
 		
@@ -525,7 +525,7 @@ public class Grille {
 			if(!BonbonNull(coorEnBas)){
 				resultEnBas = checkBonbonEnBasSimple(coorEnBas, color);}
 		}
-		loggerGrille.trace("checkBonbonBas retourne : {},{}",resultaDroite.getX(),resultaDroite.getY());
+		loggerGrille.warn("checkBonbonBas retourne : {},{}",resultEnBas.getX(),resultEnBas.getY());
     	
 		
 		//On cumul les resultats trouvé en haut et en bas
@@ -646,10 +646,11 @@ public class Grille {
     private Coordonnee checkBonbonEnBasSimple(Coordonnee c, Couleur color) {
 
     	Coordonnee result = new Coordonnee(0, 0);
-    	loggerGrille.trace("Position du test Bas : ({},{})", c.getX(),c.getY());
-    	loggerGrille.trace("Position du test Bas : ({},{})", c.getX(),c.getY());
+    	
     	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
-    		
+    		//loggerGrille.trace("Position du test Bas : ({},{})", c.getX(),c.getY());
+        	//loggerGrille.trace("Couleur attendu : {}", color);
+        	//loggerGrille.trace("Couleur testé : {}", this.getCase(c.getX(),c.getY()).getBonbon().getCouleur());
     		
     		c.setY(c.getY()-1);
     		if(c.getY()>0){
@@ -658,12 +659,13 @@ public class Grille {
 		
     			}
     		}
-    		
+    		//loggerGrille.trace("Resultat1 : ({},{})", result.getX(),result.getY());
     		result.setY(result.getY()+1);
-    		
+    		//loggerGrille.trace("Resultat2 : ({},{})", result.getX(),result.getY());
     		
     	}
     	
+    	//loggerGrille.trace("Resultat3 : ({},{})", result.getX(),result.getY());
     	return result;
     }//fin methode
     

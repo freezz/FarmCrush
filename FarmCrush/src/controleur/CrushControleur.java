@@ -63,7 +63,7 @@ public class CrushControleur implements ActionListener{
 			//on verifie que la deuxieme case cliquée est bien cliquable
 			if((xCourant == xPrecedent + 1 || xCourant == xPrecedent - 1 || xCourant == xPrecedent) && (yCourant == yPrecedent + 1 || yCourant == yPrecedent - 1 || yCourant == yPrecedent)){
 				loggerControleur.trace("Effectuer jouer");
-				//this.modele.jouer(coordBoutonPrecedent, coordBoutonCourant);
+				this.modele.jouer(coordBoutonPrecedent, coordBoutonCourant);
 				etat = Etat.PREMIER_CLICK;
 			}
 			else{

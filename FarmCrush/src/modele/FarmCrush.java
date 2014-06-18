@@ -108,6 +108,8 @@ public class FarmCrush extends Observable {
     		
     		this.notifyObservers();
     		
+			loggerFarmCrush.trace("Fin de joué");
+    		
     		
     	}//fin condition victoire
     	
