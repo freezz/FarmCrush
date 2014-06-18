@@ -144,19 +144,15 @@ public class BonbonMulticolore extends Bonbon {
     		
     		g.supprimerBonbonCase(c1);
     		
-    		for(int i = 0 ; i < g.getLigne() ; i++){
-    			for(int j = 0 ; j < g.getColonne() ; j++){
-    				if(!g.BonbonNull(new Coordonnee(i,j)) && g.getCase(i, j).getBonbon().getCouleur() == b.getCouleur()){
-    					//il sagit d'un bonbon de la couleur a transformer en bonbon 
-    					g.getCase(i, j).setBonbon(new BonbonEmballe(b.getCouleur()));
-    				}
-    				else{
-    					//ce n'est pas la bonne couleur
-    				}
-    			}
-    		}
-    		
+
         	delAllBonbonCouleur(g, b.getCouleur());
+        	
+        	Couleur aleat = b.choisirCouleurRandom();
+        	while(aleat != b.getCouleur()){
+        		aleat = b.choisirCouleurRandom();
+        	}
+        	
+        	delAllBonbonCouleur(g, aleat);
         	
             return true;
 

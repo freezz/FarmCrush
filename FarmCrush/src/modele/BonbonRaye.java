@@ -166,37 +166,26 @@ public class BonbonRaye extends Bonbon {
     }
     
     public boolean interagir(BonbonRaye b, Grille g) {
-    	boolean action = false;
+
 		loggerBonbonRaye.trace("Avec bonbon Raye");
     	
     	Coordonnee c1 = g.getPositionBonbon(this);
     	Coordonnee c2 = g.getPositionBonbon(b);
     	
-    	Bonbon stock = b;
-    	
-    	//changement de position entre les deux bonbons
-    	g.getCase(c2.getX(), c2.getY()).setBonbon(this);
-    	g.getCase(c1.getX(), c1.getY()).setBonbon(stock);
-    	
-    	if(g.checkInteraction(c1)){
-    		action = true;
-    	}
-    	else if(g.checkInteraction(c2)){
-    		action = true;
-    	}
-    	else{
-    		//si aucune interection marche, on revient a la normale
+
         	this.setAxe(Axe.VERTICALE);
         	b.setAxe(Axe.HORIZONTALE);
         	
+        	loggerBonbonRaye.trace("contenu de c2 : ({},{}",c2.getX(),c2.getY());
         	g.retirerBonbonCase(c2);
         	
         	if(!g.BonbonNull(c1)){
         		g.retirerBonbonCase(c1);
         	}
-    	}
+
     	
-		return action;
+    	
+		return true;
 
     }
 

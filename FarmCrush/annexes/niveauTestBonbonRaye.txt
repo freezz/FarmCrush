@@ -1,0 +1,37 @@
+#Description d'un niveau pour le jeu FarmCrush
+ligne   9
+colonne      9
+score         5000
+coups   20
+vert    20
+violet  20
+
+
+
+raye   2
+emballe   2
+multi    2
+gelatine  #si non présente: on suppose qu'il n'y a pas de gélatine
+000131000
+000131000
+000131000
+000131000
+000131000
+000131000
+000131000
+000131000
+000131000
+
+
+#lollll
+
+init      # Si non présente : les bonbons sont initialement de couleur aléatoire  
+rjborpvjb
+rjborpvjb
+brjborpvj
+rvoorpvjb
+rjborpvjb
+bbjborrvj
+rjborpvjb
+rjborpvjb
+brjborpvj
