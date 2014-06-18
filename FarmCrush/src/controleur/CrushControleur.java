@@ -73,7 +73,9 @@ public class CrushControleur implements ActionListener{
 				//impossible de jouer le coup
 				
 				//on nettoie la vue
-				this.vue.selectionerCase(xCourant, yCourant, (xCourant == xPrecedent && xCourant == yPrecedent));
+				this.vue.selectionerCase(xCourant, yCourant, false);
+				this.vue.selectionerCase(xPrecedent, yPrecedent, false);
+				etat = Etat.PREMIER_CLICK;
 			}
 			
 			break;
