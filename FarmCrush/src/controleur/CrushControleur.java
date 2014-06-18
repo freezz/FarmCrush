@@ -51,7 +51,7 @@ public class CrushControleur implements ActionListener{
 			Coordonnee coordBoutonPrecedent = trouverCoordonneeBouton(this.vue.getCases(), boutonPrecedent);
 			System.out.println(coordBoutonPrecedent.getX() + "," + coordBoutonPrecedent.getY());
 			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonPrecedent.getX(), coordBoutonPrecedent.getY()).getBonbon().getCouleur());
-			//this.modele.jouer(new Coordonnee(0, 0), new Coordonnee(1, 0));
+			this.modele.jouer(new Coordonnee(0, 0), new Coordonnee(1, 0));
 			etat = Etat.PREMIER_CLICK;
 			break;
 
@@ -68,7 +68,7 @@ public class CrushControleur implements ActionListener{
 		    for (int i = 0 ; i < modele.grille.getColonne() ; i++) {
 				if(grilleBouton[i][j] == boutonAChercher){
 					loggerControleur.trace("Bouton trouvé dans la grille");
-					cTrouve = new Coordonnee(j, i);
+					cTrouve = new Coordonnee(i, j);
 				}
 			}
 		}
