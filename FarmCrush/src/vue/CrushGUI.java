@@ -25,6 +25,9 @@ import javax.swing.JToggleButton;
 import org.apache.logging.log4j.LogManager;
 
 import modele.Bonbon;
+import modele.BonbonEmballe;
+import modele.BonbonNormal;
+import modele.BonbonRaye;
 import modele.Case;
 import modele.Couleur;
 import modele.FarmCrush;
@@ -51,6 +54,7 @@ public class CrushGUI implements Observer{
     private static final ImageIcon violet_emballe = new ImageIcon("img/violet_emballe.png");
     private static final ImageIcon jaune_emballe = new ImageIcon("img/jaune_emballe.png");
     private static final ImageIcon multicolore = new ImageIcon("img/multicolore.png");
+    private static final ImageIcon inconnu = new ImageIcon("img/inconnu.png");
 
     /** Fenêtre principale */
     private JFrame fenetre;
@@ -221,28 +225,99 @@ public class CrushGUI implements Observer{
 		Bonbon bonbonContenu = contenu.getBonbon();
 		switch (bonbonContenu.getCouleur()) {
 		    case ORANGE:
-		    	resultat = orange;
+		    	if(bonbonContenu instanceof BonbonRaye){
+		    		resultat = orange_raye;
+		    	}
+		    	else if(bonbonContenu instanceof BonbonEmballe){
+		    		resultat = orange_emballe;
+		    	}
+		    	else if(bonbonContenu instanceof BonbonNormal){
+		    		resultat = orange;
+		    	}
+		    	else{
+		    		resultat = inconnu;
+		    	}
 			break;
 	
 		    case ROUGE:
-		    	resultat = rouge;
+		    	if(bonbonContenu instanceof BonbonRaye){
+		    		resultat = rouge_raye;
+		    	}
+		    	else if(bonbonContenu instanceof BonbonEmballe){
+		    		resultat = rouge_emballe;
+		    	}
+		    	else if(bonbonContenu instanceof BonbonNormal){
+		    		resultat = rouge;
+		    	}
+		    	else{
+		    		resultat = inconnu;
+		    	}
 			break;
 	
 		    case VERT:
+		    	if(bonbonContenu instanceof BonbonRaye){
+		    		resultat = vert_raye;
+		    	}
+		    	else if(bonbonContenu instanceof BonbonEmballe){
+		    		resultat = vert_emballe;
+		    	}
+		    	else if(bonbonContenu instanceof BonbonNormal){
+		    		resultat = vert;
+		    	}
+		    	else{
+		    		resultat = inconnu;
+		    	}
 		    	resultat = vert;
 			break;
 			
 		    case BLEU:
-		    	resultat = bleu;
+		    	if(bonbonContenu instanceof BonbonRaye){
+		    		resultat = bleu_raye;
+		    	}
+		    	else if(bonbonContenu instanceof BonbonEmballe){
+		    		resultat = bleu_emballe;
+		    	}
+		    	else if(bonbonContenu instanceof BonbonNormal){
+		    		resultat = bleu;
+		    	}
+		    	else{
+		    		resultat = inconnu;
+		    	}
 			break;
 			
 		    case VIOLET:
-		    	resultat = violet;
+		    	if(bonbonContenu instanceof BonbonRaye){
+		    		resultat = violet_raye;
+		    	}
+		    	else if(bonbonContenu instanceof BonbonEmballe){
+		    		resultat = violet_emballe;
+		    	}
+		    	else if(bonbonContenu instanceof BonbonNormal){
+		    		resultat = violet;
+		    	}
+		    	else{
+		    		resultat = inconnu;
+		    	}
 			break;
 			
 		    case JAUNE:
-		    	resultat = jaune;
+		    	if(bonbonContenu instanceof BonbonRaye){
+		    		resultat = jaune_raye;
+		    	}
+		    	else if(bonbonContenu instanceof BonbonEmballe){
+		    		resultat = jaune_emballe;
+		    	}
+		    	else if(bonbonContenu instanceof BonbonNormal){
+		    		resultat = jaune;
+		    	}
+		    	else{
+		    		resultat = inconnu;
+		    	}
 			break;
+			
+		    case MULTI:
+		    	resultat = multicolore;
+		    	break;
 		default:
 			//fail
 			break;
@@ -261,10 +336,14 @@ public class CrushGUI implements Observer{
 				if( coucheGelatine != 0) {
 					cases[i][j].setBackground(new Color(0, 255 / coucheGelatine, 0));
 				}
-				cases[i][j].setSelected(false);
+				deselectionerCase(i, j);
 				//cases[i][j].addActionListener(new CrushControleur(this.modele,this));
 		    }
 		}
+	}
+	
+	public void deselectionerCase(int i, int j){
+		cases[i][j].setSelected(false);
 	}
 
 }
