@@ -232,12 +232,12 @@ public class FarmCrush extends Observable {
 				if(contenuLigne[0].equals("gelatine")){
 					
 
-					for(int i = 0; i < grille.getLigne(); i++){
+					for(int j = grille.getLigne()-1; j >= 0; j--){
 						
 						//Récupération de la ligne
 						ligneLue = f.readLine();					
 						
-						for(int j =0; j < grille.getColonne(); j++){
+						for(int i =0; i < grille.getColonne(); i++){
 							
 							nbCouche = Character.getNumericValue(ligneLue.charAt(j));
 							

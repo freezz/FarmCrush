@@ -457,6 +457,7 @@ public class Grille {
 				resultaDroite = checkBonbonAdroite(coorDroite, color);
 				}
 		}
+		loggerGrille.trace("checkBonbonDroite retourne : {},{}",resultaDroite.getX(),resultaDroite.getY());
 		
     	//on regarde a gauche recursif
 
@@ -468,7 +469,7 @@ public class Grille {
 				resultaGauche = checkBonbonAgauche(coorGauche, new Coordonnee(0, 0), color);
 				}
 		}
-    	
+		loggerGrille.trace("checkBonbonGacuhe retourne : {},{}",resultaGauche.getX(),resultaGauche.getY());
     	
     	//on rejoute le resultat ligne
     	if((resultaDroite.getX()+resultaGauche.getX())>2){
@@ -565,7 +566,6 @@ public class Grille {
     		result.setX(result.getX()+1);
     }
     	
-    	loggerGrille.trace("checkBonbonDroite retourne : {},{}",result.getX(),result.getY());
 		
     	return result;
     }//fin methode
@@ -604,7 +604,11 @@ public class Grille {
 	 */
     private Coordonnee checkBonbonAgauche(Coordonnee c, Coordonnee result, Couleur color) {
 
-    	
+    	loggerGrille.trace("Debut CheckBonbonaGacuhe ");
+		
+		loggerGrille.trace("La couleur Comparative est : {}", color);
+		loggerGrille.trace("La couleur du bonbon a gauche est : {}", tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur());
+    
     	if(getCase(c.getX(),c.getY()).getBonbon().getCouleur() == color){
     		
         	//on regarde en haut
@@ -620,7 +624,7 @@ public class Grille {
         	//on rejoute le resultat
         	
         	if((resulthaut.getY()+resultBas.getY())>2){
-        		result.setX(result.getX()+resulthaut.getX()+resultBas.getX());
+        		result.setY(result.getY()+resulthaut.getY()+resultBas.getY());
         	}
     		
     		
