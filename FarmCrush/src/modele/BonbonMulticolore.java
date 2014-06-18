@@ -53,8 +53,8 @@ public class BonbonMulticolore extends Bonbon {
 	private void delAllBonbonCouleur(Grille g, Couleur c){
 		
 		// parcourir toute la grille et supprimer chaque bonbon de couleur c
-		for(int i = 0 ; i < g.getLigne() ; i++){
-			for(int j = 0 ; j < g.getColonne() ; j++){
+		for(int i = 0 ; i < g.getColonne() ; i++){
+			for(int j = 0 ; j < g.getLigne() ; j++){
 				if(!g.BonbonNull(new Coordonnee(i,j)) && g.getCase(i, j).getBonbon().getCouleur() == c){
 					//il sagit d'un bonbon de la couleur a supprimer
 					g.getCase(i, j).retirerContenu(g);
@@ -100,7 +100,7 @@ public class BonbonMulticolore extends Bonbon {
 			// b est un bonbon inconnu
 			res = false;
 		}
-        return false;
+        return res;
     }
     
     public boolean interagir(BonbonNormal b, Grille g) {
@@ -110,7 +110,7 @@ public class BonbonMulticolore extends Bonbon {
 		g.supprimerBonbonCase(c1);
 		
     	delAllBonbonCouleur(g, b.getCouleur());
-    	
+    	loggerBonbonMulticolore.trace("passe par la");
         return true;
     }
     
