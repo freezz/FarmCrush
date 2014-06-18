@@ -14,7 +14,7 @@ import modele.FarmCrush;
 
 public class CrushControleur implements ActionListener{
 	
-	private static final Logger loggerControleur = LogManager.getLogger("vue.CrushControleur");
+	private static final Logger loggerControleur = LogManager.getLogger("controleur.CrushControleur");
 	
 	private enum Etat {PREMIER_CLICK, DEUXIEME_CLICK, FIN};
 	private Etat etat;

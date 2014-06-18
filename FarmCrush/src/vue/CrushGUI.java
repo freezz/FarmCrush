@@ -17,9 +17,12 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JToggleButton;
+
+import org.apache.logging.log4j.LogManager;
 
 import modele.Bonbon;
 import modele.Case;
@@ -251,8 +254,8 @@ public class CrushGUI implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		//On met a jour la vue de toute les cases
 		System.out.println("Vu mise a jour");
-		for (int i = 0 ; i < this.modele.grille.getLigne() ; i++) {
-		    for (int j = 0 ; j < this.modele.grille.getColonne() ; j++) {
+		for (int j = this.modele.grille.getLigne() -1 ; j >= 0 ; j--) {
+		    for (int i = 0 ; i < this.modele.grille.getColonne() ; i++) {
 				cases[i][j].setIcon(contenu2Image(this.modele.grille.getCase(i, j)));
 				int coucheGelatine = this.modele.grille.getCase(i, j).getGelatine().getCoucheGelatine();
 				if( coucheGelatine != 0) {
