@@ -72,8 +72,11 @@ public class BonbonNormal extends Bonbon {
     	
     	Coordonnee c1 = g.getPositionBonbon(this);
     	Coordonnee c2 = g.getPositionBonbon(b);
-    	loggerBonbonNormal.trace("pb a la source {}{}",c1.getX(),c1.getY());
-    	loggerBonbonNormal.trace("pb a la source {}{}",c2.getX(),c2.getY());
+    	
+    	loggerBonbonNormal.trace("Position 1 : ({},{})",c1.getX(),c1.getY());
+    	loggerBonbonNormal.trace("Couleur Position 1 : {}",g.getCase(c1.getX(),c1.getY()).getBonbon().getCouleur());
+    	loggerBonbonNormal.trace("Position 2 : ({},{})",c2.getX(),c2.getY());
+    	loggerBonbonNormal.trace("Couleur Position 2 : {}",g.getCase(c2.getX(),c2.getY()).getBonbon().getCouleur());
     	
     	Bonbon stock = b;
     	

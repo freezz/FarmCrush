@@ -198,7 +198,7 @@ public class Grille {
 	 */
     public void effectuerGraviter() {
     	//On doit parcourir colonne par colonne en remontant ligne par ligne
-		loggerGrille.trace("Le probleme serait dans gravité ?");
+		loggerGrille.trace("Debut Gravité");
 		
     	for(int i = 0; i < this.getColonne(); i++){
     		
@@ -206,9 +206,9 @@ public class Grille {
 		
 			    if(this.getCase(i,j).getBonbon() == null){
 			    	//il faut faire descendre le bonbon du dessus
-					loggerGrille.trace("Dans faire descencre ?");
+					loggerGrille.trace("Appel de la fonction faireDescendreBonbon");
 			    	faireDescendreBonbon(i,j);
-					loggerGrille.trace("faire descendre hors de cause ?");
+
 			    }
 			    else{
 			    	//rien
@@ -216,8 +216,7 @@ public class Grille {
 			}//ligne
 			
 		}//colonne
-    	
-		loggerGrille.trace("gravité hors de cause ?");
+
     	
     	
     }
@@ -232,11 +231,11 @@ public class Grille {
     	
     	while(this.getCase(i,j1).getBonbon() == null){
     		
-    		loggerGrille.trace("réiteration de la boucle"); 
+    		loggerGrille.trace(" Début faireDescendreBonbon"); 
     		
     		for(int j = j1; j < nbLigne; j++){
     			
-    			loggerGrille.trace("Valeur de l'algo : ({},{}) ", i,j); 
+    	 
     			
     			if(j == nbLigne-1){
     				
@@ -284,7 +283,7 @@ public class Grille {
     	Coordonnee result = new Coordonnee(0, 0);
     	boolean action = false;
     	
-		loggerGrille.trace("mais ou est donc la boucle infini ?");
+		loggerGrille.trace(" Debut checkGrille");
 		
     	for(int j = 0; j < this.getLigne(); j++){
     		
@@ -307,7 +306,8 @@ public class Grille {
 			
 		}//colonne
     	
-    	loggerGrille.trace("hors de cause ?");
+
+    	
     	
 		return action;
     }
@@ -323,13 +323,15 @@ public class Grille {
     public boolean checkInteraction(Coordonnee pos){
     	
     	boolean action = false;
+    	
 	    if(this.getCase(pos.getX(),pos.getY()).getBonbon() != null){
 	    	//il faut faire descendre le bonbon du dessus
-
-	    	loggerGrille.trace("ca rentre la -1 {}{}",pos.getX(),pos.getY());
+	    	
+			loggerGrille.trace("Debut de checkInteraction suivi de :");
+	    	loggerGrille.trace("Position en entrée de checkInteraction : ({},{})",pos.getX(),pos.getY());
 	    	
 	    	Coordonnee result = checkBonbon(new Coordonnee(pos.getX(), pos.getY()));
-	    	loggerGrille.trace("Est ce que checkBonbon nous retourne la bonne valeur : ({},{})",result.getX(),result.getY());
+	    	loggerGrille.trace("Resultat de RESULT : nbBonbonLigne : {}  nbColonne : {}",result.getX(),result.getY());
 	    	
 	    	CreationBonbon(new Coordonnee(pos.getX(), pos.getY()), result.getX(), result.getY());
 	    	
@@ -358,7 +360,8 @@ public class Grille {
     private void CreationBonbon(Coordonnee pos, int i, int j){
     	
     	// si ajout nouveau type de bonbon, ajouter le la
-    	
+		loggerGrille.trace("Debut de création Bonbon");
+		
     	BonbonNormal bonbon = new BonbonNormal(Couleur.JAUNE);
     	BonbonRaye bonbonRaye = new BonbonRaye(Couleur.JAUNE,Axe.HORIZONTALE);
     	BonbonEmballe bonbonEmballe = new BonbonEmballe(Couleur.JAUNE);
@@ -373,6 +376,7 @@ public class Grille {
     		this.detruireBonbonExistant(pos,i,0);
     		//creation nouveau
     		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonMulticolore());
+    		loggerGrille.trace("Création de bonbon Multicolor");
     		
     	}
     	else if(j == bonbonmulti.getConditionLigne()){
@@ -380,35 +384,39 @@ public class Grille {
     		this.detruireBonbonExistant(pos,0,j);
     		//creation nouveau
     		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonMulticolore());
+    		loggerGrille.trace("Création de bonbon Multicolor");
     	}
     	else if(i == bonbonRaye.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,i,0);
     		//creation nouveau
     		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonRaye(color,Axe.HORIZONTALE));
+    		loggerGrille.trace("Création de bonbon Rayé");
     	}
     	else if(j == bonbonRaye.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,0,j);
     		//creation nouveau
     		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonRaye(color,Axe.VERTICALE));
+    		loggerGrille.trace("Création de bonbon Rayé");
     	}
     	else if(i == bonbonEmballe.getConditionLigne() && j == bonbonEmballe.getConditionColonne()){
     		
     		this.detruireBonbonExistant(pos,i,j);
     		//creation nouveau
     		getCase(pos.getX(),pos.getY()).setBonbon(new BonbonEmballe(color));
+    		loggerGrille.trace("Création de Emballe");
     	}
     	else if(i == bonbon.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,i,0);
-    		
+    		loggerGrille.trace("Destruction de 3 bonbons");
     		//il n'y a pas de création de bonbon
     	}
     	else if(j == bonbon.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,0,j);
-
+    		loggerGrille.trace("Destruction de 3 bonbons");
     		//il n'y a pas de création de bonbon
     		
     	}
@@ -434,11 +442,11 @@ public class Grille {
 	 */
     private Coordonnee checkBonbon(Coordonnee pos) {
 
-    	loggerGrille.trace("ca rentre la 0 {}{}",pos.getX(),pos.getY());
+    	loggerGrille.trace("Debut de ckeckBonbon");
     	
     	Coordonnee nbBonbonLigneColonne = new Coordonnee(0, 0);// Création des coordonnee de retour
     	Couleur color = this.getCase(pos.getX(),pos.getY()).getBonbon().getCouleur();// couleur du bonbon recherché
-    	
+    	loggerGrille.trace("Couleur appel pour tous : {}", color);
     	//on regarde a droite en recursif
 
     	Coordonnee resultaDroite = new Coordonnee(0, 0);
@@ -446,7 +454,6 @@ public class Grille {
     	
 		if(coorDroite.getX()<nbColonne){
 			if(!BonbonNull(coorDroite)){
-	        	loggerGrille.trace("ca rentre la 1 {}{}",coorDroite.getX(),coorDroite.getY());
 				resultaDroite = checkBonbonAdroite(coorDroite, color);
 				}
 		}
@@ -454,17 +461,17 @@ public class Grille {
     	//on regarde a gauche recursif
 
     	Coordonnee resultaGauche = new Coordonnee(0, 0);
-    	Coordonnee coorGauche = new Coordonnee(pos.getX()-1, pos.getY());
+    	Coordonnee coorGauche = new Coordonnee(pos.getX(), pos.getY());
     	
 		if(coorGauche.getX()>0){
 			if(!BonbonNull(coorGauche)){
-				resultaDroite = checkBonbonAgauche(coorGauche, new Coordonnee(0, 0), color);
+				resultaGauche = checkBonbonAgauche(coorGauche, new Coordonnee(0, 0), color);
 				}
 		}
     	
     	
     	//on rejoute le resultat ligne
-    	if((resultaDroite.getX()+resultaGauche.getX())>1){
+    	if((resultaDroite.getX()+resultaGauche.getX())>2){
     		nbBonbonLigneColonne.setX(resultaDroite.getX()+resultaGauche.getX()+1);
     	}
     	
@@ -473,7 +480,6 @@ public class Grille {
     	//on regarde en haut
     	
     	Coordonnee coorEnHaut = new Coordonnee(pos.getX(), pos.getY()+1);
-
     	Coordonnee resultEnHaut = new Coordonnee(0, 0);
     	
 		if(coorEnHaut.getY()<nbLigne){
@@ -494,7 +500,7 @@ public class Grille {
     	
     	//on rejoute le resultat colonne
     	
-    	if((resultEnHaut.getY()+resultEnBas.getY())>1){
+    	if((resultEnHaut.getY()+resultEnBas.getY())>2){
     		nbBonbonLigneColonne.setY(resultEnHaut.getY()+resultEnBas.getY()+1);
     	}
     	
@@ -521,40 +527,46 @@ public class Grille {
 	 */
     private Coordonnee checkBonbonAdroite(Coordonnee c, Couleur color) {
     	
-    	loggerGrille.trace("ca rentre la 2 {}{}",c.getX(),c.getY());
+    	loggerGrille.trace("Debut CheckBonbonaDroite ");
     		Coordonnee result = new Coordonnee(0, 0);
-    	
+    		
+    		loggerGrille.trace("La couleur Comparative est : {}", color);
+        loggerGrille.trace("La couleur du bonbon a droite est : {}", tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur());
     	if(tableauGrille[c.getX()][c.getY()].getBonbon().getCouleur() == color){
-        	loggerGrille.trace("ca rentre la 3");
+    		
+        	loggerGrille.trace("	On rentre dans la condition : bonbon a la bonne couleur");
         	//on regarde en haut en recursif
 
         	Coordonnee resulthaut = checkBonbonEnHautSimple(new Coordonnee(c.getX(), c.getY()), new Coordonnee(0, 0), color);
-        	resulthaut.setY(resulthaut.getY());
+
         	
         	//on regarde en bas en recursif
 
         	Coordonnee resultBas = checkBonbonEnBasSimple(new Coordonnee(c.getX(), c.getY()), new Coordonnee(0, 0), color);
-        	resultBas.setY(resultBas.getY()-1);
+
         	
         	//on rejoute le resultat
         	
-        	if((resulthaut.getY()+resultBas.getY())>2){
-        		result.setY(result.getY()+resulthaut.getY()+resultBas.getY());
+        	if((resulthaut.getY()+resultBas.getY()-1)>2){
+        		result.setY(result.getY()+resulthaut.getY()+resultBas.getY()-1);
         	}
     		
-        	loggerGrille.trace("ca rentre la");
+
     		c.setX(c.getX()+1);
     		if(c.getX()<nbColonne){
     			if(!BonbonNull(c)){
+    				
     			Coordonnee resultaDroite = checkBonbonAdroite(new Coordonnee(c.getX(), c.getY()), color);
 				result.setY(resultaDroite.getY()+resultaDroite.getY());
 				result.setX(resultaDroite.getX()+resultaDroite.getX());
-				loggerGrille.trace("Est ce que checkBonbonDroite  : ({},{})",resultaDroite.getX(),resultaDroite.getY());
+				
     			}
     		}
     		result.setX(result.getX()+1);
     }
     	
+    	loggerGrille.trace("checkBonbonDroite retourne : {},{}",result.getX(),result.getY());
+		
     	return result;
     }//fin methode
     

@@ -72,9 +72,7 @@ public class FarmCrush extends Observable {
 	 * @param c1 : deuxieme Coordonnee 
 	 */
     public void jouer(final Coordonnee c1, final Coordonnee c2) {
-    	
-    	loggerFarmCrush.trace("PB A LA SOURCE {}{}",c1.getX(),c1.getY());
-    	loggerFarmCrush.trace("PB A LA SOURCE {}{}",c2.getX(),c2.getY());
+
     	
     	//Vérification que les conditions de victoires ou defaites ne sont pas atteintes
     	if(nbCoupJouer <= objectif.getNbCoupMax() && !objectif.estVerifier(scoreActuel)){
@@ -253,14 +251,14 @@ public class FarmCrush extends Observable {
 				else if(contenuLigne[0].equals("init")){
 					
 					char c;
-					for(int i = 0; i < grille.getLigne(); i++){
+					for(int j = grille.getLigne()-1; j >= 0; j--){
 						
 						//Récupération de la ligne
 						ligneLue = f.readLine();					
 						
-						for(int j =0; j < grille.getColonne(); j++){
+						for(int i =0; i < grille.getColonne(); i++){
 							
-							c = ligneLue.charAt(j);
+							c = ligneLue.charAt(i);
 							
 							grille.getCase(i, j).setBonbon(traduitCouleur(c));
 							grille.getCase(i, j).getBonbon().ajoutCoordonneHistorique(i, j);
