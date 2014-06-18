@@ -142,7 +142,6 @@ public class Grille {
     public boolean BonbonNull(Coordonnee c){
     	return(getCase(c.getX(),c.getY()).getBonbon() == null);
     }
-    ublic
     
     /**
      * Obtenir la position du bonbon passéen paramettre
