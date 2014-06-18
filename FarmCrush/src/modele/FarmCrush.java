@@ -82,28 +82,25 @@ public class FarmCrush extends Observable {
     		
     		loggerFarmCrush.trace("est pret a jouer");
     		
+    		
     		if(bonbon1.interagir(bonbon2, grille)){
-    			loggerFarmCrush.trace("bonbon1 a interagit correctement avec bonbon2");
-    			
-    			grille.effectuerGraviter();
-    			
-    			while(grille.checkGrille()){
-    				grille.effectuerGraviter();
-    			}
+    			loggerFarmCrush.trace("Bonbon1 a interagit correctement avec bonbon2");
+
     		}
     		else if(bonbon2.interagir(bonbon1, grille)){
-    			loggerFarmCrush.trace("bonbon2 a interagit correctement avec bonbon1");
     			
-    			grille.effectuerGraviter();
-    			
-    			while(grille.checkGrille()){
-    				grille.effectuerGraviter();
-    			}
+    			loggerFarmCrush.trace("Bonbon2 a interagit correctement avec bonbon1");
     		}
     		else{
     			loggerFarmCrush.trace("L'interaction entre les deux bonbon a échoué");
     			
     		}
+    		
+			grille.effectuerGraviter();
+			
+			while(grille.checkGrille()){
+				grille.effectuerGraviter();
+			}
     		
     		this.setChanged();
     		this.notifyObservers();
