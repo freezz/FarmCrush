@@ -49,7 +49,7 @@ public class CrushControleur implements ActionListener{
 			System.out.println(coordBoutonCourant.getX() + "," + coordBoutonCourant.getY());
 			Coordonnee coordBoutonPrecedent = trouverCoordonneeBouton(this.vue.getCases(), boutonPrecedent);
 			System.out.println(coordBoutonPrecedent.getX() + "," + coordBoutonPrecedent.getY());
-			//ethis.modele.jouer(coordBoutonPrecedent, coordBoutonCourant);
+			//this.modele.jouer(new Coordonnee(0, 0), new Coordonnee(1, 0));
 			etat = Etat.PREMIER_CLICK;
 			break;
 
