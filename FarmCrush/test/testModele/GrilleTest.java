@@ -35,7 +35,13 @@ public class GrilleTest {
 	@Test
 	public void testSupprimerBonbon() {
 		modele.grille.supprimerBonbonCase(new Coordonnee(0, 0));
-		assertTrue(modele.grille.BonbonNull(new Coordonnee(0, 0)) == true);
+		assertTrue(modele.grille.BonbonNull(new Coordonnee(0, 0)));
+	}
+	
+	public void testEffectuerGravite() {
+		assertTrue(modele.grille.BonbonNull(new Coordonnee(0, 0)));
+		modele.grille.effectuerGraviter();
+		assertFalse(modele.grille.BonbonNull(new Coordonnee(0, 0)));
 	}
 
 }

@@ -336,14 +336,14 @@ public class CrushGUI implements Observer{
 				if( coucheGelatine != 0) {
 					cases[i][j].setBackground(new Color(0, 255 / coucheGelatine, 0));
 				}
-				deselectionerCase(i, j);
+				this.selectionerCase(i, j, false);
 				//cases[i][j].addActionListener(new CrushControleur(this.modele,this));
 		    }
 		}
 	}
 	
-	public void deselectionerCase(int i, int j){
-		cases[i][j].setSelected(false);
+	public void selectionerCase(int i, int j, boolean selected){
+		cases[i][j].setSelected(selected);
 	}
 
 }
