@@ -105,7 +105,7 @@ public class FarmCrush extends Observable {
     			
     		}
     		
-    		
+    		this.setChanged();
     		this.notifyObservers();
     		
     		
