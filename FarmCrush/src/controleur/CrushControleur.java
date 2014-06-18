@@ -45,14 +45,19 @@ public class CrushControleur implements ActionListener{
 			
 		case DEUXIEME_CLICK:
 			loggerControleur.trace("Entrée dans etat DEUXIEME_CLICK");
-			Coordonnee coordBoutonCourant = trouverCoordonneeBouton(this.vue.getCases(), b);
 			
 			Coordonnee coordBoutonPrecedent = trouverCoordonneeBouton(this.vue.getCases(), boutonPrecedent);
+			
 			System.out.println(coordBoutonPrecedent.getX() + "," + coordBoutonPrecedent.getY());
+			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonPrecedent.getX(), coordBoutonPrecedent.getY()).getBonbon().getCouleur());
+			
+			Coordonnee coordBoutonCourant = trouverCoordonneeBouton(this.vue.getCases(), b);
+			
 			System.out.println(coordBoutonCourant.getX() + "," + coordBoutonCourant.getY());
 			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonCourant.getX(), coordBoutonCourant.getY()).getBonbon().getCouleur());
-			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonPrecedent.getX(), coordBoutonPrecedent.getY()).getBonbon().getCouleur());
+			
 			this.modele.jouer(coordBoutonPrecedent, coordBoutonCourant);
+			
 			etat = Etat.PREMIER_CLICK;
 			break;
 
