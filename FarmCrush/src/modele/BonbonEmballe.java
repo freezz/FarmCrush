@@ -71,15 +71,15 @@ public class BonbonEmballe extends Bonbon {
 		for( int i = -k ; i <= k ; i++ ) {
 			for( int j = -k ;  j <= k ; j++){
 				if(i != 0 && j != 0){ 
-					if((coordBonbon.getX() + i) < g.getColonne() || (coordBonbon.getX() + j) > g.getLigne()){
+					if((coordBonbon.getX() + i) > 0 || (coordBonbon.getX() + i) < g.getColonne() || (coordBonbon.getY() + j) < g.getLigne() || (coordBonbon.getY() + j) > 0){
 					//on detruit le bonbon situé sur case[coordBonbon.getX() + i][coordBonbon.getX() + j]
-					g.getCase(coordBonbon.getX() + i,coordBonbon.getX() + j).retirerContenu(g);
+					g.getCase(coordBonbon.getX() + i,coordBonbon.getY() + j).retirerContenu(g);
 					}
 				}
 				else{
 					// i == 0 && j == 0
 					if(delBonbonMilieu){
-						g.getCase(coordBonbon.getX() + i,coordBonbon.getX() + j).retirerContenu(g);
+						g.getCase(coordBonbon.getX(),coordBonbon.getX()).retirerContenu(g);
 					}
 					else{
 						//on ne detruit pas le bonbon du milieu 
