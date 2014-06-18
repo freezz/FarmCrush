@@ -489,30 +489,29 @@ public class Grille {
     	
 		if(coorGauche.getX()>0){
 			if(!BonbonNull(coorGauche)){
-				resultaGauche = checkBonbonAgauche(coorGauche, new Coordonnee(0, 0), color);
+				resultaGauche = checkBonbonAgaucheSimple(coorGauche, color);
 				}
 		}
 		loggerGrille.trace("checkBonbonGauche retourne : {},{}",resultaGauche.getX(),resultaGauche.getY());
     	
     			
-		//On test 
+		//On cumule les resultat trouvés
 		
-    	if((resultaDroite.getX()+resultaGauche.getX())>2){
+    	if((resultaDroite.getX()+resultaGauche.getX())>1){
     		nbBonbonLigneColonne.setX(resultaDroite.getX()+resultaGauche.getX()+1);
     	}
     	
-    	nbBonbonLigneColonne.setY(nbBonbonLigneColonne.getY()+resultaDroite.getY()+resultaGauche.getY());
     	
-    	//on regarde en haut
+    	
+    	//En HAUT
     	
     	Coordonnee coorEnHaut = new Coordonnee(pos.getX(), pos.getY()+1);
     	Coordonnee resultEnHaut = new Coordonnee(0, 0);
     	
 		if(coorEnHaut.getY()<nbLigne){
 			if(!BonbonNull(coorEnHaut)){
-				
-				
-				resultEnHaut = checkBonbonEnHaut(coorEnHaut, new Coordonnee(0, 0), color);}
+
+				resultEnHaut = checkBonbonEnHautSimple(coorEnHaut, color);}
 		}
     	
     	//on regarde en bas
@@ -521,16 +520,14 @@ public class Grille {
     	Coordonnee resultEnBas = new Coordonnee(0, 0);
 		if(coorEnBas.getY()>0){
 			if(!BonbonNull(coorEnBas)){
-				resultEnBas = checkBonbonEnBas(coorEnBas, new Coordonnee(0, 0), color);}
+				resultEnBas = checkBonbonEnBasSimple(coorEnBas, color);}
 		}
     	
-    	//on rejoute le resultat colonne
+    	//On cumul les resultats trouvé en haut et en bas
     	
-    	if((resultEnHaut.getY()+resultEnBas.getY())>2){
+    	if((resultEnHaut.getY()+resultEnBas.getY())>1){
     		nbBonbonLigneColonne.setY(resultEnHaut.getY()+resultEnBas.getY()+1);
     	}
-    	
-    	nbBonbonLigneColonne.setX(nbBonbonLigneColonne.getX()+resultEnHaut.getX()+resultEnBas.getX());
 		
 		
         return nbBonbonLigneColonne;
