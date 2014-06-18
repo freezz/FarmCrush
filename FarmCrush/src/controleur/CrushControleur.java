@@ -52,7 +52,7 @@ public class CrushControleur implements ActionListener{
 			System.out.println(coordBoutonCourant.getX() + "," + coordBoutonCourant.getY());
 			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonCourant.getX(), coordBoutonCourant.getY()).getBonbon().getCouleur());
 			loggerControleur.trace("Couleur associé : {}", modele.grille.getCase(coordBoutonPrecedent.getX(), coordBoutonPrecedent.getY()).getBonbon().getCouleur());
-			this.modele.jouer(new Coordonnee(0, 0), new Coordonnee(1, 0));
+			this.modele.jouer(coordBoutonPrecedent, coordBoutonCourant);
 			etat = Etat.PREMIER_CLICK;
 			break;
 
