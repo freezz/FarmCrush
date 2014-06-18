@@ -381,7 +381,7 @@ public class Grille {
     	Couleur color = getCase(pos.getX(),pos.getY()).getBonbon().getCouleur();// couleur du bonbon recherché
     	
     	// en fonction du bonbon dectecté, on effectu differentes actions
-    	if(i > bonbonmulti.getConditionLigne()){
+    	if(i >= bonbonmulti.getConditionLigne()){
     		
     		//destruction 
     		this.detruireBonbonExistant(pos,i,0);
@@ -390,7 +390,7 @@ public class Grille {
     		loggerGrille.trace("Création de bonbon Multicolor");
     		
     	}
-    	else if(j > bonbonmulti.getConditionLigne()){
+    	else if(j >= bonbonmulti.getConditionLigne()){
     		
     		this.detruireBonbonExistant(pos,0,j);
     		//creation nouveau
@@ -694,6 +694,7 @@ public class Grille {
 	 */
     public void detruireBonbonExistant(Coordonnee pos,int i, int j){
 		
+		loggerGrille.trace("On est rentré dans detruireBonbonexistant avec j : {}",j);
     	Couleur color = getCase(pos.getX(),pos.getY()).getBonbon().getCouleur();// couleur du bonbon recherché
 
     	//on traite le i (les lignes)
@@ -724,13 +725,14 @@ public class Grille {
     	}
     	
     	if(j!=0){
-    	
+    		loggerGrille.trace("On est rentré dans la bonne case avec j : {}",j);
     		//on regarde en haut
     		Coordonnee coorEnHaut = new Coordonnee(pos.getX(), pos.getY()+1);
     	
     		if(coorEnHaut.getY()<nbLigne){
     			if(!BonbonNull(coorEnHaut)){
-    				destructBonbonEnHaut(coorEnHaut, color);}
+    				destructBonbonEnHaut(coorEnHaut, color);
+    				}
     		}
     	
     		//on regarde en bas
@@ -739,7 +741,8 @@ public class Grille {
 
     		if(coorEnBas.getY()>=0){
     			if(!BonbonNull(coorEnBas)){
-    				destructBonbonEnBas(coorEnBas, color);}
+    				destructBonbonEnBas(coorEnBas, color);
+    				}
     		}
     	
     	}
