@@ -124,7 +124,7 @@ public class CrushGUI implements Observer{
 		JMenuBar barreMenu = new JMenuBar();
 		JMenu menus = new JMenu("Jeu");
 		JMenuItem itemNouvellePartie = new JMenuItem("Nouvelle Partie");
-		itemNouvellePartie.addActionListener(new ActionNouvellePartie());
+		itemNouvellePartie.addActionListener(new ActionNouvellePartie(modele));
 		JMenuItem itemQuitter = new JMenuItem("Quitter");
 		itemQuitter.addActionListener(new ActionQuitter());
 		menus.add(itemNouvellePartie);
