@@ -43,7 +43,6 @@ public class GrilleTest {
 		
 	@Test
 	public void testEffectuerGraviter() {
-		Bonbon b1 = modele1.grille
 		modele1.grille.supprimerBonbonCase(new Coordonnee(0, 0));
 		modele1.grille.supprimerBonbonCase(new Coordonnee(4, 6));
 		assertTrue(modele1.grille.BonbonNull(new Coordonnee(4, 6)));
