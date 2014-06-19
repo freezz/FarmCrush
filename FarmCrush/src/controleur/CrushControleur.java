@@ -18,7 +18,7 @@ public class CrushControleur implements ActionListener{
 	
 	private static final Logger loggerControleur = LogManager.getLogger("controleur.CrushControleur");
 	
-	private enum Etat {PREMIER_CLICK, DEUXIEME_CLICK};
+	private enum Etat {PREMIER_CLICK, DEUXIEME_CLICK, FIN};
 	private Etat etat;
 	private JToggleButton boutonPrecedent;
 	private FarmCrush modele;
@@ -32,7 +32,6 @@ public class CrushControleur implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent boutonEvent) {
-		// TODO Auto-generated method stub
 		JToggleButton b = (JToggleButton) boutonEvent.getSource();
 		
 		switch (etat) {
@@ -104,6 +103,11 @@ public class CrushControleur implements ActionListener{
 	    		}
 	    		
 	    	}
+			
+			break;
+			
+		case FIN:
+			//Rien
 			
 			break;
 

@@ -55,6 +55,8 @@ public class CrushGUI implements Observer{
     private static final ImageIcon jaune_emballe = new ImageIcon("img/jaune_emballe.png");
     private static final ImageIcon multicolore = new ImageIcon("img/multicolore.png");
     private static final ImageIcon inconnu = new ImageIcon("img/inconnu.png");
+    private static final ImageIcon gagne = new ImageIcon("img/gagne.png");
+    private static final ImageIcon perdu = new ImageIcon("img/perdu.png");
 
     /** Fenêtre principale */
     private JFrame fenetre;
@@ -71,7 +73,6 @@ public class CrushGUI implements Observer{
     
     /*Labels des objectifs*/
     private JLabel score;
-    JProgressBar progressbar;
     
     private JLabel coupsRestants;
     
@@ -123,9 +124,9 @@ public class CrushGUI implements Observer{
 		JMenuBar barreMenu = new JMenuBar();
 		JMenu menus = new JMenu("Jeu");
 		JMenuItem itemNouvellePartie = new JMenuItem("Nouvelle Partie");
-		//itemNouvellePartie.addActionListener(new ActionNouvellePartie());
+		itemNouvellePartie.addActionListener(new ActionNouvellePartie());
 		JMenuItem itemQuitter = new JMenuItem("Quitter");
-		//itemQuitter.addActionListener(new ActionQuitter());
+		itemQuitter.addActionListener(new ActionQuitter());
 		menus.add(itemNouvellePartie);
 		menus.add(itemQuitter);
 		barreMenu.add(menus);
@@ -184,7 +185,7 @@ public class CrushGUI implements Observer{
     	pElementsObjectifs[9].add(rayeRestant);
     	//
     	multicolorRestant = new JLabel(""+m.objectif.getNbMultiRestant());
-    	pElementsObjectifs[10].add(new JLabel("Multicolor :"));
+    	pElementsObjectifs[10].add(new JLabel("Multicolore :"));
     	pElementsObjectifs[10].add(multicolorRestant);
     	
 		
@@ -196,11 +197,6 @@ public class CrushGUI implements Observer{
 		    	pGrille.add(cases[i][j]);
 		    }
 		}
-		
-		/* Barre de progression ... a voir*/
-		progressbar = new JProgressBar(0, 100);
-		progressbar.setValue(0);
-		progressbar.setStringPainted(true);
 		
 		pFenetre.add(barreMenu, BorderLayout.NORTH);
 		pFenetre.add(pGrille, BorderLayout.CENTER);
@@ -371,6 +367,12 @@ public class CrushGUI implements Observer{
     	multicolorRestant.setText(""+this.modele.objectif.getNbMultiRestant());
 	}
 	
+	/**
+	 * Marque la case comme selectionné ou non
+	 * @param i
+	 * @param j
+	 * @param selected
+	 */
 	public void selectionerCase(int i, int j, boolean selected){
 		cases[i][j].setSelected(selected);
 	}
@@ -392,20 +394,23 @@ public class CrushGUI implements Observer{
 	}
 
 	/**
-	 * 
+	 * Affiche une boite de dialogue affichant gagne
 	 */
 	public void afficherGagne() {
-		JOptionPane historique= new JOptionPane();
+		JOptionPane jOGagne= new JOptionPane();
 		String Newligne = System.getProperty("line.separator");
 		String message = "Vous avez gagné ! Félicitation !" + Newligne;
-		//historique.showMessageDialog(null, message, "Gagné !", JOptionPane.INFORMATION_MESSAGE, this.contenu2Image(c));
+		jOGagne.showMessageDialog(null, message, "Gagné !", JOptionPane.INFORMATION_MESSAGE, gagne);
 	}
 
 	/**
-	 * 
+	 * Affiche une boite de dialogue affichant perdu
 	 */
 	public void afficherPerdu() {
-		
+		JOptionPane jOPerdu= new JOptionPane();
+		String Newligne = System.getProperty("line.separator");
+		String message = "Vous avez perdu..." + Newligne;
+		jOPerdu.showMessageDialog(null, message, "Perdu ...", JOptionPane.INFORMATION_MESSAGE, perdu);
 	}
 
 }

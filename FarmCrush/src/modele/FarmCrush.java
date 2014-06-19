@@ -464,9 +464,14 @@ public class FarmCrush extends Observable implements Observer{
     }
     
 	@Override
-	public void update(Observable bonbon, Object arg1) {
+	public void update(Observable bonbon, Object valeurBonbon) {
 
 		System.out.println("ENTREE UPDATE !!!!!!!!!!!");
+		
+		//mettre a jour score
+		this.scoreActuel = this.scoreActuel + (int)valeurBonbon;
+		
+		//mettre a jour objectif
 		if(bonbon instanceof BonbonNormal){
 			this.decrementerObjectifsCouleurs((BonbonNormal) bonbon);
 		}
