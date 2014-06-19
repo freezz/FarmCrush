@@ -91,9 +91,11 @@ public class FarmCrush extends Observable implements Observer{
         		loggerFarmCrush.trace("Nombre de coup joué : {}", this.nbCoupJouer);
         		
         		grille.effectuerGraviter();
+        		this.addObserversBonbons();
     			
     			while(grille.checkGrille()){
     				grille.effectuerGraviter();
+    				this.addObserversBonbons();
     			}
     		}
     		else if(bonbon2.interagir(bonbon1, grille)){
@@ -104,9 +106,11 @@ public class FarmCrush extends Observable implements Observer{
         		loggerFarmCrush.trace("Nombre de coup joué : {}", this.nbCoupJouer);
         		
         		grille.effectuerGraviter();
+        		this.addObserversBonbons();
     			
     			while(grille.checkGrille()){
     				grille.effectuerGraviter();
+    				this.addObserversBonbons();
     			}
     		}
     		else{
@@ -124,6 +128,17 @@ public class FarmCrush extends Observable implements Observer{
     	}//fin condition victoire
     	
     	
+    }
+    
+    /**
+     * Ajout d'observateur sur chaque bonbon de la grille
+     */
+    private void addObserversBonbons(){
+    	for(int i = 0 ; i < this.grille.getLigne() ; i++){
+    		for(int j = 0 ; j < this.grille.getColonne() ; j++){
+    			this.grille.getCase(i, j).getBonbon().addObserver(this);
+    		}
+    	}
     }
 
 	/**
@@ -165,14 +180,15 @@ public class FarmCrush extends Observable implements Observer{
 		
 		loggerFarmCrush.trace("Initialisation Ok - début gravité");
 		
+		//dans le cas ou dans le fichier niveau il manque des bonbon, on effectue la gravité
 		grille.effectuerGraviter();
+		this.addObserversBonbons();
 		
 		loggerFarmCrush.trace("Gravité Ok - début checkGrille");
 		
 		while(grille.checkGrille()){
-
 			grille.effectuerGraviter();
-
+			this.addObserversBonbons();
 		}
     	
     }
@@ -447,22 +463,22 @@ public class FarmCrush extends Observable implements Observer{
 	}
 	
 	private void decrementerObjectifsCouleurs(Bonbon b){
-		if(b.getCouleur() == Couleur.BLEU){
+		if(b.getCouleur() == Couleur.BLEU && this.objectif.getNbBleuRestant() > 0){
 			this.objectif.setNbBleuRestant(this.objectif.getNbBleuRestant() - 1);
 		}
-		else if(b.getCouleur() == Couleur.VERT){
+		else if(b.getCouleur() == Couleur.VERT && this.objectif.getNbVertRestant() > 0){
 			this.objectif.setNbVertRestant(this.objectif.getNbVertRestant() - 1);
 		}
-		else if(b.getCouleur() == Couleur.ROUGE){
+		else if(b.getCouleur() == Couleur.ROUGE && this.objectif.getNbRougeRestant() > 0){
 			this.objectif.setNbRougeRestant(this.objectif.getNbRougeRestant() - 1);
 		}
-		else if(b.getCouleur() == Couleur.ORANGE){
+		else if(b.getCouleur() == Couleur.ORANGE && this.objectif.getNbOrangeRestant() > 0){
 			this.objectif.setNbOrangeRestant(this.objectif.getNbOrangeRestant() - 1);
 		}
-		else if(b.getCouleur() == Couleur.VIOLET){
+		else if(b.getCouleur() == Couleur.VIOLET && this.objectif.getNbVioletRestant() > 0){
 			this.objectif.setNbVioletRestant(this.objectif.getNbVioletRestant() - 1);
 		}
-		else if(b.getCouleur() == Couleur.JAUNE){
+		else if(b.getCouleur() == Couleur.JAUNE && this.objectif.getNbJauneRestant() > 0){
 			this.objectif.setNbJauneRestant(this.objectif.getNbJauneRestant() - 1);
 		}
 		else{

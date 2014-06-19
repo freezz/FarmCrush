@@ -144,7 +144,7 @@ public class CrushGUI implements Observer{
     	}
     	//score
     	score = new JLabel(""+m.objectif.getTargetScore());
-    	pElementsObjectifs[0].add(new JLabel("Score :"));
+    	pElementsObjectifs[0].add(new JLabel("Score Restant:"));
     	pElementsObjectifs[0].add(score);
     	//coup restant
     	coupsRestants = new JLabel(""+m.objectif.getNbCoupMax());
@@ -348,9 +348,9 @@ public class CrushGUI implements Observer{
 	
 	private void majObjectifs(){
 		//score
-    	score.setText(""+this.modele.getScoreActuel());
+    	score.setText(""+(this.modele.objectif.getTargetScore() - this.modele.getScoreActuel()));
     	//coup restant
-    	coupsRestants.setText(""+(this.modele.objectif.getNbVertRestant() - this.modele.getNbCoupJouer()));
+    	coupsRestants.setText(""+(this.modele.objectif.getNbCoupMax() - this.modele.getNbCoupJouer()));
     	//vert restant
     	vertRestant.setText(""+this.modele.objectif.getNbVertRestant());
     	//rouge restant
