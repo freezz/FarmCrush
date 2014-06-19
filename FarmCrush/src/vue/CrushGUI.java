@@ -193,7 +193,6 @@ public class CrushGUI implements Observer{
 		JPanel pGrille = new JPanel(new GridLayout(m.grille.getLigne(), m.grille.getColonne()));
 		for (int j = m.grille.getLigne() -1 ; j >= 0 ; j--) {
 		    for (int i = 0 ; i < m.grille.getColonne() ; i++) {
-		    	cases[i][j].setText(""+i+","+j);
 		    	pGrille.add(cases[i][j]);
 		    }
 		}
