@@ -109,7 +109,7 @@ public class BonbonNormal extends Bonbon {
 
 	@Override
 	public int getValeur() {
-		return 0;
+		return 10;
 	}
 
 	/**
