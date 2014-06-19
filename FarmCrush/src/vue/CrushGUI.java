@@ -375,4 +375,20 @@ public class CrushGUI implements Observer{
 		cases[i][j].setSelected(selected);
 	}
 
+	/**
+	 * Affiche une boite de dialogue contenant l'historique des position du bonbon 
+	 * se trouvant aux coordonées passées en parametre
+	 * @param xCourant
+	 * @param yCourant
+	 */
+	public void afficherHistorique(int xCourant, int yCourant) {
+		JOptionPane historique= new JOptionPane();
+		Case c = this.modele.grille.getCase(xCourant, yCourant);
+		String Newligne = System.getProperty("line.separator"); 
+		String message;
+		message = "Position actuelle : (" + xCourant + "," + yCourant + ")"  + Newligne;
+		message = message + "Historique de positions :" + Newligne + c.getBonbon().affichageHistorique();
+		historique.showMessageDialog(null, message, "Historique", JOptionPane.INFORMATION_MESSAGE, this.contenu2Image(c));
+	}
+
 }
