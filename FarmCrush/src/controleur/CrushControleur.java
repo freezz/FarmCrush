@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import vue.CrushGUI;
+import modele.Bonbon;
 import modele.Coordonnee;
 import modele.FarmCrush;
 
@@ -17,7 +18,7 @@ public class CrushControleur implements ActionListener{
 	
 	private static final Logger loggerControleur = LogManager.getLogger("controleur.CrushControleur");
 	
-	private enum Etat {PREMIER_CLICK, DEUXIEME_CLICK, AFFICHAGE_HISTORIQUE, FIN};
+	private enum Etat {PREMIER_CLICK, DEUXIEME_CLICK};
 	private Etat etat;
 	private JToggleButton boutonPrecedent;
 	private FarmCrush modele;
@@ -84,8 +85,25 @@ public class CrushControleur implements ActionListener{
 				etat = Etat.PREMIER_CLICK;
 			}
 			
-			break;
-		case AFFICHAGE_HISTORIQUE:
+			if(this.modele.getNbCoupJouer() < this.modele.objectif.getNbCoupMax() && !this.modele.objectif.estVerifier(this.modele.getScoreActuel())){
+	    		//on continu
+				etat = Etat.PREMIER_CLICK;
+				
+	    	}//fin condition victoire
+	    	else{
+	    		
+	    		loggerControleur.trace("Fin de de la Partie");
+	    		if(this.modele.objectif.estVerifier(this.modele.getScoreActuel())){
+	    			
+	    			loggerControleur.trace("Partie Gagné");
+	    			this.vue.afficherGagne();
+	    		}
+	    		else{
+	    			loggerControleur.trace("Partie Perdu");
+	    			this.vue.afficherPerdu();
+	    		}
+	    		
+	    	}
 			
 			break;
 
@@ -112,6 +130,12 @@ public class CrushControleur implements ActionListener{
 				(xCourant == xPrecedent && yCourant == yPrecedent - 1);
 	}
 	
+	/**
+	 * 
+	 * @param grilleBouton
+	 * @param boutonAChercher
+	 * @return
+	 */
 	private Coordonnee trouverCoordonneeBouton(JToggleButton[][] grilleBouton, JToggleButton boutonAChercher) {
 		Coordonnee cTrouve = null;
 		for (int j = modele.grille.getLigne() -1 ; j >= 0 ; j--) {
