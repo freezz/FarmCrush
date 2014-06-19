@@ -37,7 +37,8 @@ public class BonbonEmballe extends Bonbon {
 		//Attention acces bord de tableau...
 		//trouver le bonbon dans la grille (recuperer coordonnées)
 		Coordonnee c = g.getPositionBonbon(this);
-		
+		BonbonNormal capsule = new BonbonNormal(this.getCouleur());
+		g.getCase(c.getX(), c.getY()).setBonbon(capsule);
 		// on supprime les bonbons autour du bonbon emballé
 		supBloc(g, false, c,1);
 		
@@ -45,7 +46,7 @@ public class BonbonEmballe extends Bonbon {
 		g.effectuerGraviter();
 		
 		//on resupprime le bloc entier (autour + le bonbon) 
-		c = g.getPositionBonbon(this);
+		c = g.getPositionBonbon(capsule);
 		supBloc(g, true, c,1);
 		
 		//On notifie les observers quil faut mettre a jour les objectifs
@@ -70,7 +71,7 @@ public class BonbonEmballe extends Bonbon {
 		for( int i = -k ; i <= k ; i++ ) {
 			for( int j = -k ;  j <= k ; j++){
 				if(i != 0 || j != 0){ 
-					loggerBonbonEmballe.trace("  -|||| coord testé dans superbloc : {}{}",coordBonbon.getX() + i,coordBonbon.getY() + j);
+					
 					if((coordBonbon.getX() + i) >= 0 && (coordBonbon.getX() + i) < g.getColonne() && (coordBonbon.getY() + j) < g.getLigne() && (coordBonbon.getY() + j) >= 0){
 					//on detruit le bonbon situé sur case[coordBonbon.getX() + i][coordBonbon.getX() + j]
 						if(!g.BonbonNull(new Coordonnee(coordBonbon.getX() + i,coordBonbon.getY() + j))){
