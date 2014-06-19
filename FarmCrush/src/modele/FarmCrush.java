@@ -294,13 +294,25 @@ public class FarmCrush extends Observable implements Observer{
 						
 						//Récupération de la ligne
 						ligneLue = f.readLine();					
+						loggerFarmCrush.trace(" valeur du carac : {}",ligneLue);
 						
 						for(int i =0; i < grille.getColonne(); i++){
 							
 							c = ligneLue.charAt(i);
-							
-							grille.getCase(i, j).setBonbon(traduitCouleur(c));
-							grille.getCase(i, j).getBonbon().ajoutCoordonneHistorique(i, j);
+
+							if(c == 'v'|| c == 'r' || c == 'b' || c == 'j' || c == 'o' || c == 'p'){
+								
+
+								grille.getCase(i, j).setBonbon(traduitCouleur(c));
+								grille.getCase(i, j).getBonbon().ajoutCoordonneHistorique(i, j);
+								
+							}
+							else{
+								
+								grille.getCase(i, j).setBonbon((Bonbon) null); 
+
+							}
+
 							
 						}//fin parcours colonne
 						
