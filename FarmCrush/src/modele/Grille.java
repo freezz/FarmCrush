@@ -734,16 +734,18 @@ public class Grille {
     				destructBonbonEnHaut(coorEnHaut, color);
     				}
     		}
-    	
+    		loggerGrille.trace("Le probleme, est il avant ca ?");
     		//on regarde en bas
     	
     		Coordonnee coorEnBas = new Coordonnee(pos.getX(), pos.getY()-1);
-
+    		
     		if(coorEnBas.getY()>=0){
     			if(!BonbonNull(coorEnBas)){
     				destructBonbonEnBas(coorEnBas, color);
-    				}
+  
+    			}
     		}
+    		
     	
     	}
 		

@@ -89,6 +89,12 @@ public class FarmCrush extends Observable implements Observer{
     			//on incrémente le nombre de coups joués
         		this.nbCoupJouer++;
         		loggerFarmCrush.trace("Nombre de coup joué : {}", this.nbCoupJouer);
+        		
+        		grille.effectuerGraviter();
+    			
+    			while(grille.checkGrille()){
+    				grille.effectuerGraviter();
+    			}
     		}
     		else if(bonbon2.interagir(bonbon1, grille)){
     			loggerFarmCrush.trace("bonbon2 a interagit correctement avec bonbon1");
@@ -96,17 +102,18 @@ public class FarmCrush extends Observable implements Observer{
     			//on incrémente le nombre de coups joués
         		this.nbCoupJouer++;
         		loggerFarmCrush.trace("Nombre de coup joué : {}", this.nbCoupJouer);
+        		
+        		grille.effectuerGraviter();
+    			
+    			while(grille.checkGrille()){
+    				grille.effectuerGraviter();
+    			}
     		}
     		else{
     			loggerFarmCrush.trace("L'interaction entre les deux bonbon a échoué");
     			
     		}
     		
-    		grille.effectuerGraviter();
-			
-			while(grille.checkGrille()){
-				grille.effectuerGraviter();
-			}
 			
     		this.setChanged();
     		this.notifyObservers();

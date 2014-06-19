@@ -144,5 +144,6 @@ public class Case {
     	this.gelatine.retirerCouche();
     	this.bonbon.destruction(g);
     	loggerCase.trace(" Un bonbon est enlevé dans la case : {} {}", coordonnee.getX(), coordonnee.getY());
+    	//loggerCase.trace(" Un bonbon est enlevé est de couleur : {} ", this.bonbon.getCouleur());
     }
 }

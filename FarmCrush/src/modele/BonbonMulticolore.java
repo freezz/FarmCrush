@@ -110,7 +110,7 @@ public class BonbonMulticolore extends Bonbon {
 		loggerBonbonMulticolore.trace("Avec bonbon normal");
 		Coordonnee c1 = g.getPositionBonbon(this);
 		
-		g.supprimerBonbonCase(c1);
+		g.getCase(c1.getX(), c1.getY()).setBonbon(b.getCouleur());
 		
     	delAllBonbonCouleur(g, b.getCouleur());
     	loggerBonbonMulticolore.trace("passe par la");

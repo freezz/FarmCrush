@@ -69,8 +69,9 @@ public class BonbonEmballe extends Bonbon {
 		
 		for( int i = -k ; i <= k ; i++ ) {
 			for( int j = -k ;  j <= k ; j++){
-				if(i != 0 && j != 0){ 
-					if((coordBonbon.getX() + i) > 0 && (coordBonbon.getX() + i) < g.getColonne() && (coordBonbon.getY() + j) < g.getLigne() && (coordBonbon.getY() + j) > 0){
+				if(i != 0 || j != 0){ 
+					loggerBonbonEmballe.trace("  -|||| coord testé dans superbloc : {}{}",coordBonbon.getX() + i,coordBonbon.getY() + j);
+					if((coordBonbon.getX() + i) >= 0 && (coordBonbon.getX() + i) < g.getColonne() && (coordBonbon.getY() + j) < g.getLigne() && (coordBonbon.getY() + j) >= 0){
 					//on detruit le bonbon situé sur case[coordBonbon.getX() + i][coordBonbon.getX() + j]
 						if(!g.BonbonNull(new Coordonnee(coordBonbon.getX() + i,coordBonbon.getY() + j))){
 							g.getCase(coordBonbon.getX() + i,coordBonbon.getY() + j).retirerContenu(g);
@@ -80,8 +81,9 @@ public class BonbonEmballe extends Bonbon {
 				}
 				else{
 					// i == 0 && j == 0
-					if(delBonbonMilieu && g.BonbonNull(coordBonbon) ){
+					if(delBonbonMilieu && !g.BonbonNull(coordBonbon) ){
 						
+						g.getCase(coordBonbon.getX(),coordBonbon.getX()).setBonbonAleatoire();
 						g.getCase(coordBonbon.getX(),coordBonbon.getX()).retirerContenu(g);
 					}
 					else{
@@ -136,7 +138,7 @@ public class BonbonEmballe extends Bonbon {
     	
     	//changement de position entre les deux bonbons
     	g.getCase(c2.getX(), c2.getY()).setBonbon(this);
-    	g.getCase(c1.getX(), c1.getY()).setBonbon(stock);
+    	g.getCase(c1.getX(), c1.getY()).setBonbon(b);
     	
     	if(g.checkInteraction(c1)){
     		action = true;
@@ -146,7 +148,7 @@ public class BonbonEmballe extends Bonbon {
     	}
     	else{
     		//si aucune interection marche, on revient a la normale
-        	g.getCase(c2.getX(), c2.getY()).setBonbon(stock);
+        	g.getCase(c2.getX(), c2.getY()).setBonbon(b);
         	g.getCase(c1.getX(), c1.getY()).setBonbon(this);
     	}
     	
