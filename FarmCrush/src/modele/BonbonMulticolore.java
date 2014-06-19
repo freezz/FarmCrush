@@ -114,6 +114,11 @@ public class BonbonMulticolore extends Bonbon {
 		
     	delAllBonbonCouleur(g, b.getCouleur());
     	loggerBonbonMulticolore.trace("passe par la");
+    	
+    	
+		this.setChanged();
+		this.notifyObservers(this.getValeur());
+		
         return true;
     }
     
@@ -142,6 +147,9 @@ public class BonbonMulticolore extends Bonbon {
 		
     	delAllBonbonCouleur(g, b.getCouleur());
     	
+		this.setChanged();
+		this.notifyObservers(this.getValeur());
+    	
         return true;
     }
     
@@ -163,6 +171,10 @@ public class BonbonMulticolore extends Bonbon {
         	
         	delAllBonbonCouleur(g, aleat);
         	
+        	
+    		this.setChanged();
+    		this.notifyObservers(this.getValeur());
+    		
             return true;
 
     }
@@ -185,6 +197,9 @@ public class BonbonMulticolore extends Bonbon {
 			}
 		}
     	
+		this.setChanged();
+		this.notifyObservers(this.getValeur());
+		
         return true;
     }
 

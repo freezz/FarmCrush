@@ -75,7 +75,7 @@ public class FarmCrush extends Observable implements Observer{
 
     	
     	//Vérification que les conditions de victoires ou defaites ne sont pas atteintes
-    	if(nbCoupJouer <= objectif.getNbCoupMax() && !objectif.estVerifier(scoreActuel)){
+    	if(nbCoupJouer < objectif.getNbCoupMax() && !objectif.estVerifier(scoreActuel)){
     		
     		//recupere les bonbon correspondant au coordonnées
     		Bonbon bonbon1 = grille.getCase(c1.getX(),c1.getY()).getBonbon();
@@ -126,6 +126,18 @@ public class FarmCrush extends Observable implements Observer{
     		
     		
     	}//fin condition victoire
+    	else{
+    		
+    		loggerFarmCrush.trace("Fin de de la Partie");
+    		if(objectif.estVerifier(scoreActuel)){
+    			
+    			loggerFarmCrush.trace("Partie Gagné");
+    		}
+    		else{
+    			loggerFarmCrush.trace("Partie Perdu");
+    		}
+    		
+    	}
     	
     	
     }
