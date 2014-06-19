@@ -20,6 +20,14 @@ public class FarmCrush extends Observable implements Observer{
 
     private int scoreActuel;
     private int nbCoupJouer;
+    
+    public void setNbCoupJouer(int coup){
+    	this.nbCoupJouer = coup;
+    }
+    
+    public void setScoreActuel(int score){
+    	this.scoreActuel = score;
+    }
 
     public Objectif objectif;
     public Grille grille;
@@ -203,6 +211,8 @@ public class FarmCrush extends Observable implements Observer{
 			this.addObserversBonbons();
 		}
     	
+		this.setChanged();
+		this.notifyObservers();
     }
 
   
