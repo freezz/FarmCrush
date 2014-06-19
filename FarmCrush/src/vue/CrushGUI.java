@@ -391,4 +391,21 @@ public class CrushGUI implements Observer{
 		historique.showMessageDialog(null, message, "Historique", JOptionPane.INFORMATION_MESSAGE, this.contenu2Image(c));
 	}
 
+	/**
+	 * 
+	 */
+	public void afficherGagne() {
+		JOptionPane historique= new JOptionPane();
+		String Newligne = System.getProperty("line.separator");
+		String message = "Vous avez gagné ! Félicitation !" + Newligne;
+		//historique.showMessageDialog(null, message, "Gagné !", JOptionPane.INFORMATION_MESSAGE, this.contenu2Image(c));
+	}
+
+	/**
+	 * 
+	 */
+	public void afficherPerdu() {
+		
+	}
+
 }
