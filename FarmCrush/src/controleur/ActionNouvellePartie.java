@@ -16,10 +16,11 @@ public class ActionNouvellePartie implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		this.modele.setNbCoupJouer(0);
+		
 		this.modele.initialisationNiveau("annexes/niveauTestGrilleVide.txt");
 
-		this.modele.setNbCoupJouer(0);
-		this.modele.setScoreActuel(this.modele.objectif.getTargetScore());
+		this.modele.setScoreActuel(0);
 	}
 
 }
