@@ -3,6 +3,7 @@ package controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +17,7 @@ public class CrushControleur implements ActionListener{
 	
 	private static final Logger loggerControleur = LogManager.getLogger("controleur.CrushControleur");
 	
-	private enum Etat {PREMIER_CLICK, DEUXIEME_CLICK, FIN};
+	private enum Etat {PREMIER_CLICK, DEUXIEME_CLICK, AFFICHAGE_HISTORIQUE, FIN};
 	private Etat etat;
 	private JToggleButton boutonPrecedent;
 	private FarmCrush modele;
@@ -70,18 +71,27 @@ public class CrushControleur implements ActionListener{
 			}
 			else{
 				loggerControleur.warn("La combinaiseon de ces deux cases est impossible");
+				loggerControleur.trace("affichage de l'historique");
 				//impossible de jouer le coup
 				
 				//on nettoie la vue
 				this.vue.selectionerCase(xCourant, yCourant, false);
 				this.vue.selectionerCase(xPrecedent, yPrecedent, false);
+				
+				//affichage de la boite de dialogue historique
+				this.vue.afficherHistorique(xCourant, yCourant);
+				
 				etat = Etat.PREMIER_CLICK;
 			}
+			
+			break;
+		case AFFICHAGE_HISTORIQUE:
 			
 			break;
 
 		default:
 			//Cas inconnu
+			
 			break;
 		}
 		

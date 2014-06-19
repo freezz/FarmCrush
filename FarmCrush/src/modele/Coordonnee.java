@@ -53,5 +53,11 @@ public class Coordonnee {
     public void setY(int i) {
         this.y = i;
     }
+    
+    @Override
+    public String toString(){
+    	
+		return "(" + x + "," + y +")";
+    }
 
 }

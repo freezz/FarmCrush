@@ -129,4 +129,17 @@ public abstract class Bonbon extends Observable{
     		//ajouter log comme quoi il y a une erreur au niveau de l ajout dans l historique
     	}
     }
+    
+    /**
+     * Affiche l'historique des coordonnée du bonbon
+     * @return
+     */
+    public String affichageHistorique(){
+    	String res = "";
+    	for(Coordonnee c : this.historique.getCoordonnees()){
+    		res = res + c.toString() + System.getProperty("line.separator");
+    	}
+		return res;
+    	
+    }
 }
