@@ -69,7 +69,6 @@ public class CrushGUI implements Observer{
     /** Le modèle - nécessaire pour les controleurs  */
     private FarmCrush modele;
     
-    
     /*Labels des objectifs*/
     private JLabel score;
     JProgressBar progressbar;
@@ -336,8 +335,10 @@ public class CrushGUI implements Observer{
 				if( coucheGelatine != 0) {
 					cases[i][j].setBackground(new Color(0, 255 / coucheGelatine, 0));
 				}
+				else {
+					cases[i][j].setBackground(null);
+				}
 				this.selectionerCase(i, j, false);
-				//cases[i][j].addActionListener(new CrushControleur(this.modele,this));
 		    }
 		}
 		
