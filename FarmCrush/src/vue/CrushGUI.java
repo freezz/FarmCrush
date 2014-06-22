@@ -8,7 +8,6 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.logging.Logger;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -19,17 +18,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.JToggleButton;
 
-import org.apache.logging.log4j.LogManager;
 
 import modele.Bonbon;
 import modele.BonbonEmballe;
 import modele.BonbonNormal;
 import modele.BonbonRaye;
 import modele.Case;
-import modele.Couleur;
 import modele.FarmCrush;
 
 public class CrushGUI implements Observer{
@@ -383,33 +379,30 @@ public class CrushGUI implements Observer{
 	 * @param yCourant
 	 */
 	public void afficherHistorique(int xCourant, int yCourant) {
-		JOptionPane historique= new JOptionPane();
 		Case c = this.modele.grille.getCase(xCourant, yCourant);
 		String Newligne = System.getProperty("line.separator"); 
 		String message;
 		message = "Position actuelle : (" + xCourant + "," + yCourant + ")"  + Newligne;
 		message = message + "Historique de positions :" + Newligne + c.getBonbon().affichageHistorique();
-		historique.showMessageDialog(null, message, "Historique", JOptionPane.INFORMATION_MESSAGE, this.contenu2Image(c));
+		JOptionPane.showMessageDialog(null, message, "Historique", JOptionPane.INFORMATION_MESSAGE, CrushGUI.contenu2Image(c));
 	}
 
 	/**
 	 * Affiche une boite de dialogue affichant gagne
 	 */
 	public void afficherGagne() {
-		JOptionPane jOGagne= new JOptionPane();
 		String Newligne = System.getProperty("line.separator");
 		String message = "Vous avez gagné ! Félicitation !" + Newligne;
-		jOGagne.showMessageDialog(null, message, "Gagné !", JOptionPane.INFORMATION_MESSAGE, gagne);
+		JOptionPane.showMessageDialog(null, message, "Gagné !", JOptionPane.INFORMATION_MESSAGE, gagne);
 	}
 
 	/**
 	 * Affiche une boite de dialogue affichant perdu
 	 */
 	public void afficherPerdu() {
-		JOptionPane jOPerdu= new JOptionPane();
 		String Newligne = System.getProperty("line.separator");
 		String message = "Vous avez perdu..." + Newligne;
-		jOPerdu.showMessageDialog(null, message, "Perdu ...", JOptionPane.INFORMATION_MESSAGE, perdu);
+		JOptionPane.showMessageDialog(null, message, "Perdu ...", JOptionPane.INFORMATION_MESSAGE, perdu);
 	}
 
 }

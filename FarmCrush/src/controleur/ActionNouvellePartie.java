@@ -2,8 +2,6 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import vue.CrushGUI;
 import modele.FarmCrush;
 
 public class ActionNouvellePartie implements ActionListener {

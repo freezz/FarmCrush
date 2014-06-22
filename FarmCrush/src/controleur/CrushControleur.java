@@ -3,14 +3,12 @@ package controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import vue.CrushGUI;
-import modele.Bonbon;
 import modele.Coordonnee;
 import modele.FarmCrush;
 

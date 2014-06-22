@@ -135,7 +135,6 @@ public class BonbonEmballe extends Bonbon {
     	Coordonnee c1 = g.getPositionBonbon(this);
     	Coordonnee c2 = g.getPositionBonbon(b);
     	
-    	Bonbon stock = b;
     	
     	//changement de position entre les deux bonbons
     	g.getCase(c2.getX(), c2.getY()).setBonbon(this);
